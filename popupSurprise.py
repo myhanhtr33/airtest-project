@@ -1,7 +1,7 @@
 # -*- encoding=utf8 -*-
 __author__ = "9999"
 import time
-import pytest
+# import pytest
 from airtest.core.api import *
 from airtest.cli.parser import cli_setup
 from pocounit.case import PocoTestCase
