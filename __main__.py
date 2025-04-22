@@ -1,62 +1,73 @@
-# from popupSurprise import CommonCase
-# from airtest.core.api import *
-
-# class test(CommonCase):
-#     pass
-# haha=test()
-# print(haha.say())
-
-# print("Test class defined")
-# haha = test()
-# print("Test instance created")
-# result = haha.say()
-# print(f"say() returned: {result}")
-# print(f"Printing: {result}")
+import tests.popupSurprise
+from tests import *
+import os
+from utils.device_setup import connect_to_unity
+if __name__ == "__main__":
+    # tests.popupSurprise.runTest()
 
 
-# from airtest.core.api import *
+    def print_poco_hierarchy(node=None, indent=0, lines=None):
+        from airtest.core.api import sleep  # Optional, in case needed for timing
 
-# auto_setup(__file__)
-# from airtest.core.api import *
-# from airtest.core.settings import Settings as ST
-# import threading
-# import time
-# import sys
-# import datetime
-# from concurrent.futures import ThreadPoolExecutor
-# import os
-# # from poco.drivers.unity3d import UnityPoco
-# # poco = UnityPoco()
-# ST.THRESHOLD = 0.6 #do chinh xac de tim ra 1 anh
-# ST.THRESHOLD_STRICT = 0.6
-# ST.OPDELAY = 0.1# giam thoi gian chuyen giua lenh
-# ST.FIND_TIMEOUT = 1
+        if lines is None:
+            lines = []
+            node = poco()  # this is the entry point for UnityPoco
 
-# # dev1=connect_device("android://127.0.0.1:5037/emulator-5554")
-# btn= (Template(r"tpl1744710026776.png", record_pos=(-0.391, -0.544), resolution=(900, 1800)))
-# touch(btn)
-import time
-from poco.drivers.unity3d import UnityPoco
+        try:
+            name = node.get_name()
+            node_type = node.attr('type')
+            clickable = node.attr('clickable')
+            visible = node.attr('visible')
+            text = node.get_text()
+            line = "  " * indent + f"{name} (type={node_type}, clickable={clickable}, visible={visible}, text={text})"
+        except Exception as e:
+            line = "  " * indent + f"[Error reading node]: {e}"
 
-from pocounit.case import PocoTestCase
-from pocounit.addons.poco.action_tracking import ActionTracker
-# from pocounit.addons.hunter.runtime_logging import AppRuntimeLogging
+        print(line)
+        lines.append(line)
 
-from airtest.core.api import *
-from popupSurprise import CommonCase
-from airtest.core.api import *
-dev1=connect_device("android://127.0.0.1:5037/emulator-5554")
-poco = UnityPoco()
+        try:
+            children = node.children()
+            for child in children:
+                print_poco_hierarchy(child, indent + 1, lines)
+        except Exception as e:
+            lines.append("  " * (indent + 1) + f"[Error getting children]: {e}")
 
-class test(CommonCase):
-    pass
-haha=test()
-print(haha.say())
-
-btn= (Template(r"tpl1744710026776.png", record_pos=(-0.391, -0.544), resolution=(900, 1800)))
-touch(btn)
-sleep(1)
+        if indent == 0:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            file_path = os.path.join(script_dir, "hierarchyDump.txt")
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write("\n".join(lines))
+            print(f"\nLive Unity UI hierarchy dumped to: {file_path}")
 
 
-btnBuy=poco("ElementPack2").child("Btn_WatchAds")
-btnBuy.click()
+    def save_hierarchy_to_file(poco, filename="hierarchyDump.txt"):
+        hierarchy = poco.agent.hierarchy.dump()
+
+        def walk(node, indent=0):
+            lines = []
+            name = node.get("name", "Unknown")
+            node_type = node.get("type", "Unknown")
+            lines.append("  " * indent + f"{name} (type={node_type})")
+
+            # Print all known attributes (clickable, visible, text, etc.)
+            for key, value in node.items():
+                # if key == "clickable" and value is False:
+                #     continue
+                if key not in ["name", "type", "children"]:
+                        lines.append("  " * (indent + 1) + f"{key}: {value}")
+
+            for child in node.get("children", []):
+                lines.extend(walk(child, indent + 1))
+
+            return lines
+
+        lines = walk(hierarchy)
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines))
+        print(f"Hierarchy saved to {filename}")
+
+print("helolheloo")
+poco = connect_to_unity()
+# print_poco_hierarchy()
+save_hierarchy_to_file(poco)
