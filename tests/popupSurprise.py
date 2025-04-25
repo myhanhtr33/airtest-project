@@ -30,7 +30,7 @@ class CommonCase(PocoTestCase):
 
 # script content
 print("start...")
-poco= connect_to_unity()
+poco= None
 
 def panelInteract(shopname=""):
     panel= poco("PanelNavigateResource")
@@ -43,7 +43,7 @@ def panelInteract(shopname=""):
     #     print(childTitle.get_text())
     for title in childTitle:
         print(title.get_text())
-    result1=(Template(r"tpl1744958150323.png", record_pos=(-0.42, 0.914), resolution=(900, 1800)))
+    result1=(Template(r"../image/botRightBackBtn.png", record_pos=(-0.42, 0.914), resolution=(900, 1800)))
     result2=poco("BtnHome")
     count=0
     for child in children:
@@ -78,9 +78,9 @@ def runTest():
     shopBtnTitle = ["lGold", "lEnergy", "lGem"]
     title = [poco("CurrencyBar").offspring("lGold"), poco("CurrencyBar").offspring("lEnergy"),
              poco("CurrencyBar").offspring("lGem")]
-    popup = [Template(r"tpl1744968630721.png", record_pos=(-0.002, -0.38), resolution=(900, 1800)),
-             Template(r"tpl1744968652545.png", record_pos=(-0.001, -0.381), resolution=(900, 1800)),
-             Template(r"tpl1744968665944.png", record_pos=(-0.001, -0.378), resolution=(900, 1800))]
+    popup = [Template(r"../image/goldPanelTitle.png", record_pos=(-0.002, -0.38), resolution=(900, 1800)),
+             Template(r"../image/energyPanelTitle.png", record_pos=(-0.001, -0.381), resolution=(900, 1800)),
+             Template(r"../image/gemPanelTitle.png", record_pos=(-0.001, -0.378), resolution=(900, 1800))]
     count1 = 0
     for i in title:
         tit = shopBtnTitle[count1]
