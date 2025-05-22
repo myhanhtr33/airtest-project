@@ -21,6 +21,7 @@ class BaseVideo:
         self.root = parent.offspring(video_type)
         self.label_up_to = self.root.child("lUpTo") if self.root.child("lUpTo").exists() else None
         self.watch_btn = self.root.child("B_Watch") if self.root.child("B_Watch").exists() else None
+        self.deactivate_watch_btn = self.root.child("B_WatchDeactive") if self.root.child("B_WatchDeactive").exists() else None
         self.watch_numb = self.root.child("lRate") if self.root.child("lRate").exists() else None
         self.royal_icon= self.root.offspring("sIconRoyalty") if self.root.child("sIconRoyalty").exists() else None
         self.reward_img= self.root
