@@ -6,7 +6,7 @@ from utils.helper_functions import *
 from airtest.core.api import *
 from utils import base_test
 from utils.base_test import BaseTest
-from Hierarchy.CurrencyBar import CurrencyBar, energy_home
+from Hierarchy.CurrencyBar import *
 import re
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 
@@ -24,13 +24,7 @@ class TestPopupSpecialVideo(BaseTest):
         self.test_click_video_block()
         self.test_click_back_btn() #head back to homes
 
-    # def from_home_to_mainpopup(self):
-    #     currencyBar = CurrencyBar(self.poco)
-    #     video_icon_home=currencyBar.video_home.video_icon()
-    #     assert video_icon_home.exists(), "Video icon not found!"
-    #     video_icon_home.click()
-    #     assert self.main_popup.root.exists(), "PopupSpecialVideoReward popup not found!"
-    #     print("✅ from home to main Popup successfully.")
+
     def check_popup_exist(self):
         assert self.main_popup.root.exists(), "PopupSpecialVideoReward popup not found!"
         print("✅ Popup root exists.")

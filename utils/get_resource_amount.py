@@ -1,6 +1,7 @@
 ﻿from Hierarchy.CurrencyBar import CurrencyBar
 from airtest.core.api import *
 import re
+from utils.sprite_mapping import *
 
 def get_single_resource_amount(poco, resource_type):
     """
@@ -31,8 +32,24 @@ def get_all_resource_amounts(poco):
     return {
         "gold": get_single_resource_amount(poco, "gold"),
         "energy": get_single_resource_amount(poco, "energy"),
-        "gem": get_single_resource_amount(poco, "gem")
+        "gem": get_single_resource_amount(poco, "gem"),
+        # "cardA1": poco.invoke("get_card_amount", cardType="ITEM_CARD_PLANE_1"),
+        # "cardA2": poco.invoke("get_card_amount", cardType="ITEM_CARD_PLANE_2"),
+        # "cardA3": poco.invoke("get_card_amount", cardType="ITEM_CARD_PLANE_3"),
+
     }
+
+def get_all_card_amounts(poco):
+    dictionaryCard = {}
+    for key in CARD_SPRITE_MAPPING.keys():
+        dictionaryCard[key] = get_single_card_amount(poco, key)
+    return dictionaryCard
+
+def get_single_card_amount(poco, card_type):
+    result= poco.invoke("get_card_amount", cardType=card_type)
+    amount= result.get("amount")
+    name= result.get("card_id")
+    return amount,name
 
 def clean_number(text):
     """

@@ -1,7 +1,9 @@
 ﻿from tests.test_CurrencyBar import *
 from tests.test_PopupSpecialVideo import *
+from tests.test_ShopNavigator import *
 from utils.device_setup import *
 import traceback
+from utils.get_resource_amount import *
 
 
 poco = PocoManager.get_poco()
@@ -21,27 +23,32 @@ def run_test(test_class, test_method_name):
         test_instance.teardown()
 
 def run_all_home_tests():
-    result = poco.invoke("get_card_amount", data={"cardId": "ITEM_CARD_PLANE_1"})
+    # result = get_all_card_amounts(poco)
+    # print("All resource amounts:", result)
+    # result=poco.invoke("get_card_amount", cardType="ITEM_CARD_PLANE_GENERAL")
+    # if result and result.get("status") == "success":
+    #     amount = result.get("amount")
+    #     name= result.get("card_id")
+    #     print(f"✅ Card {name} amount is:", amount)
+    #     print(f"full result: {result}")
+    # else:
+    #     raise RuntimeError(f"❌ Command failed: {result}")
 
-    if result and result.get("status") == "success":
-        amount = result.get("amount")
-        print("✅ Card amount is:", amount)
-    else:
-        raise RuntimeError(f"❌ Command failed: {result}")
-    # # List of (head to target method, test class, method name)
-    # test_suites = [
-    #     (TestPopupSpecialVideo, "run_all_PopupSpecialVideo_tests", head_to_PopupSpecialVideo),
-    #     # (TestCurrencyBar, "run_all_CurrencyBar_tests"),
-    #     # (TestTabNavigator, "run_all_TabNavigator_tests"),
-    #     # (TestPlayerInfo, "run_all_PlayerInfo_tests"),
-    # ]
-    # print("Running Home tests...")
-    #
-    # for test_class, method_name, navigate_method in test_suites:
-    #     check_in_home()
-    #     navigate_method()
-    #     run_test(test_class, method_name)
-    # print("\n✅ All Home tests passed!")
+    #List of (head to target method, test class, method name)
+    test_suites = [
+        # (TestPopupSpecialVideo, "run_all_PopupSpecialVideo_tests", head_to_PopupSpecialVideo),
+        # (TestCurrencyBar, "run_all_CurrencyBar_tests"),
+        (TestShopNavigator, "run_all_test", ""),
+        # (TestPlayerInfo, "run_all_PlayerInfo_tests"),
+    ]
+    print("Running Home tests...")
+
+    for test_class, method_name, navigate_method in test_suites:
+        # check_in_home()
+        if navigate_method!="":
+            navigate_method()
+        run_test(test_class, method_name)
+    print("\n✅ All Home tests passed!")
 
 def check_in_home():
     # Check if we are in the home screen
