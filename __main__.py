@@ -4,6 +4,7 @@ from tests import *
 import os
 from utils.device_setup import connect_to_unity
 from tests import test_PopupSpecialVideo
+from Hierarchy.PopupPlayerProfile import *
 
 def run_all_tests():
     print("START tests...")

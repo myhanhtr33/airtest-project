@@ -4,9 +4,7 @@ from utils.sprite_mapping import *
 from utils.get_resource_amount import *
 from utils.helper_functions import *
 from airtest.core.api import *
-from utils import base_test
 from utils.base_test import BaseTest
-from Hierarchy.CurrencyBar import *
 import re
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 
