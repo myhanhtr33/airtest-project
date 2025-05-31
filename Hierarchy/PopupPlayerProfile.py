@@ -123,6 +123,62 @@ class CampaignGroup:
 class PvPGroup:
     def __init__(self, stat_tab):
         self.root = stat_tab.offspring("GroupPVP")
+        self.icon = self.root.offspring("sPVP")
+        # — Tier 1 (1v1) —
+        panel1= self.root.offspring("panel1v1_Tier1")
+        self.tier1_label = panel1.child("l1v1")
+        self.tier1_split = panel1.offspring("sSplit")
+        self.tier1_rank = panel1.child("lRank")
+        self.tier1_elo = panel1.child("lElo")
+        self.tier1_rank_icon = panel1.offspring("sRank")
+        self.tier1_total_win = panel1.child("lTotalWin")
+        self.tier1_win_rate = panel1.child("lWinRate")
+        # — Tier 2 (1v1) —
+        panel2 = self.root.offspring("panel1v1_Tier2")
+        self.tier2_label = panel2.child("l1v1")
+        self.tier2_split = panel2.offspring("sSplit")
+        self.tier2_rank = panel2.child("lRank")
+        self.tier2_elo = panel2.child("lElo")
+        self.tier2_rank_icon = panel2.offspring("sRank")
+        self.tier2_total_win = panel2.child("lTotalWin")
+        self.tier2_win_rate = panel2.child("lWinRate")
+        # — 2v2 panel —
+        panel2v2 = self.root.offspring("panel2v2")
+        self.vs2_label = panel2v2.child("l2v2")
+        self.vs2_split = panel2v2.offspring("sSplit")
+        self.vs2_rank = panel2v2.child("lRank")
+        self.vs2_elo = panel2v2.child("lElo")
+        self.vs2_rank_icon = panel2v2.offspring("sRank")
+        self.vs2_total_win = panel2v2.child("lTotalWin")
+        self.vs2_win_rate = panel2v2.child("lWinRate")
+
+    def get_t1_stats(self):
+        return{
+            "label": self.tier1_label.get_text(), #PvP Tier 1
+            "rank": self.tier1_rank.get_text(), #Silver V
+            "elo": self.tier1_elo.get_text(), #[999999]ELO:[-] 1176[-]
+            "rank_icon": self.tier1_rank_icon.attr("texture"), # texture :  b'PVP_rank_2'
+            "total_win": self.tier1_total_win.get_text(), #[999999]Total win:[-] 16[-]
+            "win_rate": self.tier1_win_rate.get_text()
+        }
+    def get_t2_stats(self):
+        return {
+            "label": self.tier2_label.get_text(),
+            "rank": self.tier2_rank.get_text(),
+            "elo": self.tier2_elo.get_text(),
+            "rank_icon": self.tier2_rank_icon.attr("texture"),
+            "total_win": self.tier2_total_win.get_text(),
+            "win_rate": self.tier2_win_rate.get_text()
+        }
+    def get_vs2_stats(self):
+        return {
+            "label": self.vs2_label.get_text(),
+            "rank": self.vs2_rank.get_text(),
+            "elo": self.vs2_elo.get_text(),
+            "rank_icon": self.vs2_rank_icon.attr("texture"),
+            "total_win": self.vs2_total_win.get_text(),
+            "win_rate": self.vs2_win_rate.get_text()
+        }
 
 class EndlessGroup:
     def __init__(self, stat_tab):
