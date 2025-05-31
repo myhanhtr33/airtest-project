@@ -1,6 +1,7 @@
 ﻿from tests.test_CurrencyBar import *
 from tests.test_PopupSpecialVideo import *
 from tests.test_ShopNavigator import *
+from tests.test_PopupPlayerProfile import *
 from utils.device_setup import *
 import traceback
 from utils.get_resource_amount import *
@@ -38,8 +39,8 @@ def run_all_home_tests():
     test_suites = [
         # (TestPopupSpecialVideo, "run_all_PopupSpecialVideo_tests", head_to_PopupSpecialVideo),
         # (TestCurrencyBar, "run_all_CurrencyBar_tests"),
-        (TestShopNavigator, "run_all_test", ""),
-        # (TestPlayerInfo, "run_all_PlayerInfo_tests"),
+        # (TestShopNavigator, "run_all_test", ""),
+        (TestPopupPlayerProfile, "run_all_tests", "")
     ]
     print("Running Home tests...")
 
