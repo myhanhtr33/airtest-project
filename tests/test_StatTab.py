@@ -51,9 +51,13 @@ class TestStatTab(BaseTest):
         assert self.popup.stat_tab.pvp_group.tier1_total_win.exists(), "pvp T1 total win not found!"
         assert self.popup.stat_tab.pvp_group.tier1_win_rate.exists(), "pvp T1 win rate not found!"
         t1Stat= self.popup.stat_tab.pvp_group.get_t1_stats()
+        t2Stat = self.popup.stat_tab.pvp_group.get_t2_stats()
+        v2Stat = self.popup.stat_tab.pvp_group.get_vs2_stats()
         print("pvp T1 stats: ", t1Stat)
         print("pvpT2 stats:", self.popup.stat_tab.pvp_group.get_t2_stats())
         print("pvp 2v2 stats:", self.popup.stat_tab.pvp_group.get_vs2_stats())
+        for raw in (t1Stat, t2Stat, v2Stat):
+            clean_stats(raw)
 
     def check_normal_campaign(self):
         print("checking normal campaign...")
@@ -109,6 +113,7 @@ def clean_stats(raw_stats):
         s = re.sub(r"\[\d+\]", "", val)
         s = s.replace("[-]", "")
         cleaned[key] = s.strip()
+    print(f"cleaned stats: {cleaned}")
     return cleaned
 
 def validate_pvp_stats(stats):
@@ -117,6 +122,31 @@ def validate_pvp_stats(stats):
     roman=["I", "II", "III", "IV", "V"]
     categories=["Bronze", "Silver", "Gold", "Platinum", "Diamond", "Master", "Challenger", "Legendary"]
     allowed_ranks= {"Not ranked yet"} | {f"{cat} {lv}" for cat in categories for lv in roman}
+    label=stats["label"]
+    m=re.match(r"ELO:\s*(\d+)", stats["elo"])
+    assert m, f"ELO format invalid: {stats['elo']}"
+    elo= int(m.group(1))
+    assert 1000 <= elo <= 6000, f"ELO value out of range: {elo}"
+
+    icon=stats["rank_icon"]
+    if label.startswith("PvP Tier"):
+        assert "PVP_rank" in icon, f"Rank icon texture invalid for {label}: {icon}"
+    else:
+        assert "2vs2Chest" in icon, f"Rank icon texture invalid for {label}: {icon}"
+
+    m2=re.match(r"Total win:\s*(\d+)", stats["total_win"])
+    assert m2, f"Total win format invalid: {stats['total_win']}"
+    wins= int(m2.group(1))
+    assert wins>=0, f"Total win cannot be negative: {wins}"
+
+    win_field=stats["win_rate"]
+    if win_field=="[999999]Win rate:[-] N/A[-]":
+        pass
+    else:
+        m3=re.match(r"Win rate:\s*(\d+)%", win_field)
+        assert m3, f"Win rate format invalid: {win_field}"
+        win_rate= int(m3.group(1))
+        assert 0 <= win_rate <= 100, f"Win rate out of range: {win_rate}"
 
 
 

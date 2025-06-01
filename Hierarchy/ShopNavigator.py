@@ -10,7 +10,7 @@
         self._hot_shop=None
     @property
     def gem_shop(self):
-        if self._gem_shop is None and self.root.offspring("TabGemShop").exists():
+        if self._gem_shop is None and self.root.offspring("TabGemShop ").exists():
             self._gem_shop=GemShop(self.root)
         return self._gem_shop
     @property
@@ -26,7 +26,7 @@
 
 class GemShop:
     def __init__(self, parent):
-        self.root=parent.offspring("TabGemShop")
+        self.root=parent.offspring("TabGemShop ")
         self.item_gem=[] #item_gem[0]->ItemGemShop, item_gem[1]->ItemGemShop(1), item_gem[2]->ItemGemShop(2)
         for i in range(6):
             node=self.root.offspring(f"ItemGemShop ({i})") if i>0 else self.root.offspring("ItemGemShop")
