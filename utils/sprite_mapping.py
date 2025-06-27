@@ -62,7 +62,15 @@ CARD_SPRITE_MAPPING={
     "ITEM_CARD_WING_22": "card_W22",
     "ITEM_CARD_WING_23": "card_W23",
 }
-
+ITEM_SPRITE_MAPPING = {
+    "DiamondChest": "UI5_Icon_Item_Chest_Diamond",
+    "Random3StarPilot": "card_A0",
+    "ITEM_PILOT_RANDOM_4STAR_NAME": "card_Pilot_SR",
+    "ITEM_PILOT_RANDOM_5STAR_NAME": "card_Pilot_SSR",
+    "ChangeStone": "UI5_AwakenStone_2",
+    "AwakenStone": "UI5_AwakenStone_0",
+    "TransformStone": "UI5_AwakenStone_1",
+}
 def get_sprite_name(item_name):
     """
     Get the sprite name equivalent for a given item name.

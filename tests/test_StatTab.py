@@ -1,4 +1,6 @@
-﻿from airtest.core.api import *
+﻿from turtledemo.paint import switchupdown
+
+from airtest.core.api import *
 from utils.base_test import BaseTest
 from Hierarchy.PopupPlayerProfile import *
 from utils.get_resource_amount import clean_number
@@ -19,7 +21,9 @@ class TestStatTab(BaseTest):
     def run_all_tests(self):
         print("running all StatTab tests...")
         # self.check_campaign_group()
-        self.check_pvpT1()
+        # self.check_pvp_group()
+        self.check_endless_group()
+        self.check_champion_group()
 
     def check_campaign_group(self):
         print("checking campaign group...")
@@ -37,9 +41,36 @@ class TestStatTab(BaseTest):
     def check_pvp_group(self):
         print("checking pvp group...")
         assert self.popup.stat_tab.pvp_group.root.exists(), "pvp_group not found!"
-        assert self.popup.stat_tab.pvp_group.title.exists(), "pvp_group title not found!"
-        assert self.popup.stat_tab.pvp_group.title.child("lPVP").get_text() == "PvP", "pvp title text invalid!"
+        assert self.popup.stat_tab.pvp_group.icon.exists(), "pvp_group title not found!"
+        assert self.popup.stat_tab.pvp_group.icon.child("lPVP").get_text() == "PvP", "pvp title text invalid!"
         self.check_pvpT1()
+        self.check_pvpT2()
+        self.check_pvp_vs2()
+        stats = [("t1", self.popup.stat_tab.pvp_group.get_t1_stats()),
+                 ("t2", self.popup.stat_tab.pvp_group.get_t2_stats()),
+                 ("vs2", self.popup.stat_tab.pvp_group.get_vs2_stats())]
+        for type, raw in stats:
+            print(f"checking stats for type: {type}...")
+            raw = clean_stats(raw)
+            validate_pvp_stats(raw, type)
+
+    def check_endless_group(self):
+        print("checking endless group...")
+        assert self.popup.stat_tab.endless_group.root.exists(), "endless_group not found!"
+        assert self.popup.stat_tab.endless_group.icon.exists(), "endless_group title not found!"
+        assert self.popup.stat_tab.endless_group.title.get_text().strip() == "Endless", "endless title text invalid!"
+        assert self.popup.stat_tab.endless_group.text.get_text().strip() == "Longest run all the time", "endless text invalid!"
+        score= int(self.popup.stat_tab.endless_group.best_score.get_text().strip())
+        assert score in range(0,700), "endless best score text invalid!"
+
+    def check_champion_group(self):
+        print("checking champion group...")
+        assert self.popup.stat_tab.champion_group.root.exists(), "champion_group not found!"
+        assert self.popup.stat_tab.champion_group.icon.exists(), "champion_group icon not found!"
+        assert self.popup.stat_tab.champion_group.title.get_text().strip() == "Champions League", "champion title text invalid!"
+        stat= clean_stats(self.popup.stat_tab.champion_group.get_stats())
+        validate_champion_stats(stat)
+
 
     def check_pvpT1(self):
         print("checking pvp T1...")
@@ -50,14 +81,26 @@ class TestStatTab(BaseTest):
         assert self.popup.stat_tab.pvp_group.tier1_rank_icon.exists(), "pvp T1 rank icon not found!"
         assert self.popup.stat_tab.pvp_group.tier1_total_win.exists(), "pvp T1 total win not found!"
         assert self.popup.stat_tab.pvp_group.tier1_win_rate.exists(), "pvp T1 win rate not found!"
-        t1Stat= self.popup.stat_tab.pvp_group.get_t1_stats()
-        t2Stat = self.popup.stat_tab.pvp_group.get_t2_stats()
-        v2Stat = self.popup.stat_tab.pvp_group.get_vs2_stats()
-        print("pvp T1 stats: ", t1Stat)
-        print("pvpT2 stats:", self.popup.stat_tab.pvp_group.get_t2_stats())
-        print("pvp 2v2 stats:", self.popup.stat_tab.pvp_group.get_vs2_stats())
-        for raw in (t1Stat, t2Stat, v2Stat):
-            clean_stats(raw)
+
+    def check_pvpT2(self):
+        print("checking pvp T2...")
+        assert self.popup.stat_tab.pvp_group.tier2_label.exists(), "pvp T2 label not found!"
+        assert self.popup.stat_tab.pvp_group.tier2_split.exists(), "pvp T2 split not found!"
+        assert self.popup.stat_tab.pvp_group.tier2_rank.exists(), "pvp T2 rank not found!"
+        assert self.popup.stat_tab.pvp_group.tier2_elo.exists(), "pvp T2 elo not found!"
+        assert self.popup.stat_tab.pvp_group.tier2_rank_icon.exists(), "pvp T2 rank icon not found!"
+        assert self.popup.stat_tab.pvp_group.tier2_total_win.exists(), "pvp T2 total win not found!"
+        assert self.popup.stat_tab.pvp_group.tier2_win_rate.exists(), "pvp T2 win rate not found!"
+
+    def check_pvp_vs2(self):
+        print("checking 2VS2 ...")
+        assert self.popup.stat_tab.pvp_group.vs2_label.exists(), "2VS2 label not found!"
+        assert self.popup.stat_tab.pvp_group.vs2_split.exists(), "2VS2 split not found!"
+        assert self.popup.stat_tab.pvp_group.vs2_rank.exists(), "2VS2 rank not found!"
+        assert self.popup.stat_tab.pvp_group.vs2_score.exists(), "2VS2 score not found!"
+        assert self.popup.stat_tab.pvp_group.vs2_rank_icon.exists(), "2VS2 rank icon not found!"
+        assert self.popup.stat_tab.pvp_group.vs2_total_win.exists(), "2VS2 total win not found!"
+        assert self.popup.stat_tab.pvp_group.vs2_win_rate.exists(), "2VS2 win rate not found!"
 
     def check_normal_campaign(self):
         print("checking normal campaign...")
@@ -116,29 +159,52 @@ def clean_stats(raw_stats):
     print(f"cleaned stats: {cleaned}")
     return cleaned
 
-def validate_pvp_stats(stats):
+def validate_pvp_stats(stats, type):
+    """
+        Given a cleaned stats-dict, assert each field meets your requirements:
+          - label in {"PvP Tier 1", "PvP Tier 2", "2 vs 2"}
+          - rank ∈ {"Not ranked yet"} ∪ {Bronze I..V, Silver I..V, Gold I..V, …} ∪ {"Master", "Challenger", "Legendary"}
+          - elo matches "ELO: {number}" with 1000 ≤ number ≤ 6000
+          - rank_icon contains "PVP_rank" for PvP tiers, "2vs2Chest" for 2 vs 2
+          - total_win matches "Total win: {positive int}"
+          - win_rate matches either "Win rate: N/A" or "Win rate: {number}%"
+        """
     #allowed values
     allowed_labels = {"PvP Tier 1", "PvP Tier 2", "2 vs 2"}
     roman=["I", "II", "III", "IV", "V"]
     categories=["Bronze", "Silver", "Gold", "Platinum", "Diamond", "Master", "Challenger", "Legendary"]
     allowed_ranks= {"Not ranked yet"} | {f"{cat} {lv}" for cat in categories for lv in roman}
-    label=stats["label"]
-    m=re.match(r"ELO:\s*(\d+)", stats["elo"])
-    assert m, f"ELO format invalid: {stats['elo']}"
+    # Validate label
+    label = stats["label"]
+    type_to_label = {"t1": "PvP Tier 1", "t2": "PvP Tier 2", "vs2": "2 vs 2"}
+    expected_label = type_to_label[type]
+    if type in type_to_label.keys():
+        assert label == expected_label, f"Label for {expected_label} invalid: {label}"
+    else:
+        raise ValueError(f"Invalid type: {type}. Expected 't1', 't2', or 'vs2'.")
+    # Validate rank
+    if type == "t1" or type == "t2":
+        m = re.match(r"ELO:\s*(\d+)", stats["elo"])
+        assert m, f"ELO format invalid: {stats['elo']}"
+    elif type == "vs2":
+        m= re.match(r"Score:\s*(\d+)", stats["elo"])
+        assert m, f"Score format invalid: {stats['elo']}"
     elo= int(m.group(1))
     assert 1000 <= elo <= 6000, f"ELO value out of range: {elo}"
-
+    # Validate rank icon
     icon=stats["rank_icon"]
     if label.startswith("PvP Tier"):
         assert "PVP_rank" in icon, f"Rank icon texture invalid for {label}: {icon}"
-    else:
+    elif label.startswith("2 vs 2"):
         assert "2vs2Chest" in icon, f"Rank icon texture invalid for {label}: {icon}"
-
+    else:
+        raise ValueError(f"Invalid label for rank icon validation: {label}")
+    # Validate total win
     m2=re.match(r"Total win:\s*(\d+)", stats["total_win"])
     assert m2, f"Total win format invalid: {stats['total_win']}"
     wins= int(m2.group(1))
     assert wins>=0, f"Total win cannot be negative: {wins}"
-
+    # Validate win rate
     win_field=stats["win_rate"]
     if win_field=="[999999]Win rate:[-] N/A[-]":
         pass
@@ -147,6 +213,24 @@ def validate_pvp_stats(stats):
         assert m3, f"Win rate format invalid: {win_field}"
         win_rate= int(m3.group(1))
         assert 0 <= win_rate <= 100, f"Win rate out of range: {win_rate}"
+
+def validate_champion_stats(stats):
+    print("START validate_champion_stats")
+    # Validate best points
+    m1=re.match(r"Best point:\s*(\d+)", stats["best"])
+    assert m1, f"Best point format invalid: {stats['best']}"
+    best_points = int(m1.group(1))
+    assert best_points >= 0, f"Best points cannot be negative: {best_points}"
+    #validate total points
+    m = re.match(r"Total points:\s*(\d+)", stats["total"])
+    assert m, f"Total points format invalid: {stats['total']}"
+    total_points = int(m.group(1))
+    assert total_points >= best_points, f"Total points {total_points} cannot be less than best points {best_points}"
+    # Validate winning times
+    m2 = re.match(r"Winning times:\s*(\d+)", stats["top1"])
+    assert m2, f"Winning times format invalid: {stats['top1']}"
+    winning_times = int(m2.group(1))
+    assert winning_times >= 0, f"Winning times cannot be negative: {winning_times}"
 
 
 

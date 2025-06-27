@@ -67,7 +67,7 @@ class StatTab:
         self.campaign_group = CampaignGroup(self.root)
         self.pvp_group = PvPGroup(self.root)
         self.endless_group = EndlessGroup(self.root)
-        self.champion_league_group = ChampionLeagueGroup(self.root)
+        self.champion_group = ChampionLeagueGroup(self.root)
 
 class EngineItem:
     def __init__(self, node):
@@ -147,7 +147,7 @@ class PvPGroup:
         self.vs2_label = panel2v2.child("l2v2")
         self.vs2_split = panel2v2.offspring("sSplit")
         self.vs2_rank = panel2v2.child("lRank")
-        self.vs2_elo = panel2v2.child("lElo")
+        self.vs2_score = panel2v2.child("lElo")
         self.vs2_rank_icon = panel2v2.offspring("sRank")
         self.vs2_total_win = panel2v2.child("lTotalWin")
         self.vs2_win_rate = panel2v2.child("lWinRate")
@@ -174,7 +174,7 @@ class PvPGroup:
         return {
             "label": self.vs2_label.get_text(),
             "rank": self.vs2_rank.get_text(),
-            "elo": self.vs2_elo.get_text(),
+            "elo": self.vs2_score.get_text(),
             "rank_icon": self.vs2_rank_icon.attr("texture"),
             "total_win": self.vs2_total_win.get_text(),
             "win_rate": self.vs2_win_rate.get_text()
@@ -183,10 +183,25 @@ class PvPGroup:
 class EndlessGroup:
     def __init__(self, stat_tab):
         self.root = stat_tab.offspring("GroupEndless")
+        self.icon = self.root.child("sEndless")
+        self.title = self.root.offspring("lEndless")
+        self.text = self.root.offspring("lNormal")
+        self.best_score = self.root.offspring("lValue")
 
 class ChampionLeagueGroup:
     def __init__(self, stat_tab):
         self.root = stat_tab.offspring("GroupChampionLeague")
+        self.icon = self.root.child("sIcon")
+        self.title = self.root.offspring("lChamp")
+        self.total_point= self.root.offspring("lTotalPoint")
+        self.best_point = self.root.offspring("lMaxPoint")
+        self.top1_num= self.root.offspring("lNumTop1")
+    def get_stats(self):
+        return{
+            "total": self.total_point.get_text(),
+            "best": self.best_point.get_text(),
+            "top1": self.top1_num.get_text()
+        }
 
 
 

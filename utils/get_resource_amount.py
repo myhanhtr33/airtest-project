@@ -88,3 +88,13 @@ def clean_number(text):
         return int(cleaned)
     except ValueError:
         raise ValueError(f"Cannot convert '{text}' to a number")
+
+def verify_resource_amount_change( item, actualResource, expectResource):
+    buffer=2
+    if item == "gold":
+        buffer=2000
+    if abs(expectResource - actualResource) in range(buffer):
+        print(f"expect {item} amount: {expectResource}, after {item} amount: {actualResource}")
+        return True
+    else:
+        return False

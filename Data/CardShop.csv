@@ -1,0 +1,32 @@
+ItemName,Quantity,Price,Currency
+DroneRandom (50),50,50000,gold
+DroneRandom (50),50,50000,gold
+ITEM_CARD_WINGMAN_GENERAL,10,30000,gold
+
+AircraftRandom (250),250,625,gem
+DroneRandom (250),250,625,gem
+WingRandom (250),250,625,gem
+AircraftRandom (100),100,250,gem
+DroneRandom (100),100,250,gem
+WingRandom (100),100,250,gem
+ITEM_CARD_PLANE_GENERAL,50,500,gem
+ITEM_CARD_WINGMAN_GENERAL,50,500,gem
+ITEM_CARD_WING_GENERAL,50,500,gem
+DiamondChest,1,2000,gem
+Random3StarPilot,1,150,gem
+Random4StarPilot,1,1500,gem
+ChangeStone,1,300,gem
+
+AircraftRandom (1000),1000,2500,gem
+DroneRandom (1000),1000,2500,gem
+WingRandom (1000),1000,2500,gem
+ITEM_CARD_PLANE_GENERAL (150),150,1500,gem
+ITEM_CARD_WINGMAN_GENERAL (150),150,1500,gem
+ITEM_CARD_WING_GENERAL (150),150,1500,gem
+DiamondChest (2),2,3800,gem
+Random4StarPilot (1),1,1500,gem
+Random5StarPilot (1),1,4000,gem
+AwakenStone,2,2000,gem
+TransformStone,1,800,gem
+ChangeStone (1),1,300,gem
+LegendaryEngineBox,1,1500,gem

@@ -1,7 +1,4 @@
-﻿from airtest.core.api import *
-from utils.base_test import BaseTest
-from Hierarchy.PopupPlayerProfile import *
-from tests.test_AssetTab import *
+﻿from tests.test_AssetTab import *
 from tests.test_StatTab import *
 
 class TestPopupPlayerProfile(BaseTest):
