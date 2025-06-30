@@ -3,9 +3,12 @@ from poco.drivers.unity3d import UnityPoco
 # from utils.patched_unity_poco import UnityPoco
 from poco.drivers.android.uiautomation import AndroidUiautomationPoco
 
+# dev= "android://127.0.0.1:5037/emulator-5554" # Default emulator, can be changed to another device
+dev="android://127.0.0.1:5037/emulator-5562"
 def connect_to_unity():
     # Connect to Unity plugin
-    dev = connect_device("android://127.0.0.1:5037/emulator-5554")
+    # dev = connect_device("android://127.0.0.1:5037/emulator-5554") # Default emulator
+    connect_device(dev)
     print(f"Connected to Unity device: {dev}")
     return UnityPoco()
 
@@ -15,7 +18,7 @@ class PocoManager:
     @classmethod
     def   get_poco(cls):
         if cls._poco is None:
-            connect_device("android://127.0.0.1:5037/emulator-5554")
+            connect_device(dev)
             cls._poco = UnityPoco()
         return cls._poco
     @classmethod
