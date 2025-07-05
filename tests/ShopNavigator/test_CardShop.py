@@ -35,7 +35,7 @@ class TestCardShop:
     #     self.test_DayItems_check_buy()
 
     @pytest.mark.order(1)
-    def test_PanelResetDay(self, shop_navigator):
+    def test_PanelResetDay(self):
         logger = get_logger()
         logger.info("Checking PanelResetDay in CardShop...")
         logger.critical("criticalllllll testttttttt...")
