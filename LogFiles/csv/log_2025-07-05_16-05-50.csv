@@ -1,0 +1,6 @@
+Time,Level,Module,Message,Screenshot
+16:05:50,INFO,ShopNavigator,🔥 Logger initialized for pytest session.,
+16:05:53,INFO,ShopNavigator:test_CardShop.py:TestCardShop:test_PanelResetDay,Checking PanelResetDay in CardShop...,
+16:05:53,CRITICAL,ShopNavigator:test_CardShop.py:TestCardShop:test_PanelResetDay,criticalllllll testttttttt...,"=HYPERLINK(""file:////Users/myhanhtran/airtest-project/LogFiles/screenshot/2025-07-05_16h05.png"", ""View"")"
+16:05:55,ERROR,ShopNavigator:test_CardShop.py:TestCardShop:test_PanelResetDay,1111test thui hihihihihihihihihihihihihihihi,"=HYPERLINK(""file:////Users/myhanhtran/airtest-project/LogFiles/screenshot/2025-07-05_16h05.png"", ""View"")"
+16:05:56,WARNING,ShopNavigator:test_CardShop.py:TestCardShop:test_PanelResetDay,test tip' hihihihihihihihihihihihi,"=HYPERLINK(""file:////Users/myhanhtran/airtest-project/LogFiles/screenshot/2025-07-05_16h05.png"", ""View"")"
