@@ -58,7 +58,15 @@ class TestPopupMilitary:
         assert self.popup.process_text.strip() != "", "Process text is empty"
         assert self.popup.upgrade_price_text.strip() != "", "Upgrade price text is empty"
         logger.info("All elements are present and verified successfully.")
-        print("All elements are present and verified successfully.")
+    def test_info_button(self):
+        logger=get_logger()
+        self.popup.info_btn.click(sleep_interval=1)
+        popup_info= PopupMilitaryCareerInfo(self.poco)
+        assert popup_info.root.exists(), "Popup Military Career Info did not open"
+        popup_info.btn_back.click(sleep_interval=1)
+        assert not popup_info.root.exists(), "Popup Military Career Info did not close"
+        logger.info("Info button functionality verified successfully.")
+
 
 
 

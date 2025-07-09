@@ -1,5 +1,16 @@
 ﻿from typing import Literal
 type=["Aircraft", "Drone", "Wing", "Pilot", "Engine"]
+rank_category = ["Sergeant",
+                 "Second Lieutenant",
+                 "First Lieutenant",
+                 "Captain",
+                 "Major",
+                 "Lieutenant Colonel",
+                 "Colonel",
+                 "Brigadier General",
+                 "Major General",
+                 "General",
+                 "General of the Air Force"]
 class PopupMilitary:
     def __init__(self, poco):
         self.poco = poco
@@ -30,16 +41,22 @@ class PopupMilitary:
                 self.weapon_points.append(WeaponPoint(node,_name))
     @property
     def level_number_text(self):
-        return self.rank_badge.offspring("lLevel").get_text() if self.rank_badge.offspring("lLevel").exists() else None
+        return self.rank_badge.offspring("lLevel").get_text().strip() if self.rank_badge.offspring("lLevel").exists() else None
     @property
     def level_category_text(self):
-        return self.top_panel.offspring("lRank").get_text() if self.top_panel.offspring("lRank").exists() else None
+        return self.top_panel.offspring("lRank").get_text().strip() if self.top_panel.offspring("lRank").exists() else None
     @property
     def process_text(self):
-        return self.bot_panel.offspring("lProcess").get_text() if self.bot_panel.offspring("lProcess").exists() else None
+        return self.bot_panel.offspring("lProcess").get_text().strip() if self.bot_panel.offspring("lProcess").exists() else None
     @property
     def upgrade_price_text(self):
-        return self.upgrade_btn.offspring("lUpgrade").get_text() if self.upgrade_btn.offspring("lUpgrade").exists() else None
+        return self.upgrade_btn.offspring("lUpgrade").get_text().strip() if self.upgrade_btn.offspring("lUpgrade").exists() else None
+    def get_actual_level(self):
+        for i, category in enumerate(rank_category):
+            if self.level_category_text == category:
+                return i*10 + int(self.level_number_text)
+            
+
 
 class Passive:
     def __init__(self,node,stat):
@@ -108,3 +125,53 @@ class PilotItem(HangarItem):
         self.portrait = self.root.offspring("sPortrait").attr("texture") if self.root.offspring("sPortrait").exists() else None
         self.flag= self.root.offspring("sNationFlag").attr("texture") if self.root.offspring("sNationFlag").exists() else None
         self.rarity_frame = self.root.offspring("sFrame").attr("texture") if self.root.offspring("sFrame").exists() else None
+class PopupMilitaryCareerInfo:
+    def __init__(self,poco):
+        self.poco=poco
+        self.root = self.poco("PopupMilitaryCareerInfo(Clone)")
+        self.title= self.root.offspring("sTitle")
+        self.tab_rank= self.root.offspring("TabRank")
+        self.tab_point= self.root.offspring("TabPoint")
+        self.btn_back = self.root.offspring("B_Back")
+        #tab Rank elements
+        self.description= self.tab_rank.offspring("Info")
+        self.rank_categories_text = [
+            node.offspring("Info").get_text().strip if node.exists() else None
+            for node in (self.tab_rank.offspring(f"Rank_{i}") for i in range(11))
+        ]
+        #tab Point elements
+        self.star_point= self.tab_point.offspring("1.star point")
+        self.star_point_text = self.star_point.get_text().strip() if self.star_point.exists() else None
+        type= ["aircraft", "drone", "wing", "pilot", "engine"]
+        self.star_points = [
+            node if node.exists() else None
+            for node in(self.star_point.offspring(f"{_type}")for _type in type)
+        ]
+        self.engine_rarity_point= self.tab_point.offspring("2.rarity point engine")
+        self.engine_rarity_point_text = self.engine_rarity_point.get_text().strip() if self.engine_rarity_point.exists() else None
+        rarity=["Common", "Uncommon", "Rare", "Epic", "Legendary","Immortal","Holy"]
+        self.engine_rarity_points= [
+            node if node.exists() else None
+            for node in (self.engine_rarity_point.offspring(f"{_rarity}") for _rarity in rarity)
+        ]
+        self.pilot_rarity_point = self.tab_point.offspring("3.rarity point pilot")
+        self.pilot_rarity_point_text = self.pilot_rarity_point.get_text().strip() if self.pilot_rarity_point.exists() else None
+        pilot_rarity=["R","SR", "SSR"]
+        self.pilot_rarity_points = [
+            node if node.exists() else None
+            for node in (self.pilot_rarity_point.offspring(f"{_rarity}") for _rarity in pilot_rarity)
+        ]
+        self.tab_rank_btn= self.root.offspring("BottomBtn").offspring("BtnRank")
+        self.tab_point_btn = self.root.offspring("BottomBtn").offspring("BtnPoint")
+    @property
+    def tab_rank_active_sprite(self):
+        return self.tab_rank_btn.offspring("SpriteActive") if self.tab_rank.offspring("SpriteActive").exists() else None
+    @property
+    def tab_rank_deactive_sprite(self):
+        return self.tab_rank_btn.offspring("Sprite") if self.tab_rank.offspring("Sprite").exists() else None
+    @property
+    def tab_point_active_sprite(self):
+        return self.tab_point_btn.offspring("SpriteActive") if self.tab_point.offspring("SpriteActive").exists() else None
+    @property
+    def tab_point_deactive_sprite(self):
+        return self.tab_point_btn.offspring("Sprite") if self.tab_point.offspring("Sprite").exists() else None
