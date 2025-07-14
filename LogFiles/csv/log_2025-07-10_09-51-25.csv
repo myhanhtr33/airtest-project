@@ -1,0 +1,4 @@
+Time,Level,Module,Message,Screenshot
+09:51:26,INFO,PopupMilitary,[to_home] Already at Home screen.,
+09:52:14,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_info,Info button functionality verified successfully.,
+09:52:14,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_info,Info button functionality verified successfully. Execution time: 27.51 seconds,

@@ -1,0 +1,3 @@
+Time,Level,Module,Message,Screenshot
+11:34:49,INFO,PopupMilitary,[to_home] Already at Home screen.,
+11:35:09,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_passive_sprite,Passive sprite functionality verified successfully.,

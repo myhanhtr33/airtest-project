@@ -1,0 +1,3 @@
+Time,Level,Module,Message,Screenshot
+09:41:28,INFO,PopupMilitary,[to_home] Already at Home screen.,
+09:42:08,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_info_button,Info button functionality verified successfully.,

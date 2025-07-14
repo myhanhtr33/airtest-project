@@ -1,0 +1,3 @@
+Time,Level,Module,Message,Screenshot
+14:18:37,INFO,PopupMilitary,[to_home] Already at Home screen.,
+14:19:38,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_deactive_upgrade_btn,active upgrade button,

@@ -1,0 +1,4 @@
+Time,Level,Module,Message,Screenshot
+14:20:41,INFO,PopupMilitary,[to_home] Already at Home screen.,
+14:21:58,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_deactive_upgrade_btn,Upgrade button deactivated successfully when points are insufficient.,
+14:21:58,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_active_upgrade_btn,"Upgrade button activated successfully. Level: 55, Current Point: 3, Required Point: 36, Upgrade Price: 280000",

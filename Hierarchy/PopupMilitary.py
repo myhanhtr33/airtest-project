@@ -1,4 +1,8 @@
-﻿from typing import Literal
+﻿import os
+import pandas as pd
+from typing import Literal
+current_dir=os.path.dirname(os.path.abspath(__file__))
+file_path= os.path.join(os.path.dirname(current_dir),"Data","Military.xlsx")
 type=["Aircraft", "Drone", "Wing", "Pilot", "Engine"]
 rank_category = ["Sergeant",
                  "Second Lieutenant",
@@ -11,6 +15,12 @@ rank_category = ["Sergeant",
                  "Major General",
                  "General",
                  "General of the Air Force"]
+expected_passive_sprites=["UI_Career_Pass",
+                          "HP",
+                          "Crit_Chance",
+                          "Crit_Damage",
+                          "Block_Damage",
+                          "Reduce_Damage"]
 class PopupMilitary:
     def __init__(self, poco):
         self.poco = poco
@@ -29,8 +39,8 @@ class PopupMilitary:
                 _stat = {1: "lAtk", 2: "lHP", 3: "lCritChance", 4: "lCritDamage", 5: "lBlockDamage", 6: "lReduceDamage"}[i]
                 self.passives.append(Passive(node,_stat))
         self.bot_panel = self.root.offspring("TopBottom")
-        self.process_fill = self.bot_panel.offspring("sFill")
-        self.process_info_btn = self.bot_panel.offspring("bInfo")
+        self.progress_fill = self.bot_panel.offspring("sFill")
+        self.progress_info_btn = self.bot_panel.offspring("bInfo")
         self.upgrade_btn = self.bot_panel.offspring("BtnUpdate")
         self.weapon_points = []
         for i in range(5):
@@ -46,32 +56,69 @@ class PopupMilitary:
     def level_category_text(self):
         return self.top_panel.offspring("lRank").get_text().strip() if self.top_panel.offspring("lRank").exists() else None
     @property
-    def process_text(self):
+    def progress_text(self):
         return self.bot_panel.offspring("lProcess").get_text().strip() if self.bot_panel.offspring("lProcess").exists() else None
     @property
     def upgrade_price_text(self):
         return self.upgrade_btn.offspring("lUpgrade").get_text().strip() if self.upgrade_btn.offspring("lUpgrade").exists() else None
+    @property
+    def upgrade_btn_notice(self):
+        return self.upgrade_btn.offspring("sNotice") if self.upgrade_btn.offspring("sNotice").exists() else None
+    @property
+    def upgrade_btn_sprite(self):
+        return self.upgrade_btn.offspring("sBtnUpdate").attr("texture") if self.upgrade_btn.offspring("sBtnUpdate").exists() else None
     def get_actual_level(self):
         for i, category in enumerate(rank_category):
             if self.level_category_text == category:
                 return i*10 + int(self.level_number_text)
-            
 
+    def get_expected_stats_by_lv(self,level:int)->list:
+        df = pd.read_excel(file_path)
+        row = df[df["Level"] == level]
+        if row.empty:
+            raise ValueError(f"Level {level} not found in the data.")
+        stats = row[
+            ["Atk", "hp", "crit chance", "crit dmg", "dodge chance", "reduce dmg taken"]].values.flatten().tolist()
+        return stats
+    @staticmethod
+    def get_expected_required_point(level:int)->int:
+        df = pd.read_excel(file_path)
+        row = df[df["Level"] == level]
+        if row.empty:
+            raise ValueError(f"Level {level} not found in the data.")
+        required_point = row["PointRequired"].values[0]
+        return required_point
+    @staticmethod
+    def get_expected_upgrade_price(level:int)->int:
+        df = pd.read_excel(file_path)
+        row = df[df["Level"] == level]
+        if row.empty:
+            raise ValueError(f"Level {level} not found in the data.")
+        upgrade_price = row["Gold Price"].values[0]
+        return upgrade_price
+    def get_progress_points(self):
+        if not self.progress_text:
+            return None
+        current, required = map(int, self.progress_text.split('/'))
+        return int(current), int(required)
 
 class Passive:
-    def __init__(self,node,stat):
+    def __init__(self,node,_stat):
         self.root= node
         self.sprite = self.root.offspring("sPassive")
-        self.passive_stat_text= self.root.offspring(stat).get_text()
+        self.stat = _stat
+    @property
+    def passive_stat_text(self):
+        return self.root.offspring(self.stat).get_text().strip() if self.root.offspring(self.stat).exists() else None
 class WeaponPoint:
     def __init__(self,node,name):
         self.root= node
         self.icon = self.root.offspring("sIcon")
-        self.name= self.root.offspring(f"l{name}").get_text()
+        self.name= self.root.offspring(f"l{name}").get_text().strip() if self.root.offspring(f"l{name}").exists() else None
         self._name = name
     @property
     def accumulated_point(self):
-        return self.root.offspring(f"lPoint{self._name}").get_text()
+        return self.root.offspring(f"lPoint{self._name}").get_text().strip() if self.root.offspring(f"lPoint{self._name}").exists() else None
     @property
     def notice(self):
         return self.root.offspring("sNotice") if self.root.offspring("sNotice").exists() else None
@@ -93,7 +140,7 @@ class PopupMilitaryGetPoint:
         self.root = self.poco("PopupMilitaryGetPoint(Clone)")
         self.btn_back = self.root.offspring("B_Back (1)")
         self.middle_panel = self.root.offspring("TopMiddle")
-        self.title = self.middle_panel.offspring("sTitle").get_text() if self.middle_panel.offspring("sTitle").exists() else None
+        self.title = self.middle_panel.offspring("title").get_text().strip() if self.middle_panel.offspring("sTitle").exists() else None
         self.generator=self.middle_panel.offspring("Generator").child(f"{type_name[0]}Generator")
         self.items=[]
         for item in self.middle_panel.offspring("Grid").children():
@@ -112,13 +159,16 @@ class HangarItem:
     def __init__(self,node):
         self.root=node
         self.item_icon= self.root.offspring("sIcon").attr("texture") if self.root.offspring("sIcon").exists() else None
-        self.star_text = self.root.offspring("lStar").get_text() if self.root.offspring("lStar").exists() else None
+        self.star_text = self.root.offspring("lStar").get_text().strip() if self.root.offspring("lStar").exists() else None
         self.star_icon= self.root.offspring("sStar")
         self.cover_BG = self.root.offspring("goCover") if self.root.offspring("goCover").exists() else None
         self.lock_icon= self.root.offspring("goLock") if self.root.offspring("goLock").exists() else None
     @property
     def point_text(self):
-        return self.root.offspring("lPoint").get_text() if self.root.offspring("lPoint").exists() else None
+        return self.root.offspring("lPoint").get_text().strip() if self.root.offspring("lPoint").exists() else None
+    @property
+    def claimed_icon(self):
+        return self.root.offspring("goClaimed") if self.root.offspring("goClaimed").exists() else None
 class PilotItem(HangarItem):
     def __init__(self,node):
         super().__init__(node)

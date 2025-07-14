@@ -1,0 +1,3 @@
+Time,Level,Module,Message,Screenshot
+14:01:14,INFO,PopupMilitary,[to_home] Already at Home screen.,
+14:01:33,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_valid_rank_category,rank category 'Major' is valid.,

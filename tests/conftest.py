@@ -6,7 +6,7 @@ from utils.device_setup import PocoManager
 from Hierarchy.ShopNavigator import ShopNavigator
 import time
 from logger_config import get_logger
-
+from Hierarchy.PopupMilitary import *
 
 @pytest.fixture(scope="session")
 def poco() ->UnityPoco:
@@ -28,6 +28,9 @@ def shop_navigator(poco)-> ShopNavigator:
        instantiated ShopNavigator rooted at the current UI.
        """
     return ShopNavigator(poco)
+@pytest.fixture(scope="function")
+def popup_military_info(poco)-> PopupMilitaryCareerInfo:
+    return PopupMilitaryCareerInfo(poco)
 
 @pytest.fixture(scope="function", autouse=True)
 def to_home(request):
