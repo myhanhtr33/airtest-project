@@ -1,0 +1,5 @@
+Time,Level,Module,Message,Screenshot
+17:59:11,INFO,PopupMilitary,[to_home] Already at Home screen.,
+17:59:30,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_click_weapon_points,Clicking on weapon point 1: Aircraft,
+18:02:08,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_click_weapon_points,Popup Military Get Point opened for Aircraft,
+18:02:08,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Popup Military Get Point Air opened,

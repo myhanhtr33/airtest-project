@@ -1,0 +1,2 @@
+Time,Level,Module,Message,Screenshot
+14:51:20,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_valid_progress_point_and_price,"Progress points and upgrade price verified successfully: Current Point: 161, Required Point: 5, Upgrade Price: 80000",

@@ -1,0 +1,11 @@
+Time,Level,Module,Message,Screenshot
+14:11:09,INFO,PopupMilitary,to home fixture initialized.,
+14:11:09,INFO,PopupMilitary,[to_home] Preparing to go home before test: TestPopupMilitary,
+14:11:13,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+14:11:15,INFO,PopupMilitary,[to_home] Reached Home screen.,
+14:11:15,INFO,setup method,Setting up PopupMilitary test environment...,
+14:11:16,INFO,setup method,Navigating to Military popup...,
+14:11:35,INFO,setup method,Successfully navigated to Military popup.,
+14:11:35,INFO,setup method,PopupMilitary test environment setup complete.,
+14:11:41,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+14:11:43,INFO,PopupMilitary,[to_home] Reached Home screen.,

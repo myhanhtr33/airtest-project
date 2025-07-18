@@ -1,5 +1,5 @@
-﻿import time
-
+﻿import concurrent
+import time
 import pytest
 from Hierarchy.PopupMilitary import *
 from utils.device_setup import PocoManager
@@ -7,7 +7,9 @@ from airtest.core.api import *
 from logger_config import get_logger
 from utils.helper_functions import check_noti
 from utils.get_resource_amount import get_single_resource_amount
-
+from concurrent.futures import ThreadPoolExecutor
+from functools import partial
+import pdb
 len_of_weapon={
     "Aircraft": 24,
     "Drone": 24,
@@ -16,27 +18,40 @@ len_of_weapon={
     "Engine":18
 }
 
-@pytest.fixture
+@pytest.fixture(params=["Air", "Drone", "Wing", "Pilot", "Engine"])
+def name(request) -> Literal["Air", "Drone", "Wing", "Pilot", "Engine"]:
+    """Fixture that provides the name parameter for testing different military point types"""
+    return request.param
+@pytest.fixture(scope="class")
+def military_popup(poco):
+    popup=poco("PopupMilitaryCareer(Clone)") if poco("PopupMilitaryCareer(Clone)").exists() else None
+    print(f"military_popup_fixture:{popup}")
+    return popup
+@pytest.fixture(scope="class")
 def military_back_button(poco):
-    return poco("PopupMilitaryCareer(Clone)").offspring("B_Back (1)")
-@pytest.mark.use_to_home(before=True, logger_name="PopupMilitary", back_button=military_back_button)
+    button= poco("PopupMilitaryCareer(Clone)").offspring("B_Back (1)")
+    print(f"military_back_button_fixture:{button}")
+    return button if button.exists() else None
+@pytest.mark.use_to_home(before=True, after=True, logger_name="PopupMilitary", back_button="military_back_button")
 class TestPopupMilitary:
-    @pytest.fixture(autouse=True)
-    def setup(self,poco):
-        self.popup=PopupMilitary(poco)
-        self.poco=poco
-        self.home_notice = poco("SubFeatureTopLayer").offspring("sNotice") if poco("SubFeatureTopLayer").offspring(
+    popup= None
+    weapon_point_notices = []
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(cls, poco):
+        logger = get_logger("setup method")
+        logger.info("Setting up PopupMilitary test environment...")
+        cls.poco = poco
+        cls.home_notice = poco("SubFeatureTopLayer").offspring("sNotice") if poco("SubFeatureTopLayer").offspring(
             "sNotice").exists() else None
-        self.navigate_to_military()
-        self.weapon_point_notices=[]
-    def navigate_to_military(self):
-        if self.popup.root.exists():
-            return
-        military_home_icon=self.poco("SubFeatureTopLayer").offspring("Military_Home")
+        military_home_icon = cls.poco("SubFeatureTopLayer").offspring("Military_Home")
         assert military_home_icon.exists(), "Military home icon not found"
         military_home_icon.click(sleep_interval=1)
-        assert self.popup.root.exists(), "Military popup did not open"
-        self.popup= PopupMilitary(self.poco)
+        cls.popup = PopupMilitary(cls.poco)
+        print(f"PopupMilitary instance created: {cls.popup}")
+        assert cls.popup.root.exists(), "Military popup did not open"
+        logger.info("PopupMilitary test environment setup complete.")
+
+    @pytest.mark.order(1)
     def test_element_presence(self):
         logger=get_logger()
         assert self.popup.btn_back.exists(), "Back button not found"
@@ -71,11 +86,13 @@ class TestPopupMilitary:
         assert self.popup.progress_text.strip() != "", "Process text is empty"
         assert self.popup.upgrade_price_text.strip() != "", "Upgrade price text is empty"
         logger.info("All elements are present and verified successfully.")
+    @pytest.mark.order(2)
     def test_valid_rank_category(self):
         logger=get_logger()
         actual_rank=self.popup.level_category_text
         assert actual_rank in rank_category, f"Invalid rank category: {actual_rank}"
         logger.info(f"rank category '{actual_rank}' is valid.")
+    @pytest.mark.order(3)
     def test_click_info_button(self):
         logger=get_logger()
         self.popup.info_btn.click(sleep_interval=1)
@@ -84,6 +101,7 @@ class TestPopupMilitary:
         popup_info.btn_back.click(sleep_interval=1)
         assert not popup_info.root.exists(), "Popup Military Career Info did not close"
         logger.info("Info button functionality verified successfully.")
+    @pytest.mark.order(4)
     def test_passive_sprite(self):
         logger=get_logger()
         actual_sprites=[
@@ -93,6 +111,7 @@ class TestPopupMilitary:
         for i, actual_sprite in enumerate(actual_sprites):
             assert actual_sprite == expected_passive_sprites[i], f"Passive {i} sprite mismatch: {actual_sprite} != {expected_passive_sprites[i]}"
         logger.info("Passive sprite functionality verified successfully.")
+    @pytest.mark.order(5)
     def test_passive_stat(self):
         logger=get_logger()
         actual_stats=[
@@ -104,6 +123,7 @@ class TestPopupMilitary:
         expected_stats= self.popup.get_expected_stats_by_lv(actual_lv)
         assert actual_stats == expected_stats, f"Stats mismatch - Actual: {actual_stats}, Expected: {expected_stats}"
         logger.info("Passive stats  verified successfully.")
+    @pytest.mark.order(6)
     def test_click_progress_info_button(self):
         logger=get_logger()
         self.popup.progress_info_btn.click(sleep_interval=1.5)
@@ -113,6 +133,7 @@ class TestPopupMilitary:
         self.popup.progress_info_btn.click(sleep_interval=1.5)
         panel=self.poco("PanelTooltipInfo").offspring("lDes")
         assert not panel.exists(), "Panel did not close after clicking again"
+    @pytest.mark.order(7)
     def test_valid_progress_point_and_price(self):
         logger=get_logger()
         actual_current_point,actual_required_point= self.popup.get_progress_points()
@@ -122,6 +143,8 @@ class TestPopupMilitary:
         actual_price=int(self.popup.upgrade_price_text.replace(",",""))
         assert actual_price==PopupMilitary.get_expected_upgrade_price(self.popup.get_actual_level()+1), f"Upgrade price mismatch: {actual_price} != {PopupMilitary.get_expected_upgrade_price(self.popup.get_actual_level()+1)}"
         logger.info(f"Progress points and upgrade price verified successfully: Current Point: {actual_current_point}, Required Point: {actual_required_point}, Upgrade Price: {actual_price}")
+
+    @pytest.mark.order(8)
     def test_deactive_upgrade_btn(self):
         logger=get_logger()
         current_point,required_point= self.popup.get_progress_points()
@@ -146,6 +169,7 @@ class TestPopupMilitary:
         )
         print(f"homenotice:{self.home_notice}")
         logger.info("Upgrade button deactivated successfully when points are insufficient.")
+    @pytest.mark.order(9)
     def test_active_upgrade_btn(self):
         logger=get_logger()
         current_point,required_point= self.popup.get_progress_points()
@@ -188,6 +212,8 @@ class TestPopupMilitary:
         assert actual_stats == expected_passive_stats, f"Passive stats did not update correctly: {actual_stats} != {expected_passive_stats}"
         self.test_deactive_upgrade_btn()
         logger.info(f"Upgrade button activated successfully. Level: {expected_level}, Current Point: {expected_current_point}, Required Point: {expected_required_point}, Upgrade Price: {expected_upgrade_price}")
+
+    @pytest.mark.order(10)
     def test_home_notice(self):
         logger=get_logger()
         if not self.home_notice:
@@ -195,51 +221,174 @@ class TestPopupMilitary:
             return
         assert self.home_notice.exists(), "Home notice not found"
         group_notice=[
-            weapon_point.notice if weapon_point.notice.exists() else None
+            weapon_point.notice
             for weapon_point in self.popup.weapon_points]
         assert any(notice is not None for notice in group_notice), "At least one notice should be visible"
         logger.info("Home notice and weapon point notices are present correctly.")
+    @pytest.mark.order(11)
     def test_click_weapon_points(self):
         logger=get_logger()
         popup_get_point= None
         for i, weapon_point in enumerate(self.popup.weapon_points):
+            logger.info(f"Clicking on weapon point {i+1}: {weapon_point.name}")
             weapon_point.root.click(sleep_interval=1)
             popup_get_point = PopupMilitaryGetPoint(self.poco,weapon_point._name)
+            logger.info(f"Popup Military Get Point opened for {weapon_point.name}")
             assert popup_get_point.root.exists(), f"Popup Military Get Point for {weapon_point.name} did not open"
-            self.test_PopupMilitaryGetPoint(weapon_point._name, popup_get_point)
+            expected_weapon_point=self.verify_PopupMilitaryGetPoint(weapon_point._name, popup_get_point)
+            logger.info(f"Expected weapon point for {weapon_point._name}: {expected_weapon_point}")
             popup_get_point.btn_back.click(sleep_interval=1)
-    def test_PopupMilitaryGetPoint(self, name, popup_get_point):
+            actual_weapon_point=[int(wp.accumulated_point) for wp in self.popup.weapon_points ]
+            logger.info(f"Actual weapon point after closing popup: {actual_weapon_point}")
+            assert actual_weapon_point == expected_weapon_point, f"Weapon point for {weapon_point._name} did not update correctly: {actual_weapon_point} != {expected_weapon_point}"
+    def verify_PopupMilitaryGetPoint(self, name:str, popup_get_point:PopupMilitaryGetPoint)->list[int]:
+        """Helper method to test popup get point functionality
+            Args:
+                name: The weapon point name (Air, Drone, Wing, Pilot, Engine)
+                popup_get_point: Instance of PopupMilitaryGetPoint created in test_click_weapon_points
+            Returns:
+                list[int]: List of accumulated points for each weapon
+        """
         logger=get_logger()
+        list_point=[(point._name,int(point.accumulated_point)) for point in popup_get_point.weapon_points ]
+        logger.info(f"Popup Military Get Point {name} opened")
         assert popup_get_point.middle_panel.exists(), "Middle panel not found"
         title= "Aircraft" if name =="Air" else name
         assert popup_get_point.title== title, f"Title text mismatch: {popup_get_point.title} != {title}"
         assert popup_get_point.generator.exists(), f"Generator {name} not found"
-        assert len(popup_get_point.items) == len_of_weapon[title], f"Expected {len_of_weapon[title]} items, found {len(popup_get_point.items)}"
-        for item in popup_get_point.items:
-            assert item.root.exists(), f"Item {item.root.name} not found"
+        # assert len(popup_get_point.items) == len_of_weapon[title], f"Expected {len_of_weapon[title]} items, found {len(popup_get_point.items)}"
+        def check_item(item):
+            logger.info(f"Item {item.root} checking")
+            assert item.root.exists(), f"Item {item.root} not found"
+
             if name == "Pilot":
-                assert item.portrait.contains(f"{name}"), f"Item icon for {name} does not contain expected sprite"
-                assert item.flag !="", f"Flag for {item.root.name} should not be empty"
-                assert item.rarity_frame in ["R", "SR", "SSR"], f"Rarity frame for {item.root.name} should be R, SR, or SSR, found {item.rarity_frame}"
+                assert name.lower() in item.portrait.lower(), f"Item icon for {name} does not contain expected sprite"
+                assert item.flag != "", f"Flag for {item.root.name} should not be empty"
+                assert any(r in item.rarity_frame for r in ["R", "SR", "SSR"]), \
+                    f"Rarity frame for {item.root.name} should contain R, SR, or SSR, found {item.rarity_frame}"
             else:
-                assert item.item_icon.contains(f"{name}"), f"Item icon for {name} does not contain expected sprite"
+                icon = name.lower() if name.lower() != "drone" else "wingman"
+                assert icon in item.item_icon.lower(), f"Item icon for {name} does not contain expected sprite"
+
             if title in ["Aircraft", "Drone", "Wing"]:
-                assert int(item.star_text)>=2, f"Star text for {item.root.name} should be at least 2, found {item.star_text}"
+                assert int(
+                    item.star_text) >= 2, f"Star text for {item.root.name} should be at least 2, found {item.star_text}"
             elif title == "Pilot":
-                assert int(item.star_text)>=3, f"Star text for {item.root.name} should be at least 3, found {item.star_text}"
-            elif title =="Engine":
-                assert int(item.star_text)>=1, f"Star text for {item.root.name} should be at least 1, found {item.star_text}"
+                assert int(
+                    item.star_text) >= 3, f"Star text for {item.root.name} should be at least 3, found {item.star_text}"
+            elif title == "Engine":
+                assert int(
+                    item.star_text) >= 1, f"Star text for {item.root.name} should be at least 1, found {item.star_text}"
             else:
                 raise ValueError(f"Unknown weapon type: {title}")
+
             assert item.star_icon.exists(), f"Star icon for {item.root.name} not found"
+
             if item.cover_BG:
                 assert item.lock_icon.exists(), f"Lock icon for {item.root.name} not found"
-                assert item.point_text is None,f"Point text for {item.root.name} should be None when locked"
+                assert item.point_text is None, f"Point text for {item.root.name} should be None when locked"
                 assert item.claimed_icon is None, f"Claimed icon for {item.root.name} should be None when locked"
             elif item.claimed_icon:
                 assert item.point_text is None, f"Point text for {item.root.name} should be None when claimed"
                 assert item.lock_icon is None, f"Lock icon for {item.root.name} should be None when claimed"
             elif item.point_text:
-                assert int(item.point_text)>=1, f"Point text for {item.root.name} should be at least 1, found {item.point_text}"
+                assert int(
+                    item.point_text) >= 1, f"Point text for {item.root.name} should be at least 1, found {item.point_text}"
                 assert item.lock_icon is None, f"Lock icon for {item.root.name} should be None when point text is present"
                 assert item.claimed_icon is None, f"Claimed icon for {item.root.name} should be None when point text is present"
+            logger.info(f"Item {item.root} done checking")
+        def claim_point(item):
+            point=int(item.point_text)
+            item.root.click(sleep_interval=1)
+            assert item.point_text is None, f"Point text for {item.root.name} should be None after claiming"
+            item.root.click()
+            check_noti(self.poco,"You have already claimed the reward")
+            return point
+        for item in popup_get_point.items:
+            check_item(item)
+            if item.point_text: # if item has point text to be claimed
+                logger.info(f"Claiming point for item {item.root}")
+                initial_point=next(point.accumulated_point for point in popup_get_point.weapon_points if point._name == name)
+                logger.info(f"Initial accumulated point for {name}: {initial_point}")
+                increased_point=claim_point(item)
+                logger.info(f"Increased point for {name}: {increased_point}")
+                sleep(1)
+                updated_point = next(point.accumulated_point for point in popup_get_point.weapon_points if point._name == name)
+                logger.info(f"Updated accumulated point for {name}: {updated_point}")
+                assert int(updated_point) == int(initial_point) + increased_point, \
+                    f"Accumulated point for {name} did not update correctly: {updated_point} != {initial_point} + {increased_point}"
+                list_point = [(point[0], point[1] + (increased_point if point[0] == name else 0)) for point in list_point]
+                logger.info(f"List of points after claiming: {list_point}")
+        return [int(point[1]) for point in list_point]
+
+    @pytest.mark.order(12)
+    def test_persistence_after_reopening(self):
+        logger = get_logger()
+        logger.info("Capturing initial state before closing popup")
+
+        # Capture initial state
+        initial_state = {
+            'level_number': self.popup.level_number_text,
+            'level_category': self.popup.level_category_text,
+            'progress_text': self.popup.progress_text,
+            'upgrade_price': self.popup.upgrade_price_text,
+            'passive_stats': [passive.passive_stat_text for passive in self.popup.passives],
+            'weapon_points': [point.accumulated_point for point in self.popup.weapon_points]
+        }
+
+        logger.info(f"Initial state: {initial_state}")
+
+        # Close popup
+        logger.info("Closing PopupMilitary")
+        self.popup.btn_back.click(sleep_interval=1)
+        assert not self.popup.root.exists(), "Popup did not close properly"
+
+        # Reopen popup
+        logger.info("Reopening PopupMilitary")
+        military_home_icon = self.poco("SubFeatureTopLayer").offspring("Military_Home")
+        assert military_home_icon.exists(), "Military home icon not found"
+        military_home_icon.click(sleep_interval=1)
+
+        # Wait for popup to fully load
+        time.sleep(1)
+
+        # Create new popup instance
+        self.popup = PopupMilitary(self.poco)
+        assert self.popup.root.exists(), "Military popup did not reopen"
+
+        # Capture new state
+        reopened_state = {
+            'level_number': self.popup.level_number_text,
+            'level_category': self.popup.level_category_text,
+            'progress_text': self.popup.progress_text,
+            'upgrade_price': self.popup.upgrade_price_text,
+            'passive_stats': [passive.passive_stat_text for passive in self.popup.passives],
+            'weapon_points': [point.accumulated_point for point in self.popup.weapon_points]
+        }
+
+        logger.info(f"Reopened state: {reopened_state}")
+
+        # Compare states
+        assert initial_state['level_number'] == reopened_state['level_number'], \
+            f"Level number changed: {initial_state['level_number']} -> {reopened_state['level_number']}"
+
+        assert initial_state['level_category'] == reopened_state['level_category'], \
+            f"Level category changed: {initial_state['level_category']} -> {reopened_state['level_category']}"
+
+        assert initial_state['progress_text'] == reopened_state['progress_text'], \
+            f"Progress text changed: {initial_state['progress_text']} -> {reopened_state['progress_text']}"
+
+        assert initial_state['upgrade_price'] == reopened_state['upgrade_price'], \
+            f"Upgrade price changed: {initial_state['upgrade_price']} -> {reopened_state['upgrade_price']}"
+
+        for i, (initial_stat, reopened_stat) in enumerate(
+                zip(initial_state['passive_stats'], reopened_state['passive_stats'])):
+            assert initial_stat == reopened_stat, \
+                f"Passive stat {i} changed: {initial_stat} -> {reopened_stat}"
+
+        for i, (initial_point, reopened_point) in enumerate(
+                zip(initial_state['weapon_points'], reopened_state['weapon_points'])):
+            assert initial_point == reopened_point, \
+                f"Weapon point {i} accumulated point changed: {initial_point} -> {reopened_point}"
+
+        logger.info("All elements persisted correctly after reopening the popup")

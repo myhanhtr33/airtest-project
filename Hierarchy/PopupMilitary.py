@@ -1,4 +1,7 @@
-﻿import os
+﻿import datetime
+import os
+import datetime, time
+
 import pandas as pd
 from typing import Literal
 current_dir=os.path.dirname(os.path.abspath(__file__))
@@ -32,23 +35,43 @@ class PopupMilitary:
         self.info_btn= self.top_panel.offspring("bInfo")
         self.mid_panel = self.root.offspring("TopMiddle")
         self.mid_title = self.mid_panel.offspring("lTitle (1)").get_text() if self.mid_panel.offspring("lTitle (1)").exists() else None
-        self.passives=[]
-        for i in range(1,7):
-            node=self.mid_panel.offspring(f"Passive{i}")
-            if node.exists():
-                _stat = {1: "lAtk", 2: "lHP", 3: "lCritChance", 4: "lCritDamage", 5: "lBlockDamage", 6: "lReduceDamage"}[i]
-                self.passives.append(Passive(node,_stat))
+        # self.passives=[]
+        # for i in range(1,7):
+        #     node=self.mid_panel.offspring(f"Passive{i}")
+        #     if node.exists():
+        #         _stat = {1: "lAtk", 2: "lHP", 3: "lCritChance", 4: "lCritDamage", 5: "lBlockDamage", 6: "lReduceDamage"}[i]
+        #         self.passives.append(Passive(node,_stat))
         self.bot_panel = self.root.offspring("TopBottom")
         self.progress_fill = self.bot_panel.offspring("sFill")
         self.progress_info_btn = self.bot_panel.offspring("bInfo")
         self.upgrade_btn = self.bot_panel.offspring("BtnUpdate")
-        self.weapon_points = []
-        for i in range(5):
-            _type= type[i]
-            _name={1: "Air", 2: "Drone", 3: "Wing", 4: "Pilot", 5: "Engine"}[i+1]
-            node= self.bot_panel.offspring(f"{_type}Point")
+        # self.weapon_points = []
+        # for i in range(5):
+        #     _type= type[i]
+        #     _name={1: "Air", 2: "Drone", 3: "Wing", 4: "Pilot", 5: "Engine"}[i+1]
+        #     node= self.bot_panel.offspring(f"{_type}Point")
+        #     if node.exists():
+        #         self.weapon_points.append(WeaponPoint(node,_name))
+    @property
+    def passives(self):
+        result = []
+        for i in range(1, 7):
+            node = self.mid_panel.offspring(f"Passive{i}")
             if node.exists():
-                self.weapon_points.append(WeaponPoint(node,_name))
+                _stat = \
+                {1: "lAtk", 2: "lHP", 3: "lCritChance", 4: "lCritDamage", 5: "lBlockDamage", 6: "lReduceDamage"}[i]
+                result.append(Passive(node, _stat))
+        return result
+    @property
+    def weapon_points(self):
+        result = []
+        for i in range(5):
+            _type = type[i]
+            _name = {1: "Air", 2: "Drone", 3: "Wing", 4: "Pilot", 5: "Engine"}[i + 1]
+            node = self.bot_panel.offspring(f"{_type}Point")
+            if node.exists():
+                result.append(WeaponPoint(node, _name))
+        return result
     @property
     def level_number_text(self):
         return self.rank_badge.offspring("lLevel").get_text().strip() if self.rank_badge.offspring("lLevel").exists() else None
@@ -137,24 +160,43 @@ class WeaponPoint_PopupGetPoint(WeaponPoint):
 class PopupMilitaryGetPoint:
     def __init__(self,poco,type_name:Literal["Air", "Drone", "Wing", "Pilot", "Engine"]="Air"):
         self.poco = poco
+        self._type_name = type_name
         self.root = self.poco("PopupMilitaryGetPoint(Clone)")
         self.btn_back = self.root.offspring("B_Back (1)")
         self.middle_panel = self.root.offspring("TopMiddle")
         self.title = self.middle_panel.offspring("title").get_text().strip() if self.middle_panel.offspring("sTitle").exists() else None
-        self.generator=self.middle_panel.offspring("Generator").child(f"{type_name[0]}Generator")
-        self.items=[]
-        for item in self.middle_panel.offspring("Grid").children():
-            if type_name== "Pilot":
-                self.items.append(PilotItem(item))
-            else:
-                self.items.append(HangarItem(item))
+        self.generator=self.middle_panel.offspring("Generators").child(f"{type_name[0]}Generator")
+        # self.items=[]
+        # start_time=time.time()
+        # for item in list(self.middle_panel.offspring("Grid").children())[:5]: # Limit to first 5 items for performance
+        #     if type_name== "Pilot":
+        #         self.items.append(PilotItem(item))
+        #     else:
+        #         self.items.append(HangarItem(item))
+        # end_time = time.time()
+        # print(f"Time taken to process Grid items: {end_time - start_time:.4f} seconds")
         self.weapon_points = []
+        start_time = time.time()
         for i in range(5):
             _type = type[i]
             _name = {1: "Air", 2: "Drone", 3: "Wing", 4: "Pilot", 5: "Engine"}[i + 1]
             node = self.root.offspring(f"{_type}Point")
             if node.exists():
                 self.weapon_points.append(WeaponPoint_PopupGetPoint(node, _name))
+        end_time = time.time()
+        print(f"Time taken to process weapon_points: {end_time - start_time:.4f} seconds")
+    @property
+    def items(self):
+        result = []
+        start_time = time.time()
+        for item in list(self.middle_panel.offspring("Grid").children())[:5]:  # Limit to first 5 items for performance
+            if self._type_name == "Pilot":
+                result.append(PilotItem(item))
+            else:
+                result.append(HangarItem(item))
+        end_time = time.time()
+        print(f"Time taken to process Grid items: {end_time - start_time:.4f} seconds")
+        return result
 class HangarItem:
     def __init__(self,node):
         self.root=node

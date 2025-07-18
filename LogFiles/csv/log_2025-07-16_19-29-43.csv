@@ -1,0 +1,5 @@
+Time,Level,Module,Message,Screenshot
+19:29:44,INFO,PopupMilitary,[to_home] Preparing to go home before test: TestPopupMilitary,
+19:29:49,INFO,PopupMilitary,[to_home] Clicking back button proxy object,
+19:29:52,INFO,PopupMilitary,[to_home] Reached Home screen.,
+19:29:53,INFO,PopupMilitary,[to_home] Already at Home screen.,

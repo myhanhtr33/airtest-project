@@ -1,0 +1,11 @@
+Time,Level,Module,Message,Screenshot
+19:12:11,INFO,PopupMilitary,[to_home] Preparing to go home before test: test_element_presence,
+19:12:15,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+19:12:17,INFO,PopupMilitary,[to_home] Reached Home screen.,
+19:12:17,INFO,setup method,Setting up PopupMilitary test environment...,
+19:12:17,INFO,setup method,"Military popup does not exist, navigating to it.",
+19:12:17,INFO,setup method,Navigating to Military popup...,
+19:12:36,INFO,setup method,Successfully navigated to Military popup.,
+19:12:36,INFO,setup method,PopupMilitary test environment setup complete.,
+19:13:27,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+19:13:29,INFO,PopupMilitary,[to_home] Reached Home screen.,

@@ -1,0 +1,4 @@
+Time,Level,Module,Message,Screenshot
+11:52:27,INFO,PopupMilitary,[to_home] Already at Home screen.,
+11:53:40,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_element_presence,All elements are present and verified successfully.,
+11:53:41,INFO,PopupMilitary,[to_home] Already at Home screen.,

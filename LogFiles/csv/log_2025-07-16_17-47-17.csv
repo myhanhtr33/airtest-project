@@ -1,0 +1,4 @@
+Time,Level,Module,Message,Screenshot
+17:47:18,INFO,setup method,Setting up PopupMilitary test environment...,
+17:47:19,INFO,setup method,"Military popup does not exist, navigating to it.",
+17:47:19,INFO,setup method,Navigating to Military popup...,

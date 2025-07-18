@@ -1,0 +1,6 @@
+Time,Level,Module,Message,Screenshot
+14:19:26,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+14:19:28,INFO,PopupMilitary,[to_home] Reached Home screen.,
+14:20:49,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_element_presence,All elements are present and verified successfully.,
+14:20:53,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+14:20:55,INFO,PopupMilitary,[to_home] Reached Home screen.,

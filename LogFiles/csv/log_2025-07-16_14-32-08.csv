@@ -1,0 +1,9 @@
+Time,Level,Module,Message,Screenshot
+14:32:14,INFO,PopupMilitary,[to_home] Clicking back button proxy object,
+14:32:18,INFO,PopupMilitary,[to_home] Reached Home screen.,
+14:33:39,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_element_presence,All elements are present and verified successfully.,
+14:33:44,INFO,PopupMilitary,[to_home] Clicking back button proxy object,
+14:33:47,INFO,PopupMilitary,[to_home] Reached Home screen.,
+14:33:48,INFO,PopupMilitary,[to_home] Already at Home screen.,
+14:34:17,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_valid_rank_category,rank category 'Second Lieutenant' is valid.,
+14:34:20,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,

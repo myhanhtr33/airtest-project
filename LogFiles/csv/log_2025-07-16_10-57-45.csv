@@ -1,0 +1,3 @@
+Time,Level,Module,Message,Screenshot
+10:57:46,INFO,PopupMilitary,[to_home] Already at Home screen.,
+10:58:20,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_home_notice,Home notice and weapon point notices are present correctly.,

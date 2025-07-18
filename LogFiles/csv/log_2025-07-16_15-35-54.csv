@@ -1,0 +1,11 @@
+Time,Level,Module,Message,Screenshot
+15:35:59,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+15:36:01,INFO,PopupMilitary,[to_home] Reached Home screen.,
+15:37:14,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_element_presence,All elements are present and verified successfully.,
+15:37:18,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+15:37:20,INFO,PopupMilitary,[to_home] Reached Home screen.,
+15:37:21,INFO,PopupMilitary,[to_home] Already at Home screen.,
+15:37:46,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_valid_rank_category,rank category 'Second Lieutenant' is valid.,
+15:37:51,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+15:37:52,INFO,PopupMilitary,[to_home] Reached Home screen.,
+15:37:53,INFO,PopupMilitary,[to_home] Already at Home screen.,

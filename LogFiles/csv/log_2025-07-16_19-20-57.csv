@@ -1,0 +1,5 @@
+Time,Level,Module,Message,Screenshot
+19:20:59,INFO,PopupMilitary,[to_home] Preparing to go home before test: TestPopupMilitary,
+19:21:04,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+19:21:05,INFO,PopupMilitary,[to_home] Reached Home screen.,
+19:21:05,INFO,PopupMilitary,[to_home] Already at Home screen.,

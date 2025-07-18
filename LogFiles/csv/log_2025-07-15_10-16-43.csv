@@ -1,0 +1,76 @@
+Time,Level,Module,Message,Screenshot
+10:16:45,INFO,PopupMilitary,[to_home] Already at Home screen.,
+10:17:08,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_click_weapon_points,Clicking on weapon point 1: Aircraft,
+10:19:53,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_click_weapon_points,Popup Military Get Point opened for Aircraft,
+10:19:54,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Popup Military Get Point Air opened,
+10:19:56,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting to check 24 items,
+10:19:56,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 0,
+10:19:56,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[0]"" checking",
+10:19:56,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 1,
+10:19:56,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 2,
+10:19:56,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[1]"" checking",
+10:19:56,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 3,
+10:19:56,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[2]"" checking",
+10:19:56,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[3]"" checking",
+10:20:27,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 0: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADD47450> (rid=c2d76b3d-f9ec-4415-996f-590ff2b30140) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h20.png"", ""View"")"
+10:20:28,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 4,
+10:20:28,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[4]"" checking",
+10:20:27,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 1: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFABE2A0D0> (rid=f8eaaa98-13ac-4650-94bd-b0ef5beda8ea) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h20.png"", ""View"")"
+10:20:28,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 5,
+10:20:28,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[5]"" checking",
+10:20:27,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 3: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFAB5303D0> (rid=60710243-58dc-4782-82a3-ebf2f864163e) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h20.png"", ""View"")"
+10:20:28,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 6,
+10:20:28,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[6]"" checking",
+10:20:27,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 2: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFAB5300D0> (rid=b62610a8-4fb1-43aa-92d2-c42c237dd3af) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h20.png"", ""View"")"
+10:20:29,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 7,
+10:20:29,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[7]"" checking",
+10:20:28,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Failed during item checks at index 0,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h20.png"", ""View"")"
+10:20:29,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Completed indices: [],"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h20.png"", ""View"")"
+10:20:59,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 7: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA12A50> (rid=9c533bc6-2e55-4398-9603-1988f9f874ff) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h20.png"", ""View"")"
+10:21:00,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 8,
+10:21:00,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[8]"" checking",
+10:20:59,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 5: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA10BD0> (rid=312f9452-30e1-47cb-80c6-a5d40bda5d57) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h21.png"", ""View"")"
+10:21:00,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 9,
+10:21:00,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[9]"" checking",
+10:20:59,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 6: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA12650> (rid=e5404687-8ac3-44cb-8fcb-135c02f912d6) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h21.png"", ""View"")"
+10:21:00,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 10,
+10:21:00,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[10]"" checking",
+10:20:59,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 4: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA11850> (rid=ad64ad50-d1b4-4bdd-b7a4-bdbc3384270f) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h21.png"", ""View"")"
+10:21:01,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 11,
+10:21:01,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[11]"" checking",
+10:21:31,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 11: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA130D0> (rid=4da36794-d69e-4e33-a483-fd1e15776f42) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h21.png"", ""View"")"
+10:21:31,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 12,
+10:21:31,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[12]"" checking",
+10:21:31,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 9: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA127D0> (rid=17b5ebe8-4a0d-4898-9b21-e9425606ca26) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h21.png"", ""View"")"
+10:21:32,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 13,
+10:21:32,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[13]"" checking",
+10:21:31,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 10: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA122D0> (rid=96ffcf7d-d109-4cf3-9861-305f15e21bdd) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h21.png"", ""View"")"
+10:21:32,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 14,
+10:21:32,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[14]"" checking",
+10:21:31,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 8: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA10950> (rid=0b48f837-8dab-46f3-ba46-a08203b7ce5c) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h21.png"", ""View"")"
+10:21:32,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 15,
+10:21:32,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[15]"" checking",
+10:22:03,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 12: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA132D0> (rid=c638c14b-fbdb-4975-9cf6-99c8cb8ffa28) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h22.png"", ""View"")"
+10:22:03,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 16,
+10:22:03,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[18]"" checking",
+10:22:03,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 13: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA12250> (rid=f2857684-512b-4cbc-b807-976cb174c1fb) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h22.png"", ""View"")"
+10:22:03,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 17,
+10:22:03,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[19]"" checking",
+10:22:03,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 15: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA13750> (rid=ebbe58c4-5f28-4c84-9f22-8fec66567219) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h22.png"", ""View"")"
+10:22:04,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 18,
+10:22:04,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[16]"" checking",
+10:22:03,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 14: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA13550> (rid=0fdedb87-8e8b-4050-97f6-708b8ca38c8a) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h22.png"", ""View"")"
+10:22:04,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 19,
+10:22:04,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[17]"" checking",
+10:22:35,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 18: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFAAE1FDD0> (rid=24b9a244-b64c-4ca1-8384-992864753e4b) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h22.png"", ""View"")"
+10:22:35,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 20,
+10:22:35,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[22]"" checking",
+10:22:35,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 16: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFAAE1FD50> (rid=8b4b6c8a-4f14-4bb2-975a-d983682404e1) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h22.png"", ""View"")"
+10:22:35,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 21,
+10:22:35,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[21]"" checking",
+10:22:35,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 17: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA138D0> (rid=a2e928b3-c750-4def-9a7c-d3fa225042a7) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h22.png"", ""View"")"
+10:22:35,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 22,
+10:22:35,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[23]"" checking",
+10:22:35,ERROR,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Error checking item 19: <poco.utils.simplerpc.simplerpc.Callback object at 0x000001EFADA135D0> (rid=32a08be0-0048-4cd2-8206-550be20ecd0f) (connection=""tcp://127.0.0.1:15065"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-15_10h22.png"", ""View"")"
+10:22:36,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,Starting check for item 23,
+10:22:36,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_PopupMilitaryGetPoint,"Item UIObjectProxy of ""PopupMilitaryGetPoint(Clone)>TopMiddle>Grid/[20]"" checking",
