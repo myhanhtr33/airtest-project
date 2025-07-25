@@ -1,0 +1,14 @@
+Time,Level,Module,Message,Screenshot
+16:50:24,INFO,PopupLeaderboard,to home fixture initialized.,
+16:50:24,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+16:50:27,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+16:50:27,INFO,setup method,Setting up PopupLeaderboard test environment...,
+16:50:31,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league tab with all sub-tabs...,
+16:50:33,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - world sub-tab...,
+16:50:35,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - world...,
+16:50:46,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Confirmed 20 players in league-world,
+16:51:00,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking first 2 players' league stats in league-world...,
+16:51:00,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 1...,
+16:51:11,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 2...,
+16:51:11,ERROR,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Error checking player 2: 'list' object has no attribute 'offspring',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h51.png"", ""View"")"
+16:51:12,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - local sub-tab...,

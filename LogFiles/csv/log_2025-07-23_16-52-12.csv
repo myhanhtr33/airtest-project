@@ -1,0 +1,27 @@
+Time,Level,Module,Message,Screenshot
+16:52:13,INFO,PopupLeaderboard,to home fixture initialized.,
+16:52:13,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+16:52:18,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+16:52:22,INFO,PopupLeaderboard,[to_home] Reached Home screen.,
+16:52:22,INFO,setup method,Setting up PopupLeaderboard test environment...,
+16:52:25,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league tab with all sub-tabs...,
+16:52:27,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - world sub-tab...,
+16:52:30,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - world...,
+16:52:31,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Waiting for loading to complete...,
+16:52:31,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Loading icon did not disappear within timeout - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h52.png"", ""View"")"
+16:52:32,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,"No data loaded for league-world, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h52.png"", ""View"")"
+16:52:32,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Skipping player stats check for league-world due to no data,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h52.png"", ""View"")"
+16:52:32,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - local sub-tab...,
+16:52:34,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - local...,
+16:52:35,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Waiting for loading to complete...,
+16:52:35,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Loading icon did not disappear within timeout - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h52.png"", ""View"")"
+16:52:36,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,"No data loaded for league-local, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h52.png"", ""View"")"
+16:52:37,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Skipping player stats check for league-local due to no data,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h52.png"", ""View"")"
+16:52:37,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - friends sub-tab...,
+16:52:39,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - friends...,
+16:52:40,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Waiting for loading to complete...,
+16:52:40,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Loading icon did not disappear within timeout - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h52.png"", ""View"")"
+16:52:41,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,"No data loaded for league-friends, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h52.png"", ""View"")"
+16:52:41,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Skipping player stats check for league-friends due to no data,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h52.png"", ""View"")"
+16:52:45,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+16:52:49,INFO,PopupLeaderboard,[to_home] Reached Home screen.,

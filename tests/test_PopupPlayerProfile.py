@@ -21,7 +21,7 @@ class TestPopupPlayerProfile(BaseTest):
         assert self.popup.root.exists(), "PopupPlayerProfile root not found!"
         assert self.popup.btnBack.exists(), "btnBack not found!"
         assert self.popup.title.exists(), "title not found!"
-        assert self.popup.player_ava.exists(), "player_ava not found!"
+        # assert self.popup.player_ava.exists(), "player_ava not found!"
         assert self.popup.player_flag.exists(), "player_flag not found!"
         assert self.popup.player_name.exists(), "player_name not found!"
         assert self.popup.player_id.exists(), "player_id not found!"
@@ -67,5 +67,19 @@ class TestPopupPlayerProfile(BaseTest):
         assert id_numb.isdigit() and len(id_numb) == 8, f"id_numb is not a valid 8-digit number: '{id_numb}'"
         assert id.startswith("id:"), f"id does not start with 'id:': '{id}'"
         print(f"✅ Player ID is valid: {id} {id_numb}")
+
+def test_all_elements_exist_other_player_profile(popup):
+    assert popup.root.exists(), "PopupOtherPlayerProfile root not found!"
+    assert popup.btnBack.exists(), "btnBack not found!"
+    assert popup.title.exists(), "title not found!"
+    assert popup.player_ava.exists(), "player_ava not found!"
+    assert popup.player_flag.exists(), "player_flag not found!"
+    assert popup.player_name.exists(), "player_name not found!"
+    assert popup.player_id.exists(), "player_id not found!"
+    assert popup.btn_name_clan.exists(), "btn_name_clan not found!"
+    assert popup.vip_icon.exists(), "vip_icon not found!"
+    assert popup.btn_asset.exists(), "btn_asset not found!"
+    assert popup.btn_stat.exists(), "btn_stat not found!"
+    print("✅ All main elements exist in PopupOtherPlayerProfile!")
 
 

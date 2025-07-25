@@ -1,0 +1,3 @@
+Time,Level,Module,Message,Screenshot
+10:09:16,INFO,PopupLeaderboard,to home fixture initialized.,
+10:09:16,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,

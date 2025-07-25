@@ -1,0 +1,9 @@
+Time,Level,Module,Message,Screenshot
+15:17:54,INFO,PopupLeaderboard,to home fixture initialized.,
+15:17:54,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+15:17:59,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+15:18:04,INFO,PopupLeaderboard,[to_home] Reached Home screen.,
+15:18:04,INFO,setup method,Setting up PopupLeaderboard test environment...,
+15:18:08,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_check_first_two_players_campaign_world,Testing first two players in Campaign > World tab...,
+15:20:01,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+15:20:06,INFO,PopupLeaderboard,[to_home] Reached Home screen.,

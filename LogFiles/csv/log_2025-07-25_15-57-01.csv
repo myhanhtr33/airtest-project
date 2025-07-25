@@ -1,0 +1,11 @@
+Time,Level,Module,Message,Screenshot
+15:57:02,INFO,PopupLeaderboard,to home fixture initialized.,
+15:57:02,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+15:57:07,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+15:57:11,INFO,PopupLeaderboard,[to_home] Reached Home screen.,
+15:57:11,INFO,setup method,Setting up PopupLeaderboard test environment...,
+15:57:14,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_check_first_two_players_campaign_world,Testing first two players in Campaign > World tab...,
+15:57:42,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_check_first_two_players_campaign_world,"Player 1 in leaderboard: ID=24396728, Name=Barbara Petr...",
+15:57:58,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_check_first_two_players_campaign_world,"Player 1 in popup: ID=24396728, Name=Barbara Petrolati",
+15:58:02,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+15:58:06,INFO,PopupLeaderboard,[to_home] Reached Home screen.,

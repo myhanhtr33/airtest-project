@@ -81,41 +81,36 @@ def to_home(request):
     poco = request.getfixturevalue("poco")
     logger.info("to home fixture initialized.")
     def _go_home():
-        if exists(btnCampaign_img):
-            logger.info("[to_home] Already at Home screen.")
-            return
-        print(f"back_button: {back_button}")
-        print(f"back_button_func: {back_button_func}")
-        if  back_button:
-            logger.info("[to_home] Clicking back button proxy object")
-            back_button.click()
-            time.sleep(1)
-        else:
-            try:
-                keyevent("BACK")
-                logger.info("[to_home] Sent BACK keyevent.")
-                time.sleep(1)
-            except Exception:
-                logger.warning("[to_home] BACK keyevent not supported.")
+        print("to_home called")
 
-        for _ in range(5):
-            if poco("HomeSquad_1").offspring("BtnAircraft").exists():
-                logger.info("[to_home] Reached Home screen.")
+        # Try up to 4 times to get to the home screen
+        for attempt in range(5):
+            if exists(btnCampaign_img):
+                print("btnCampaign_img found")
+                logger.info("[to_home] Already at Home screen.")
                 return
-            time.sleep(0.5)
+            logger.info(f"[to_home] Attempt {attempt + 1}/4 to go to home screen")
 
-        logger.error("[to_home] ❌ Failed to return to Home screen.")
-        raise RuntimeError("Could not return to Home screen.")
+            print(f"back_button: {back_button}")
+            print(f"back_button_func: {back_button_func}")
+            if back_button:
+                logger.info("[to_home] Clicking back button proxy object")
+                back_button.click()
+                time.sleep(1)
+            else:
+                try:
+                    keyevent("BACK")
+                    logger.info("[to_home] Sent BACK keyevent.")
+                    time.sleep(1)
+                except Exception:
+                    logger.warning("[to_home] BACK keyevent not supported.")
+        logger.error("[to_home] ❌ Failed to return to Home screen after 4 attempts.")
+        raise RuntimeError("Could not return to Home screen after 4 attempts.")
 
     if before:
-        logger.info(f"[to_home] Preparing to go home before test: {request.node.name}")
         _go_home()
 
     if after:
         def finalize():
             _go_home()
         request.addfinalizer(finalize)
-
-
-
-

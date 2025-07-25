@@ -1,0 +1,37 @@
+Time,Level,Module,Message,Screenshot
+15:22:40,INFO,PopupLeaderboard,to home fixture initialized.,
+15:22:40,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+15:22:45,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+15:22:49,INFO,PopupLeaderboard,[to_home] Reached Home screen.,
+15:22:49,INFO,setup method,Setting up PopupLeaderboard test environment...,
+15:22:53,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league tab with all sub-tabs...,
+15:22:55,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - world sub-tab...,
+15:22:58,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - world...,
+15:23:28,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Confirmed 20 players in league-world,
+15:23:28,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Total players available: 20,
+15:23:28,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking first 3 players' league stats in league-world...,
+15:23:28,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 1...,
+15:23:42,ERROR,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Error checking player 1: '<' not supported between instances of 'str' and 'int',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-24_15h23.png"", ""View"")"
+15:23:43,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 2...,
+15:23:57,ERROR,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Error checking player 2: '<' not supported between instances of 'str' and 'int',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-24_15h23.png"", ""View"")"
+15:23:57,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 3...,
+15:24:11,ERROR,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Error checking player 3: '<' not supported between instances of 'str' and 'int',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-24_15h24.png"", ""View"")"
+15:24:11,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - local sub-tab...,
+15:24:14,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - local...,
+15:24:44,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Confirmed 20 players in league-local,
+15:24:44,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Total players available: 20,
+15:24:44,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking first 3 players' league stats in league-local...,
+15:24:44,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 1...,
+15:24:58,ERROR,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Error checking player 1: '<' not supported between instances of 'str' and 'int',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-24_15h24.png"", ""View"")"
+15:24:58,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 2...,
+15:25:12,ERROR,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Error checking player 2: '<' not supported between instances of 'str' and 'int',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-24_15h25.png"", ""View"")"
+15:25:12,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 3...,
+15:25:27,ERROR,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Error checking player 3: '<' not supported between instances of 'str' and 'int',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-24_15h25.png"", ""View"")"
+15:25:27,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - friends sub-tab...,
+15:25:29,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - friends...,
+15:25:36,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Total players available: 1,
+15:25:36,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking first 3 players' league stats in league-friends...,
+15:25:36,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 1...,
+15:25:47,ERROR,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Error checking player 1: '<' not supported between instances of 'str' and 'int',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-24_15h25.png"", ""View"")"
+15:25:51,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+15:25:54,INFO,PopupLeaderboard,[to_home] Reached Home screen.,

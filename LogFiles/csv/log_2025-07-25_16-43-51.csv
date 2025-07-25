@@ -1,0 +1,6 @@
+Time,Level,Module,Message,Screenshot
+16:43:52,INFO,PopupLeaderboard,to home fixture initialized.,
+16:43:54,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+16:43:54,INFO,setup method,Setting up PopupLeaderboard test environment...,
+16:43:58,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Starting Clan tab test...,
+16:44:01,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing clan_war tab with World and Local sub-tabs in Clan tab...,

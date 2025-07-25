@@ -1,0 +1,13 @@
+Time,Level,Module,Message,Screenshot
+11:54:34,INFO,PopupLeaderboard,to home fixture initialized.,
+11:54:34,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+11:54:39,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+11:54:43,INFO,PopupLeaderboard,[to_home] Reached Home screen.,
+11:54:43,INFO,setup method,Setting up PopupLeaderboard test environment...,
+11:54:46,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Starting Clan tab test...,
+11:54:48,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing upgrade tab with World and Local sub-tabs in Clan tab...,
+11:54:56,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing upgrade - world sub-tab in Clan tab...,
+11:55:02,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Loading icon did not disappear within timeout 15s - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_11h55.png"", ""View"")"
+11:55:04,ERROR,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,"Expected 3 top clans in upgrade-world, got 0","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_11h55.png"", ""View"")"
+11:55:11,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+11:55:14,INFO,PopupLeaderboard,[to_home] Reached Home screen.,

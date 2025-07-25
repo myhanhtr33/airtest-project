@@ -1,0 +1,13 @@
+Time,Level,Module,Message,Screenshot
+16:49:53,INFO,PopupLeaderboard,to home fixture initialized.,
+16:49:57,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,
+16:49:58,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+16:50:05,INFO,PopupLeaderboard,[to_home] Attempt 2/4 to go to home screen,
+16:50:06,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+16:50:09,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+16:50:09,INFO,setup method,Setting up PopupLeaderboard test environment...,
+16:50:13,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_check_first_two_clans_upgrade_world,Testing first two clans in Upgrade > World tab...,
+16:50:22,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_check_first_two_clans_upgrade_world,Loading icon did not disappear within timeout 15s - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_16h50.png"", ""View"")"
+16:50:26,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,
+16:50:27,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+16:50:30,INFO,PopupLeaderboard,[to_home] Already at Home screen.,

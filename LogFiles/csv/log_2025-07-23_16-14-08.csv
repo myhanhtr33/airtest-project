@@ -1,0 +1,31 @@
+Time,Level,Module,Message,Screenshot
+16:14:09,INFO,PopupLeaderboard,to home fixture initialized.,
+16:14:09,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+16:14:14,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+16:14:18,INFO,PopupLeaderboard,[to_home] Reached Home screen.,
+16:14:18,INFO,setup method,Setting up PopupLeaderboard test environment...,
+16:14:21,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league tab with all sub-tabs...,
+16:14:23,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - world sub-tab...,
+16:14:26,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - world...,
+16:14:52,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Confirmed 20 players in league-world,
+16:14:52,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking first 3 players' league stats in league-world...,
+16:14:52,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 1...,
+16:15:00,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,League stat not found for player 1,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h15.png"", ""View"")"
+16:15:00,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 2...,
+16:15:08,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,League stat not found for player 2,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h15.png"", ""View"")"
+16:15:08,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 3...,
+16:15:16,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,League stat not found for player 3,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h15.png"", ""View"")"
+16:15:16,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - local sub-tab...,
+16:15:18,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - local...,
+16:15:19,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Waiting for loading to complete...,
+16:15:19,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Loading icon did not disappear within timeout - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h15.png"", ""View"")"
+16:15:20,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,"No data loaded for league-local, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h15.png"", ""View"")"
+16:15:21,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Skipping player stats check for league-local due to no data,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h15.png"", ""View"")"
+16:15:21,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - friends sub-tab...,
+16:15:23,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - friends...,
+16:15:24,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Waiting for loading to complete...,
+16:15:24,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Loading icon did not disappear within timeout - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h15.png"", ""View"")"
+16:15:25,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,"No data loaded for league-friends, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h15.png"", ""View"")"
+16:15:25,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Skipping player stats check for league-friends due to no data,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h15.png"", ""View"")"
+16:15:29,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+16:15:32,INFO,PopupLeaderboard,[to_home] Reached Home screen.,

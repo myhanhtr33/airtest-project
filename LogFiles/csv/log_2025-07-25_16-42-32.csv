@@ -1,0 +1,7 @@
+Time,Level,Module,Message,Screenshot
+16:42:34,INFO,PopupLeaderboard,to home fixture initialized.,
+16:42:37,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,
+16:42:38,INFO,PopupLeaderboard,[to_home] Sent BACK keyevent.,
+16:42:39,INFO,PopupLeaderboard,[to_home] Attempt 2/4 to go to home screen,
+16:42:39,INFO,PopupLeaderboard,[to_home] Sent BACK keyevent.,
+16:42:40,ERROR,PopupLeaderboard,[to_home] ❌ Failed to return to Home screen after 4 attempts.,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_16h42.png"", ""View"")"

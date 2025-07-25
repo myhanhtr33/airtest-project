@@ -1,0 +1,34 @@
+Time,Level,Module,Message,Screenshot
+13:55:10,INFO,PopupLeaderboard,to home fixture initialized.,
+13:55:10,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+13:55:12,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+13:55:12,INFO,setup method,Setting up PopupLeaderboard test environment...,
+13:55:16,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Starting Clan tab test...,
+13:55:18,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing upgrade tab with World and Local sub-tabs in Clan tab...,
+13:55:26,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing upgrade - world sub-tab in Clan tab...,
+13:55:31,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Loading icon did not disappear within timeout 15s - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h55.png"", ""View"")"
+13:55:32,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,"No data loaded for upgrade-world, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h55.png"", ""View"")"
+13:55:33,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing upgrade - local sub-tab in Clan tab...,
+13:55:38,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Loading icon did not disappear within timeout 15s - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h55.png"", ""View"")"
+13:55:39,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,"No data loaded for upgrade-local, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h55.png"", ""View"")"
+13:55:40,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing glory tab with World and Local sub-tabs in Clan tab...,
+13:55:47,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing glory - world sub-tab in Clan tab...,
+13:55:53,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Loading icon did not disappear within timeout 15s - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h55.png"", ""View"")"
+13:55:54,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,"No data loaded for glory-world, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h55.png"", ""View"")"
+13:55:54,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing glory - local sub-tab in Clan tab...,
+13:56:00,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Loading icon did not disappear within timeout 15s - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h56.png"", ""View"")"
+13:56:01,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,"No data loaded for glory-local, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h56.png"", ""View"")"
+13:56:01,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing clan_war tab with World and Local sub-tabs in Clan tab...,
+13:56:09,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing clan_war - world sub-tab in Clan tab...,
+13:56:16,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,"No data loaded for clan_war-world, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h56.png"", ""View"")"
+13:56:17,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing clan_war - local sub-tab in Clan tab...,
+13:56:25,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,"No data loaded for clan_war-local, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h56.png"", ""View"")"
+13:56:25,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing zodiac tab with World and Local sub-tabs in Clan tab...,
+13:56:32,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing zodiac - world sub-tab in Clan tab...,
+13:56:38,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Loading icon did not disappear within timeout 15s - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h56.png"", ""View"")"
+13:56:39,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,"No data loaded for zodiac-world, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h56.png"", ""View"")"
+13:56:39,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing zodiac - local sub-tab in Clan tab...,
+13:56:45,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Loading icon did not disappear within timeout 15s - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h56.png"", ""View"")"
+13:56:46,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,"No data loaded for zodiac-local, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_13h56.png"", ""View"")"
+13:56:51,INFO,PopupLeaderboard,[to_home] Sent BACK keyevent.,
+13:56:52,INFO,PopupLeaderboard,[to_home] Reached Home screen.,

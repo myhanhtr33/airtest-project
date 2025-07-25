@@ -202,6 +202,20 @@ class ChampionLeagueGroup:
             "best": self.best_point.get_text(),
             "top1": self.top1_num.get_text()
         }
+class PopupOtherPlayerProfile:
+    def __init__(self,poco):
+        self.poco=poco
+        self.root=poco("PopupPlayerProfile(Clone)")
+        self.btnBack=self.root.child("B_Back")
+        self.title=self.root.offspring("panelLabelTitle")
+        self.player_ava= self.root.offspring("sAvatar2D")
+        self.player_flag= self.root.offspring("sFlag")
+        self.player_name= self.root.offspring("lName")
+        self.player_id= self.root.offspring("lId")
+        self.btn_name_clan= self.root.offspring("lNameClan")
+        self.vip_icon= self.root.offspring("sVipIcon")
+        self.btn_asset= self.root.offspring("DetailProfile").offspring("bAsset")
+        self.btn_stat= self.root.offspring("DetailProfile").offspring("bStatic")
 
 
 

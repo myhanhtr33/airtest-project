@@ -1,0 +1,25 @@
+Time,Level,Module,Message,Screenshot
+15:24:53,INFO,PopupLeaderboard,to home fixture initialized.,
+15:24:53,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+15:24:56,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+15:24:56,INFO,setup method,Setting up PopupLeaderboard test environment...,
+15:24:59,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league tab with all sub-tabs...,
+15:25:02,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - world sub-tab...,
+15:25:04,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - world...,
+15:25:30,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Confirmed 20 players in league-world,
+15:25:30,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking first 3 players' league stats in league-world...,
+15:25:30,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 1...,
+15:25:38,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,League stat not found for player 1,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_15h25.png"", ""View"")"
+15:25:38,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 2...,
+15:25:46,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,League stat not found for player 2,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_15h25.png"", ""View"")"
+15:25:47,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 3...,
+15:25:54,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,League stat not found for player 3,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_15h25.png"", ""View"")"
+15:25:54,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - local sub-tab...,
+15:25:57,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - local...,
+15:26:23,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Confirmed 20 players in league-local,
+15:26:23,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking first 3 players' league stats in league-local...,
+15:26:23,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 1...,
+15:26:30,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,League stat not found for player 1,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_15h26.png"", ""View"")"
+15:26:31,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking player 2...,
+15:26:38,INFO,PopupLeaderboard,[to_home] Sent BACK keyevent.,
+15:26:40,INFO,PopupLeaderboard,[to_home] Reached Home screen.,

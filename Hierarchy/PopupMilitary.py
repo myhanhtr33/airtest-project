@@ -136,9 +136,14 @@ class Passive:
 class WeaponPoint:
     def __init__(self,node,name):
         self.root= node
-        self.icon = self.root.offspring("sIcon")
-        self.name= self.root.offspring(f"l{name}").get_text().strip() if self.root.offspring(f"l{name}").exists() else None
         self._name = name
+    @property
+    def icon(self):
+        return self.root.offspring("sIcon")
+    @property
+    def name(self):
+        return self.root.offspring(f"l{self._name}").get_text().strip() if self.root.offspring(
+            f"l{self._name}").exists() else None
     @property
     def accumulated_point(self):
         return self.root.offspring(f"lPoint{self._name}").get_text().strip() if self.root.offspring(f"lPoint{self._name}").exists() else None
@@ -200,11 +205,21 @@ class PopupMilitaryGetPoint:
 class HangarItem:
     def __init__(self,node):
         self.root=node
-        self.item_icon= self.root.offspring("sIcon").attr("texture") if self.root.offspring("sIcon").exists() else None
-        self.star_text = self.root.offspring("lStar").get_text().strip() if self.root.offspring("lStar").exists() else None
-        self.star_icon= self.root.offspring("sStar")
-        self.cover_BG = self.root.offspring("goCover") if self.root.offspring("goCover").exists() else None
-        self.lock_icon= self.root.offspring("goLock") if self.root.offspring("goLock").exists() else None
+    @property
+    def item_icon(self):
+        return self.root.offspring("sIcon").attr("texture") if self.root.offspring("sIcon").exists() else None
+    @property
+    def star_text(self):
+        return self.root.offspring("lStar").get_text().strip() if self.root.offspring("lStar").exists() else None
+    @property
+    def star_icon(self):
+        return self.root.offspring("sStar")
+    @property
+    def cover_BG(self):
+        return self.root.offspring("goCover") if self.root.offspring("goCover").exists() else None
+    @property
+    def lock_icon(self):
+        return self.root.offspring("goLock") if self.root.offspring("goLock").exists() else None
     @property
     def point_text(self):
         return self.root.offspring("lPoint").get_text().strip() if self.root.offspring("lPoint").exists() else None
@@ -212,11 +227,18 @@ class HangarItem:
     def claimed_icon(self):
         return self.root.offspring("goClaimed") if self.root.offspring("goClaimed").exists() else None
 class PilotItem(HangarItem):
-    def __init__(self,node):
+    def __init__(self, node):
         super().__init__(node)
-        self.portrait = self.root.offspring("sPortrait").attr("texture") if self.root.offspring("sPortrait").exists() else None
-        self.flag= self.root.offspring("sNationFlag").attr("texture") if self.root.offspring("sNationFlag").exists() else None
-        self.rarity_frame = self.root.offspring("sFrame").attr("texture") if self.root.offspring("sFrame").exists() else None
+    @property
+    def portrait(self):
+        return self.root.offspring("sPortrait").attr("texture") if self.root.offspring("sPortrait").exists() else None
+    @property
+    def flag(self):
+        return self.root.offspring("sNationFlag").attr("texture") if self.root.offspring(
+            "sNationFlag").exists() else None
+    @property
+    def rarity_frame(self):
+        return self.root.offspring("sFrame").attr("texture") if self.root.offspring("sFrame").exists() else None
 class PopupMilitaryCareerInfo:
     def __init__(self,poco):
         self.poco=poco

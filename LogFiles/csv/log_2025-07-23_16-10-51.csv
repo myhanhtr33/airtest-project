@@ -1,0 +1,15 @@
+Time,Level,Module,Message,Screenshot
+16:10:52,INFO,PopupLeaderboard,to home fixture initialized.,
+16:10:52,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+16:10:57,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+16:11:01,INFO,PopupLeaderboard,[to_home] Reached Home screen.,
+16:11:01,INFO,setup method,Setting up PopupLeaderboard test environment...,
+16:11:04,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league tab with all sub-tabs...,
+16:11:07,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - world sub-tab...,
+16:11:10,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - world...,
+16:11:11,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Waiting for loading to complete...,
+16:11:11,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Loading icon did not disappear within timeout - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h11.png"", ""View"")"
+16:13:18,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,"No data loaded for league-world, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h13.png"", ""View"")"
+16:13:18,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Skipping player stats check for league-world due to no data,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_16h13.png"", ""View"")"
+16:13:18,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - local sub-tab...,
+16:13:21,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - local...,

@@ -1,0 +1,32 @@
+Time,Level,Module,Message,Screenshot
+17:38:10,INFO,PopupLeaderboard,to home fixture initialized.,
+17:38:10,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+17:38:12,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+17:38:12,INFO,setup method,Setting up PopupLeaderboard test environment...,
+17:38:16,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Testing campaign tab with all sub-tabs...,
+17:38:19,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Testing campaign - world sub-tab...,
+17:38:21,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Checking common elements in campaign - world...,
+17:38:22,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Waiting for loading to complete...,
+17:38:22,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Loading icon did not disappear within timeout - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_17h38.png"", ""View"")"
+17:38:23,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,"No data loaded for campaign-world, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_17h38.png"", ""View"")"
+17:38:23,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Skipping player stats check for campaign-world due to no data,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_17h38.png"", ""View"")"
+17:38:23,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Testing campaign - local sub-tab...,
+17:38:25,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Checking common elements in campaign - local...,
+17:38:26,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Waiting for loading to complete...,
+17:38:26,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Loading icon did not disappear within timeout - no data available,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_17h38.png"", ""View"")"
+17:38:28,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,"No data loaded for campaign-local, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_17h38.png"", ""View"")"
+17:38:28,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Skipping player stats check for campaign-local due to no data,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_17h38.png"", ""View"")"
+17:38:28,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Testing campaign - friends sub-tab...,
+17:38:31,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Checking common elements in campaign - friends...,
+17:38:37,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Friends tab has 1 players,
+17:38:37,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Total players available: 1,
+17:38:37,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Players type: <class 'Hierarchy.PopupLeaderboard.LazyPlayerList'>,
+17:38:38,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Players to check: 2 (expected 3),
+17:38:38,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Player 0: <class 'Hierarchy.PopupLeaderboard.ItemPlayer'> - root exists: True,
+17:38:38,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Player 1: <class 'Hierarchy.PopupLeaderboard.ItemPlayer'> - root exists: Unknown,
+17:38:38,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Checking first 2 players' campaign stats in campaign-friends...,
+17:38:38,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Checking player 1...,
+17:38:48,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Checking player 2...,
+17:38:48,ERROR,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_campaign_tab_all_subtabs,Player 2 has invalid root node - skipping,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-23_17h38.png"", ""View"")"
+17:38:52,INFO,PopupLeaderboard,[to_home] Sent BACK keyevent.,
+17:38:54,INFO,PopupLeaderboard,[to_home] Reached Home screen.,

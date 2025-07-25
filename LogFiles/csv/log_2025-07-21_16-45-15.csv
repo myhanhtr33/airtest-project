@@ -1,0 +1,9 @@
+Time,Level,Module,Message,Screenshot
+16:45:16,INFO,PopupLeaderboard,to home fixture initialized.,
+16:45:16,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+16:45:20,INFO,PopupLeaderboard,[to_home] Sent BACK keyevent.,
+16:45:22,INFO,PopupLeaderboard,[to_home] Reached Home screen.,
+16:45:22,INFO,setup method,Setting up PopupLeaderboard test environment...,
+16:45:25,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_player_campaign_tab,Testing Player Campaign tab...,
+16:46:12,INFO,PopupLeaderboard,[to_home] Sent BACK keyevent.,
+16:46:13,INFO,PopupLeaderboard,[to_home] Reached Home screen.,

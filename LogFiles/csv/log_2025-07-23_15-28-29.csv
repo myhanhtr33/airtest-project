@@ -1,0 +1,10 @@
+Time,Level,Module,Message,Screenshot
+15:28:30,INFO,PopupLeaderboard,to home fixture initialized.,
+15:28:30,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+15:28:32,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+15:28:32,INFO,setup method,Setting up PopupLeaderboard test environment...,
+15:28:36,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league tab with all sub-tabs...,
+15:28:38,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Testing league - world sub-tab...,
+15:28:41,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking common elements in league - world...,
+15:29:19,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Confirmed 20 players in league-world,
+15:30:10,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_league_tab_all_subtabs,Checking first 3 players' league stats in league-world...,

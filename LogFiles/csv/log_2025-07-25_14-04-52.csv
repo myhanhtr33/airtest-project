@@ -1,0 +1,11 @@
+Time,Level,Module,Message,Screenshot
+14:04:53,INFO,PopupLeaderboard,to home fixture initialized.,
+14:04:53,INFO,PopupLeaderboard,[to_home] Preparing to go home before test: TestPopupLeaderboard,
+14:04:57,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+14:05:01,INFO,PopupLeaderboard,[to_home] Reached Home screen.,
+14:05:01,INFO,setup method,Setting up PopupLeaderboard test environment...,
+14:05:04,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Starting Clan tab test...,
+14:05:07,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing clan_war tab with World and Local sub-tabs in Clan tab...,
+14:05:16,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing clan_war - world sub-tab in Clan tab...,
+14:05:24,WARNING,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,"No data loaded for clan_war-world, only title checked","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_14h05.png"", ""View"")"
+14:05:25,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_clan_tab_all_subtabs,Testing clan_war - local sub-tab in Clan tab...,

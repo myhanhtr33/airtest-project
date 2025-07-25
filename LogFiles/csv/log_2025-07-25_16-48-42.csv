@@ -1,0 +1,7 @@
+Time,Level,Module,Message,Screenshot
+16:48:43,INFO,PopupLeaderboard,to home fixture initialized.,
+16:48:47,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,
+16:48:48,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+16:48:55,INFO,PopupLeaderboard,[to_home] Attempt 2/4 to go to home screen,
+16:48:55,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+16:48:59,ERROR,PopupLeaderboard,[to_home] ❌ Failed to return to Home screen after 4 attempts.,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-25_16h48.png"", ""View"")"
