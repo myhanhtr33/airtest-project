@@ -1,0 +1,15 @@
+Time,Level,Module,Message,Screenshot
+17:41:47,WARNING,unknown,"Failed to access PopupFriend back button due to connection error: <poco.utils.simplerpc.simplerpc.Callback object at 0x00000169550BEF90> (rid=64eadacb-4208-41f2-8d8c-1707a8ec386f) (connection=""tcp://127.0.0.1:19499"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-26_17h41.png"", ""View"")"
+17:41:49,INFO,PopupFriend,to home fixture initialized.,
+17:41:52,INFO,PopupFriend,[to_home] Attempt 1/4 to go to home screen,
+17:41:53,INFO,PopupFriend,[to_home] Sent BACK keyevent.,
+17:41:58,INFO,PopupFriend,[to_home] Attempt 2/4 to go to home screen,
+17:41:58,INFO,PopupFriend,[to_home] Sent BACK keyevent.,
+17:41:59,INFO,PopupFriend,[to_home] Already at Home screen.,
+17:41:59,INFO,setup method,Setting up PopupFriend test environment...,
+17:42:04,INFO,setup method,PopupFriend initialized in 0.65 seconds,
+17:42:04,INFO,tests:test_PopupFriend.py:TestPopupFriend:test_main_elements,Testing main elements presence in PopupFriend...,
+17:42:07,INFO,tests:test_PopupFriend.py:TestPopupFriend:test_main_elements,✅ All main elements verified successfully,
+17:42:10,INFO,PopupFriend,[to_home] Attempt 1/4 to go to home screen,
+17:42:11,INFO,PopupFriend,[to_home] Sent BACK keyevent.,
+17:42:12,INFO,PopupFriend,[to_home] Already at Home screen.,

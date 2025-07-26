@@ -1,0 +1,5 @@
+Time,Level,Module,Message,Screenshot
+20:32:37,INFO,PopupMission,to home fixture initialized.,
+20:32:43,INFO,PopupMission,[to_home] Attempt 1/4 to go to home screen,
+20:32:44,INFO,PopupMission,[to_home] Clicking back button proxy object,
+20:32:47,INFO,PopupMission,[to_home] Already at Home screen.,

@@ -1,0 +1,7 @@
+Time,Level,Module,Message,Screenshot
+11:42:08,INFO,PopupLeaderboard,to home fixture initialized.,
+11:42:11,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+11:42:11,INFO,setup method,Setting up PopupLeaderboard test environment...,
+11:42:21,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,
+11:42:21,INFO,PopupLeaderboard,[to_home] Sent BACK keyevent.,
+11:42:23,INFO,PopupLeaderboard,[to_home] Already at Home screen.,

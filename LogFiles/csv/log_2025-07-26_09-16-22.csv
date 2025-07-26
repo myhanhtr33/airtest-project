@@ -1,0 +1,13 @@
+Time,Level,Module,Message,Screenshot
+09:16:23,INFO,PopupLeaderboard,to home fixture initialized.,
+09:16:25,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+09:16:25,INFO,setup method,Setting up PopupLeaderboard test environment...,
+09:16:29,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,Starting leaderboard scrollview test,
+09:16:36,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,"Scrollview position: 0.5, 1.29179692",
+09:17:00,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,Player items before scrolling:,
+09:17:00,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,"Index: -1, ID: 24396728, Name: Barbara Petr...",
+09:17:00,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,"Index: -1, ID: 65323817, Name: Marco Herget...",
+09:17:00,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,Performing swipe action,
+09:17:03,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,
+09:17:03,INFO,PopupLeaderboard,[to_home] Sent BACK keyevent.,
+09:17:05,INFO,PopupLeaderboard,[to_home] Already at Home screen.,

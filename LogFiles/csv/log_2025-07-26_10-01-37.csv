@@ -1,0 +1,17 @@
+Time,Level,Module,Message,Screenshot
+10:01:38,INFO,PopupLeaderboard,to home fixture initialized.,
+10:01:41,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+10:01:41,INFO,setup method,Setting up PopupLeaderboard test environment...,
+10:01:44,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,Starting leaderboard scrollview test,
+10:02:04,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,"First player position for swiping: 0.5, 0.3269531",
+10:02:15,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,Player items before scrolling:,
+10:02:15,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,"Index: 1, ID: 24396728, Name: Barbara Petr...",
+10:02:15,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,"Index: 2, ID: 65323817, Name: Marco Herget...",
+10:02:15,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,Performing swipe action from first player position,
+10:02:41,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,Player items after scrolling:,
+10:02:41,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,"Index: 1, ID: 24396728, Name: Barbara Petr...",
+10:02:41,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,"Index: 2, ID: 65323817, Name: Marco Herget...",
+10:02:41,ERROR,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,ERROR: Player IDs before and after scrolling are identical - scroll may not have worked,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-26_10h02.png"", ""View"")"
+10:02:44,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,
+10:02:45,INFO,PopupLeaderboard,[to_home] Sent BACK keyevent.,
+10:02:46,INFO,PopupLeaderboard,[to_home] Already at Home screen.,

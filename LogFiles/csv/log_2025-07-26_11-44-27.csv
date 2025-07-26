@@ -1,0 +1,9 @@
+Time,Level,Module,Message,Screenshot
+11:44:27,INFO,PopupLeaderboard,to home fixture initialized.,
+11:44:31,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,
+11:44:32,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+11:44:35,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+11:44:35,INFO,setup method,Setting up PopupLeaderboard test environment...,
+11:44:45,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,
+11:44:46,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+11:44:49,INFO,PopupLeaderboard,[to_home] Already at Home screen.,

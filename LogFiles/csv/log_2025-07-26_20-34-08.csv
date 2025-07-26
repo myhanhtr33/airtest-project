@@ -1,0 +1,5 @@
+Time,Level,Module,Message,Screenshot
+20:34:09,INFO,PopupMission,to home fixture initialized.,
+20:34:19,INFO,PopupMission,[to_home] Attempt 1/4 to go to home screen,
+20:34:19,INFO,PopupMission,[to_home] Sent BACK keyevent.,
+20:34:21,INFO,PopupMission,[to_home] Already at Home screen.,

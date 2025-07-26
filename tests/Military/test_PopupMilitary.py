@@ -24,14 +24,23 @@ def name(request) -> Literal["Air", "Drone", "Wing", "Pilot", "Engine"]:
     return request.param
 @pytest.fixture(scope="class")
 def military_popup(poco):
-    popup=poco("PopupMilitaryCareer(Clone)") if poco("PopupMilitaryCareer(Clone)").exists() else None
-    print(f"military_popup_fixture:{popup}")
-    return popup
+    try:
+        popup = poco("PopupMilitaryCareer(Clone)") if poco("PopupMilitaryCareer(Clone)").exists() else None
+        return popup
+    except Exception as e:
+        logger = get_logger()
+        logger.warning(f"Failed to access PopupMilitary due to connection error: {e}")
+        return None
+
 @pytest.fixture(scope="class")
 def military_back_button(poco):
-    button= poco("PopupMilitaryCareer(Clone)").offspring("B_Back (1)")
-    print(f"military_back_button_fixture:{button}")
-    return button if button.exists() else None
+    try:
+        button = poco("PopupMilitaryCareer(Clone)").offspring("B_Back (1)")
+        return button if button.exists() else None
+    except Exception as e:
+        logger = get_logger()
+        logger.warning(f"Failed to access PopupMilitary back button due to connection error: {e}")
+        return None
 @pytest.mark.use_to_home(before=True, after=True, logger_name="PopupMilitary", back_button="military_back_button")
 class TestPopupMilitary:
     popup= None

@@ -1,0 +1,13 @@
+Time,Level,Module,Message,Screenshot
+10:17:46,INFO,PopupLeaderboard,to home fixture initialized.,
+10:17:50,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,
+10:17:50,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+10:17:54,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+10:17:54,INFO,setup method,Setting up PopupLeaderboard test environment...,
+10:17:57,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,Starting leaderboard scrollview test,
+10:18:17,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,"Second player position for swiping: 0.5, 0.4285156",
+10:18:29,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,Player items before scrolling:,
+10:18:29,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,"Index: 1, ID: 24396728, Name: Barbara Petr...",
+10:18:29,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,"Index: 2, ID: 65323817, Name: Marco Herget...",
+10:18:29,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,Performing swipe action from first player position,
+10:18:48,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,

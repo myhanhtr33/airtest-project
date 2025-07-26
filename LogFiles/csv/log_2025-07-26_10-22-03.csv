@@ -1,0 +1,10 @@
+Time,Level,Module,Message,Screenshot
+10:22:04,INFO,PopupLeaderboard,to home fixture initialized.,
+10:22:08,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,
+10:22:09,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+10:22:12,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+10:22:12,INFO,setup method,Setting up PopupLeaderboard test environment...,
+10:22:15,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_leaderboard_scrollview,Starting leaderboard scrollview test,
+10:22:38,INFO,PopupLeaderboard,[to_home] Attempt 1/4 to go to home screen,
+10:22:38,INFO,PopupLeaderboard,[to_home] Clicking back button proxy object,
+10:22:41,INFO,PopupLeaderboard,[to_home] Already at Home screen.,

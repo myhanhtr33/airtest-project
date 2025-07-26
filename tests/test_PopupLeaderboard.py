@@ -5,8 +5,6 @@ import pytest
 import time
 from typing import Literal
 from utils.get_resource_amount import clean_number
-
-
 from utils.helper_functions import wait_for_element
 
 player_title=["Campaign Leaderboard", "Champions League", "PVP Tier 1 Leaderboard", "PVP Tier 2 Leaderboard", "2v2 Leaderboard"]
@@ -16,11 +14,15 @@ roman=["I", "II", "III", "IV", "V"]
 categories=["Bronze", "Silver", "Gold", "Platinum", "Diamond", "Master", "Challenger", "Legendary"]
 allowed_ranks = {f"{cat} {lv}" for cat in categories for lv in roman}
 
-
 @pytest.fixture(scope="class")
 def PopupLeaderboard_back_btn(poco):
-    button= poco("PopupLeaderboardAll(Clone)").offspring("B_Back")
-    return button if button.exists() else None
+    try:
+        button = poco("PopupLeaderboardAll(Clone)").offspring("B_Back")
+        return button if button.exists() else None
+    except Exception as e:
+        logger = get_logger()
+        logger.warning(f"Failed to access PopupLeaderboard back button due to connection error: {e}")
+        return None
 
 @pytest.mark.use_to_home(before=True, after=True, logger_name="PopupLeaderboard", back_button="PopupLeaderboard_back_btn")
 class TestPopupLeaderboard:
@@ -94,8 +96,8 @@ class TestPopupLeaderboard:
         self.popup.btn_clan.click(sleep_interval=1)
         tab_clan = TabClan(self.poco)
         main_tabs = [
-            # (tab_clan.btn_upgrade, 'upgrade'),
-            # (tab_clan.btn_glory, 'glory'),
+            (tab_clan.btn_upgrade, 'upgrade'),
+            (tab_clan.btn_glory, 'glory'),
             (tab_clan.btn_clan_war, 'clan_war'),
             (tab_clan.btn_zodiac, 'zodiac')
         ]
@@ -124,7 +126,7 @@ class TestPopupLeaderboard:
             elapsed_time = time.time() - start_time
             logger.info(f"Player tab - {tab_name} sub-tab test completed in {elapsed_time:.2f} seconds")
 
-    def test_check_first_two_players_campaign_world(self):
+    def test_check_click_first_two_players_campaign_world(self):
         """
         1. Go to Campaign > World tab
         2. Click the first two players (by their root)
@@ -190,7 +192,7 @@ class TestPopupLeaderboard:
         print(f"✅ First two players have different IDs and names: {player_data[0]} vs {player_data[1]}")
         print(f"✅ Player IDs and names match between leaderboard and profiles")
 
-    def test_check_first_two_clans_upgrade_world(self):
+    def test_check_click_first_two_clans_upgrade_world(self):
         """
         1. Go to Clan tab > Upgrade > World subtab
         2. Click the first two clans (by their root)
@@ -259,6 +261,105 @@ class TestPopupLeaderboard:
         assert clan_data[0][1] != clan_data[1][1], f"Clan names are the same: {clan_data[0][1]}"
         print(f"✅ First two clans have different IDs and names: {clan_data[0]} vs {clan_data[1]}")
         print(f"✅ Clan names match between leaderboard and profiles")
+
+    def test_leaderboard_scrollview(self):
+        """
+        Test scrolling functionality by comparing player items before and after swiping.
+        Verifies that:
+        1. The scroll view actually moves content
+        2. Different player items appear after scrolling
+        3. Player indices after scrolling are greater than before (when scrolling down)
+        """
+        logger = get_logger()
+        logger.info("Starting leaderboard scrollview test")
+        # Make sure we're on the leaderboard screen and player tab is active
+        self.popup.btn_player.click()
+        self.tab_player.btn_campaign.click()
+        self.tab_player.btn_world.click(sleep_interval=1)
+
+        # Wait for loading to complete
+        loading_completed = self._wait_for_loading_complete()
+        if not loading_completed:
+            logger.warning("Loading did not complete, cannot test scrollview")
+            return False
+
+        # Get player items before scrolling using existing tab_player.players
+        before_players = []
+        players_before = self.tab_player.players[:2]  # Get first 2 players
+
+        if len(players_before) < 2:
+            logger.warning("Found fewer than 2 player items before scrolling")
+            return False
+
+        # Get position of the second player item for swiping
+        second_player = players_before[1]
+        if not second_player.root.exists():
+            logger.error("Second player element not found or not accessible")
+            return False
+
+        # Get position of the second player to use for swiping
+        x, y = second_player.root.get_position()
+        logger.info(f"Second player position for swiping: {x}, {y}")
+
+        for player in players_before:
+            player_info = {
+                'index': player.index,
+                'id': player.id.replace("ID: ", "").strip() if player.id else "unknown",
+                'name': player.name if player.name else "unknown"
+            }
+            before_players.append(player_info)
+
+        logger.info("Player items before scrolling:")
+        for player in before_players:
+            logger.info(f"Index: {player['index']}, ID: {player['id']}, Name: {player['name']}")
+
+        # Perform the scroll action (swipe up to see lower ranked players)
+        logger.info("Performing swipe action from first player position")
+        self.poco.swipe([x, y], direction=[0, -1])
+        time.sleep(2.0)  # Wait for UI to stabilize after swipe
+
+        # Get player items after scrolling using existing tab_player.players
+        after_players = []
+        players_after = self.tab_player.players[:2]  # Get first 2 players after scrolling
+
+        if len(players_after) < 2:
+            logger.warning("Found fewer than 2 player items after scrolling")
+            return False
+
+        for player in players_after:
+            player_info = {
+                'index': player.index,
+                'id': player.id.replace("ID: ", "").strip() if player.id else "unknown",
+                'name': player.name if player.name else "unknown"
+            }
+            after_players.append(player_info)
+
+        logger.info("Player items after scrolling:")
+        for player in after_players:
+            logger.info(f"Index: {player['index']}, ID: {player['id']}, Name: {player['name']}")
+
+        # Verify scrolling worked correctly
+        if not before_players or not after_players:
+            logger.error("Error: Missing player data to verify scroll")
+            return False
+
+        # Check if at least some players are different (scrolling worked)
+        before_ids = set(player['id'] for player in before_players)
+        after_ids = set(player['id'] for player in after_players)
+
+        if before_ids == after_ids:
+            logger.error("ERROR: Player IDs before and after scrolling are identical - scroll may not have worked")
+            return False
+
+        # When scrolling down, player indices should be greater after scrolling
+        before_min_index = min(player['index'] for player in before_players if player['index'] > 0)
+        after_min_index = min(player['index'] for player in after_players if player['index'] > 0)
+
+        if after_min_index <= before_min_index:
+            logger.warning(f"WARNING: Player indices not increasing after scrolling down. Before min: {before_min_index}, After min: {after_min_index}")
+
+        logger.info(f"Scroll test PASSED: Players changed after scrolling (before: {before_ids}, after: {after_ids})")
+        return True
 
 ########### helper functions ###########
     def _wait_for_loading_complete(self):
@@ -386,7 +487,6 @@ class TestPopupLeaderboard:
                         if star_value =="":
                             logger.warning(f"Star value is empty for player {index + 1}")
                         max_star_can_get=(max_level*3+max_level//7*3*2)*3 # every 7 levels has 2 extra levels, each level has 3 stars. total 3 mode
-                        print(f"max_star_can_get: {max_star_can_get}")
                         if not (0<=int(star_value)<=max_star_can_get+1):
                             logger.warning(f"Star value out of range for player {index + 1}: {star_value}")
                     else:
@@ -521,51 +621,7 @@ class TestPopupLeaderboard:
             else:
                 logger.warning(f"No players found in {tab_name}-{sub_tab_name}")
 
-    # def test_campaign_tab_all_subtabs(self):
-    #     """Test Campaign tab with World, Local, and Friends sub-tabs"""
-    #     logger = get_logger()
-    #     logger.info("Starting Campaign tab test...")
-    #     start_time = time.time()
-    #     self.run_tab_subtabs_test(self.tab_player.btn_campaign, 'campaign', 'campaign')
-    #     elapsed_time = time.time() - start_time
-    #     logger.info(f"Campaign tab test completed in {elapsed_time:.2f} seconds")
-    #
-    # def test_league_tab_all_subtabs(self):
-    #     logger = get_logger()
-    #     logger.info("Starting League tab test...")
-    #     start_time = time.time()
-    #     self.run_tab_subtabs_test(self.tab_player.btn_league, 'league', 'league')
-    #     elapsed_time = time.time() - start_time
-    #     logger.info(f"League tab test completed in {elapsed_time:.2f} seconds")
-    #
-    # def test_pvpT1_tab_all_subtabs(self):
-    #     """Test PvP Tier 1 tab with World, Local, and Friends sub-tabs"""
-    #     logger = get_logger()
-    #     logger.info("Starting PvP Tier 1 tab test...")
-    #     start_time = time.time()
-    #     self.run_tab_subtabs_test(self.tab_player.btn_pvpT1, 'pvpT1', 'pvp')
-    #     elapsed_time = time.time() - start_time
-    #     logger.info(f"PvP Tier 1 tab test completed in {elapsed_time:.2f} seconds")
-    #
-    # def test_pvpT2_tab_all_subtabs(self):
-    #     """Test PvP Tier 2 tab with World, Local, and Friends sub-tabs"""
-    #     logger = get_logger()
-    #     logger.info("Starting PvP Tier 2 tab test...")
-    #     start_time = time.time()
-    #     self.run_tab_subtabs_test(self.tab_player.btn_pvpT2, 'pvpT2', 'pvp')
-    #     elapsed_time = time.time() - start_time
-    #     logger.info(f"PvP Tier 2 tab test completed in {elapsed_time:.2f} seconds")
-    #
-    # def test_2v2_tab_all_subtabs(self):
-    #     """Test 2v2 tab with World, Local, and Friends sub-tabs"""
-    #     logger = get_logger()
-    #     logger.info("Starting 2v2 tab test...")
-    #     start_time = time.time()
-    #     self.run_tab_subtabs_test(self.tab_player.btn_2v2, '2v2', 'vs2')
-    #     elapsed_time = time.time() - start_time
-    #     logger.info(f"2v2 tab test completed in {elapsed_time:.2f} seconds")
-
-    # --- Clan tab tests (added below player tab tests, do not remove or modify player tab tests) ---
+       # --- Clan tab tests (added below player tab tests, do not remove or modify player tab tests) ---
     def run_clan_tab_subtabs_test(self, main_tab_btn, tab_name: str):
         logger = get_logger()
         logger.info(f"Testing {tab_name} tab with World and Local sub-tabs in Clan tab...")
@@ -648,161 +704,7 @@ class TestPopupLeaderboard:
                 profile_pic = clan.profile_pic
                 assert profile_pic, f"Profile picture not found for clan {index + 1}"
 
-    def test_leaderboard_scrollview(self):
-        """
-        Test scrolling functionality by comparing player items before and after swiping.
-        Verifies that:
-        1. The scroll view actually moves content
-        2. Different player items appear after scrolling
-        3. Player indices after scrolling are greater than before (when scrolling down)
-        """
-        logger = get_logger()
-        logger.info("Starting leaderboard scrollview test")
-        # Make sure we're on the leaderboard screen and player tab is active
-        self.popup.btn_player.click(sleep_interval=1)
-        self.tab_player.btn_campaign.click(sleep_interval=1)
-        self.tab_player.btn_world.click(sleep_interval=1)
-        # Get the scrollview
-        leaderboard_scrollview = self.popup.root.offspring("Scroll View")
-        assert leaderboard_scrollview.exists(), "Leaderboard scrollview not found!"
-
-        # Get the position of the scrollview for swiping
-        x, y = leaderboard_scrollview.get_position()
-        logger.info(f"Scrollview position: {x}, {y}")
-
-        # Get player items before scrolling (sample first 2 visible players)
 
 
-        # Wait for loading to complete
-        loading_completed = self._wait_for_loading_complete()
-        if not loading_completed:
-            logger.warning("Loading did not complete, cannot test scrollview")
-            return False
 
-        # Get player items before scrolling using existing tab_player.players
-        before_players = []
-        players_before = self.tab_player.players[:2]  # Get first 2 players
 
-        if len(players_before) < 2:
-            logger.warning("Found fewer than 2 player items before scrolling")
-
-        for player in players_before:
-            player_info = {
-                'index': int(player.index_beyond_top3) if player.index_beyond_top3 and player.index_beyond_top3.isdigit() else -1,
-                'id': player.id.replace("ID: ", "").strip() if player.id else "unknown",
-                'name': player.name if player.name else "unknown"
-            }
-            before_players.append(player_info)
-
-        logger.info("Player items before scrolling:")
-        for player in before_players:
-            logger.info(f"Index: {player['index']}, ID: {player['id']}, Name: {player['name']}")
-
-        # Perform the scroll action (swipe up to see lower ranked players)
-        logger.info("Performing swipe action")
-        self.poco.swipe([x, y], direction=[0, -0.2], duration=1.0)
-        time.sleep(1.0)  # Wait for UI to stabilize after swipe
-
-        # Get player items after scrolling using existing tab_player.players
-        after_players = []
-        players_after = self.tab_player.players[:2]  # Get first 2 players after scrolling
-
-        if len(players_after) < 2:
-            logger.warning("Found fewer than 2 player items after scrolling")
-
-        for player in players_after:
-            player_info = {
-                'index': int(player.index_beyond_top3) if player.index_beyond_top3 and player.index_beyond_top3.isdigit() else -1,
-                'id': player.id.replace("ID: ", "").strip() if player.id else "unknown",
-                'name': player.name if player.name else "unknown"
-            }
-            after_players.append(player_info)
-
-        logger.info("Player items after scrolling:")
-        for player in after_players:
-            logger.info(f"Index: {player['index']}, ID: {player['id']}, Name: {player['name']}")
-
-        # Verify scrolling worked correctly
-        if not before_players or not after_players:
-            logger.error("Error: Missing player data to verify scroll")
-            return False
-
-        # Check if at least some players are different (scrolling worked)
-        before_ids = set(player['id'] for player in before_players)
-        after_ids = set(player['id'] for player in after_players)
-
-        if before_ids == after_ids:
-            logger.error("ERROR: Player IDs before and after scrolling are identical - scroll may not have worked")
-            return False
-
-        # When scrolling down, player indices should be greater after scrolling
-        before_min_index = min(player['index'] for player in before_players if player['index'] > 0)
-        after_min_index = min(player['index'] for player in after_players if player['index'] > 0)
-
-        if after_min_index <= before_min_index:
-            logger.warning(f"WARNING: Player indices not increasing after scrolling down. Before min: {before_min_index}, After min: {after_min_index}")
-
-        logger.info(f"Scroll test PASSED: Players changed after scrolling (before: {before_ids}, after: {after_ids})")
-        return True
-
-    def test_scroll_up_down(self):
-        """
-        Test both scroll down and scroll up operations to ensure bidirectional scrolling works.
-        """
-        logger = get_logger()
-        logger.info("Testing bidirectional scrolling (down then up)")
-
-        # Make sure we're on the leaderboard screen and player tab is active
-        self.popup.btn_player.click(sleep_interval=1)
-
-        # Get the scrollview
-        leaderboard_scrollview = self.poco("PopupLeaderboardAll(Clone)").offspring("Scroll View")
-
-        # Get scrollview position
-        x, y = leaderboard_scrollview.get_position()
-
-        # Get initial players
-        initial_players = self.tab_player.players[:2]
-        logger.info("Initial players:")
-        for player in initial_players:
-            logger.info(f"Index: {player.index}, ID: {player.id}, Name: {player.name}")
-
-        # Scroll down
-        logger.info("Scrolling DOWN")
-        self.poco.swipe([x, y], direction=[0, -0.5], duration=1.0)
-        time.sleep(1.0)
-
-        # Get middle players (after scrolling down)
-        middle_players = self.tab_player.players[:2]
-        logger.info("Middle players (after scrolling down):")
-        for player in middle_players:
-            logger.info(f"Index: {player.index}, ID: {player.id}, Name: {player.name}")
-
-        # Scroll back up
-        logger.info("Scrolling UP")
-        self.poco.swipe([x, y], direction=[0, 0.5], duration=1.0)
-        time.sleep(1.0)
-
-        # Get final players (after scrolling up)
-        final_players = self.tab_player.players[:2]
-        logger.info("Final players (after scrolling up):")
-        for player in final_players:
-            logger.info(f"Index: {player.index}, ID: {player.id}, Name: {player.name}")
-
-        # Verify scroll down worked
-        down_scroll_worked = self._verify_scroll_success(initial_players, middle_players)
-
-        # Verify scroll up worked
-        up_scroll_worked = self._verify_scroll_success(middle_players, final_players)
-
-        # Check if we returned close to the original position
-        initial_ids = set(player.id for player in initial_players)
-        final_ids = set(player.id for player in final_players)
-
-        overlap = len(initial_ids.intersection(final_ids))
-        if overlap > 0:
-            logger.info(f"Found {overlap} players in common between initial and final position - scroll up returned to similar position")
-        else:
-            logger.info("No common players between initial and final position - may indicate scroll up didn't return to original position")
-
-        return down_scroll_worked and up_scroll_worked

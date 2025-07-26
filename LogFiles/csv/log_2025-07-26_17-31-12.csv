@@ -1,0 +1,6 @@
+Time,Level,Module,Message,Screenshot
+17:31:13,INFO,PopupFriend,to home fixture initialized.,
+17:31:15,INFO,PopupFriend,[to_home] Already at Home screen.,
+17:31:15,INFO,setup method,Setting up PopupFriend test environment...,
+17:31:19,INFO,setup method,PopupFriend initialized in 0.42 seconds,
+17:31:19,INFO,tests:test_PopupFriend.py:TestPopupFriend:test_main_elements,Testing main elements presence in PopupFriend...,

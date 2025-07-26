@@ -2,8 +2,10 @@
 class UIButtonUtils:
     @staticmethod
     def _check_sprite_state(btn, expected_active):
-        active_sprite = btn.offspring("SpriteActive") if btn.offspring("SpriteActive").exists() else None
-        inactive_sprite = btn.offspring("Sprite") if btn.offspring("Sprite").exists() else None
+        active_sprite_node = btn.offspring("SpriteActive")
+        active_sprite = active_sprite_node if active_sprite_node.exists() else None
+        inactive_sprite_node = btn.offspring("Sprite")
+        inactive_sprite = inactive_sprite_node if inactive_sprite_node.exists() else None
         if expected_active:
             return active_sprite and not inactive_sprite
         else:
@@ -30,10 +32,12 @@ class PopupLeaderboard:
         return self.root.offspring("btnClan")
     @property
     def tab_player(self):
-        return self.root.offspring("TabPlayer") if self.root.offspring("TabPlayer").exists() else None
+        tab_player_node = self.root.offspring("TabPlayer")
+        return tab_player_node if tab_player_node.exists() else None
     @property
     def tab_clan(self):
-        return self.root.offspring("TabClan") if self.root.offspring("TabClan").exists() else None
+        tab_clan_node = self.root.offspring("TabClan")
+        return tab_clan_node if tab_clan_node.exists() else None
 
 class TabPlayer:
     def __init__(self,poco):
@@ -67,20 +71,26 @@ class TabPlayer:
         return self.root.offspring("btn2v2")
     @property
     def title(self):
-        return self.root.offspring("lTitle").get_text() if self.root.offspring("lTitle").exists() else None
+        title_node = self.root.offspring("lTitle")
+        return title_node.get_text() if title_node.exists() else None
     @property
-    def top3_name(self): #not exists in hierarchy if don't get SC
-        names=[self.root.offspring(f"lNameTop{i}").get_text() if self.root.offspring(f"lNameTop{i}").exists() else None
-               for i in range(1, 4)]
+    def top3_name(self):  # not exists in hierarchy if don't get SC
+        names = []
+        for i in range(1, 4):
+            name_node = self.root.offspring(f"lNameTop{i}")
+            names.append(name_node.get_text() if name_node.exists() else None)
         return names
     @property
-    def top3_ava(self):#not exists in hierarchy if don't get SC
-        avatars=[self.root.offspring(f"UIProfile ({i})") if self.root.offspring(f"UIProfile ({i})").exists() else None
-               for i in range(1, 4)]
+    def top3_ava(self):  # not exists in hierarchy if don't get SC
+        avatars = []
+        for i in range(1, 4):
+            ava_node = self.root.offspring(f"UIProfile ({i})")
+            avatars.append(ava_node if ava_node.exists() else None)
         return avatars
     @property
     def loading_icon(self):
-        return self.root.offspring("Fx_Loading_Cuonglh") if self.root.offspring("Fx_Loading_Cuonglh").exists() else None
+        icon_node = self.root.offspring("Fx_Loading_Cuonglh")
+        return icon_node if icon_node.exists() else None
     # @property
     # def players(self):
     #     """Returns a lazy list that creates ItemPlayer objects only when accessed"""
@@ -124,20 +134,27 @@ class TabClan:
     def btn_zodiac(self):
         return self.root.offspring("btnZodiac")
     @property
-    def title(self): #"Top team"  for all
-        return self.root.offspring("lTitle").get_text() if self.root.offspring("lTitle").exists() else None
+    def title(self):
+        node = self.root.offspring("lTitle")
+        return node.get_text() if node.exists() else None
     @property
-    def top3_name(self): #not exists in hierarchy if don't get SC
-        names=[self.root.offspring(f"lNameTop{i}").get_text() if self.root.offspring(f"lNameTop{i}").exists() else None
-               for i in range(1, 4)]
+    def top3_name(self):
+        names = []
+        for i in range(1, 4):
+            node = self.root.offspring(f"lNameTop{i}")
+            names.append(node.get_text() if node.exists() else None)
         return names
     @property
-    def top3_ava(self):#not exists in hierarchy if don't get SC
-        avatars=[self.root.offspring(f"sAvatarTop{i}") for i in range(1, 4)]
+    def top3_ava(self):
+        avatars = []
+        for i in range(1, 4):
+            node = self.root.offspring(f"sAvatarTop{i}")
+            avatars.append(node if node.exists() else None)
         return avatars
     @property
     def loading_icon(self):
-        return self.root.offspring("Fx_Loading_Cuonglh") if self.root.offspring("Fx_Loading_Cuonglh").exists() else None
+        node = self.root.offspring("Fx_Loading_Cuonglh")
+        return node if node.exists() else None
     @property
     def clans(self):
         start_time = time.time()
@@ -152,21 +169,25 @@ class ItemClan:
         self.root=node
     @property
     def sprite_index_top3(self):
-        return self.root.offspring("sTop").attr("texture") if self.root.offspring("sTop").exists() else None
+        node = self.root.offspring("sTop")
+        return node.attr("texture") if node.exists() else None
     @property
     def index_beyond_top3(self):
-        return self.root.offspring("lTop").get_text() if self.root.offspring("lTop").exists() else None
+        node = self.root.offspring("lTop")
+        return node.get_text() if node.exists() else None
     @property
     def profile_pic(self):
-        return self.root.offspring("sAvatar").attr("texture") if self.root.offspring("sAvatar").exists() else None
+        node = self.root.offspring("sAvatar")
+        return node.attr("texture") if node.exists() else None
     @property
     def name(self):
-        return self.root.offspring("lName").get_text() if self.root.offspring("lName").exists() else None
-
+        node = self.root.offspring("lName")
+        return node.get_text() if node.exists() else None
 
 class ItemPlayer:
     def __init__(self,node):
         self.root=node
+    @property
     def index(self):
         """
         Returns the index of the player:
@@ -183,14 +204,17 @@ class ItemPlayer:
             return sprite_map.get(sprite, None)
         idx = self.index_beyond_top3
         if idx is not None:
-            return idx
+            return int(idx)
         return None
+
     @property
     def sprite_index_top3(self):
-        return self.root.offspring("sTop").attr("texture") if self.root.offspring("sTop").exists() else None
+        node = self.root.offspring("sTop")
+        return node.attr("texture") if node.exists() else None
     @property
     def index_beyond_top3(self):
-        return self.root.offspring("lTop").get_text() if self.root.offspring("lTop").exists() else None
+        node = self.root.offspring("lTop")
+        return node.get_text() if node.exists() else None
     @property
     def profile_pic(self):
         return self.root.offspring("UIProfile")  # group contains avatar + frame
@@ -199,13 +223,16 @@ class ItemPlayer:
         return self.root.offspring("sFlag")
     @property
     def name(self):
-        return self.root.offspring("lName").get_text() if self.root.offspring("lName").exists() else None
+        node = self.root.offspring("lName")
+        return node.get_text() if node.exists() else None
     @property
     def id(self):
-        return self.root.offspring("lId").get_text() if self.root.offspring("lId").exists() else None
+        node = self.root.offspring("lId")
+        return node.get_text() if node.exists() else None
     @property
     def clan(self):
-        return self.root.offspring("lClan").get_text() if self.root.offspring("lClan").exists() else None
+        node = self.root.offspring("lClan")
+        return node.get_text() if node.exists() else None
     @property
     def campaign_stat(self):
         campaign_node = self.root.offspring("campaign")
@@ -226,27 +253,42 @@ class ItemPlayer:
 class CampaignStat:
     def __init__(self,node):
         self.root=node
-        self.level_title= self.root.offspring("lTitleLevel").get_text() if self.root.offspring("lTitleLevel").exists() else None
-        self.level_value= self.root.offspring("lLevel").get_text() if self.root.offspring("lLevel").exists() else None
-        self.star_icons= [self.root.offspring(f"sStar") if i ==0 else self.root.offspring(f"sStar ({i})") for i in range(3)]
-        self.star_value= self.root.offspring("lStar").get_text() if self.root.offspring("lStar").exists() else None
+        node = self.root.offspring("lTitleLevel")
+        self.level_title = node.get_text() if node.exists() else None
+        node = self.root.offspring("lLevel")
+        self.level_value = node.get_text() if node.exists() else None
+        self.star_icons = []
+        for i in range(3):
+            tag = "sStar" if i == 0 else f"sStar ({i})"
+            icon_node = self.root.offspring(tag)
+            self.star_icons.append(icon_node if icon_node.exists() else None)
+        node = self.root.offspring("lStar")
+        self.star_value = node.get_text() if node.exists() else None
 class LeagueStat:
     def __init__(self,node):
         self.root=node
-        self.score= self.root.offspring("lChampionScore").get_text() if self.root.offspring("lChampionScore").exists() else None
-        self.score_icon= self.root.offspring("sScore").attr("texture") if self.root.offspring("sScore").exists() else None
+        node_score = self.root.offspring("lChampionScore")
+        self.score = node_score.get_text() if node_score.exists() else None
+        node_score_icon = self.root.offspring("sScore")
+        self.score_icon = node_score_icon.attr("texture") if node_score_icon.exists() else None
 class PvPStat:
     def __init__(self,node):
         self.root=node
-        self.rank_value= self.root.offspring("lRank").get_text() if self.root.offspring("lRank").exists() else None #Master III
-        self.rank_icon= self.root.offspring("sRank").attr("texture") if self.root.offspring("sRank").exists() else None
-        self.elo= self.root.offspring("lElo").get_text() if self.root.offspring("lElo").exists() else None #ELO: 2488
+        node_rank = self.root.offspring("lRank")
+        self.rank_value = node_rank.get_text() if node_rank.exists() else None #Master III
+        node_rank_icon = self.root.offspring("sRank")
+        self.rank_icon = node_rank_icon.attr("texture") if node_rank_icon.exists() else None
+        node_elo = self.root.offspring("lElo")
+        self.elo = node_elo.get_text() if node_elo.exists() else None #ELO: 2488
 class Vs2Stat:
     def __init__(self,node):
         self.root=node
-        self.score= self.root.offspring("lScore").get_text() if self.root.offspring("lScore").exists() else None #Season score: 1,751
-        self.rank_icon= self.root.offspring("sRank").attr("texture") if self.root.offspring("sRank").exists() else None #it could be ""
-        self.rank_value= self.root.offspring("lRankPVP").get_text() if self.root.offspring("lRankPVP").exists() else None #Silver, it could be ""
+        node_score = self.root.offspring("lScore")
+        self.score = node_score.get_text() if node_score.exists() else None #Season score: 1,751
+        node_rank_icon = self.root.offspring("sRank")
+        self.rank_icon = node_rank_icon.attr("texture") if node_rank_icon.exists() else None #it could be ""
+        node_rank_value = self.root.offspring("lRankPVP")
+        self.rank_value = node_rank_value.get_text() if node_rank_value.exists() else None #Silver, it could be ""
 class LazyPlayerList:
     """Lazy list that creates ItemPlayer objects only when accessed"""
     def __init__(self, content_node):
