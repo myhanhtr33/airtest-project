@@ -1,0 +1,13 @@
+Time,Level,Module,Message,Screenshot
+15:33:08,INFO,PopupMission,to home fixture initialized.,
+15:33:12,INFO,PopupMission,[to_home] Attempt 1/4 to go to home screen,
+15:33:13,INFO,PopupMission,[to_home] Clicking back button proxy object,
+15:33:16,INFO,PopupMission,[to_home] Already at Home screen.,
+15:33:16,INFO,setup method,Setting up PopupMissionAchivement test environment...,
+15:33:19,INFO,setup method,PopupMissionAchivement setup completed successfully,
+15:33:19,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,Testing progress rewards system...,
+15:33:22,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,✓ Current progress score: 1/5,
+15:33:30,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,✓ Completed missions count: 1,
+15:33:30,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,✓ Progress score matches completed missions count,
+15:33:34,INFO,PopupMission,[to_home] Attempt 1/4 to go to home screen,
+15:33:35,INFO,PopupMission,[to_home] Clicking back button proxy object,

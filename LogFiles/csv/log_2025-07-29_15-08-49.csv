@@ -1,0 +1,4 @@
+Time,Level,Module,Message,Screenshot
+15:08:51,INFO,PopupMission,to home fixture initialized.,
+15:08:51,INFO,setup method,Setting up PopupMissionAchivement test environment...,
+15:08:57,INFO,PopupMission,[to_home] Already at Home screen.,

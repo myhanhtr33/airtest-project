@@ -1,0 +1,30 @@
+Time,Level,Module,Message,Screenshot
+16:01:49,INFO,PopupMission,to home fixture initialized.,
+16:01:52,INFO,PopupMission,[to_home] Attempt 1/4 to go to home screen,
+16:01:53,INFO,PopupMission,[to_home] Sent BACK keyevent.,
+16:01:54,INFO,PopupMission,[to_home] Already at Home screen.,
+16:01:54,INFO,setup method,Setting up PopupMissionAchivement test environment...,
+16:01:57,INFO,setup method,PopupMissionAchivement setup completed successfully,
+16:01:57,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,Testing progress rewards system...,
+16:02:00,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,✓ Current progress score: 1/5,
+16:02:08,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,✓ Completed missions count: 1,
+16:02:08,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,✓ Progress score matches completed missions count,
+16:02:13,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,Testing progress reward 1 (milestone: 1 score),
+16:02:13,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,✓ Reward 1 is available to claim (milestone 1 reached),
+16:02:17,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,✓ Reward popup appeared for reward 1,
+16:02:18,ERROR,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,✗ Reward 1 not marked as claimed after popup,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-29_16h02.png"", ""View"")"
+16:02:18,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,Testing progress reward 2 (milestone: 3 score),
+16:02:18,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,Score (1) hasn't reached milestone 3 for reward 2,
+16:02:21,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,✓ InfoBox appeared for unavailable reward 2,
+16:02:23,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,✓ InfoBox closed successfully with back button,
+16:02:23,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,Testing progress reward 3 (milestone: 5 score),
+16:02:23,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,Score (1) hasn't reached milestone 5 for reward 3,
+16:02:26,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,✓ InfoBox appeared for unavailable reward 3,
+16:02:27,ERROR,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_progress_rewards_system,"✗ Error testing unavailable reward 3: InfoBox should have 3 rewards for unavailable reward 3
+assert 4 == 3
+ +  where 4 = len(UIObjectProxy of ""Popup_Info_Box(Clone)>Grid/"")","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-29_16h02.png"", ""View"")"
+16:02:30,INFO,PopupMission,[to_home] Attempt 1/4 to go to home screen,
+16:02:31,INFO,PopupMission,[to_home] Sent BACK keyevent.,
+16:02:36,INFO,PopupMission,[to_home] Attempt 2/4 to go to home screen,
+16:02:36,INFO,PopupMission,[to_home] Sent BACK keyevent.,
+16:02:37,INFO,PopupMission,[to_home] Already at Home screen.,
