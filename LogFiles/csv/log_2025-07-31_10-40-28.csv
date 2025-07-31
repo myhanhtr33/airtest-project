@@ -1,0 +1,11 @@
+Time,Level,Module,Message,Screenshot
+10:40:29,INFO,PopupMission,to home fixture initialized.,
+10:40:33,INFO,PopupMission,[to_home] Attempt 1/4 to go to home screen,
+10:40:34,INFO,PopupMission,[to_home] Sent BACK keyevent.,
+10:40:35,INFO,PopupMission,[to_home] Already at Home screen.,
+10:40:35,INFO,setup method,Setting up PopupMissionAchivement test environment...,
+10:40:38,INFO,setup method,PopupMissionAchivement setup completed successfully,
+10:40:38,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_daily_missions_comprehensive,Starting comprehensive daily missions test...,
+10:40:49,INFO,PopupMission,[to_home] Attempt 1/4 to go to home screen,
+10:40:49,INFO,PopupMission,[to_home] Sent BACK keyevent.,
+10:40:50,INFO,PopupMission,[to_home] Already at Home screen.,

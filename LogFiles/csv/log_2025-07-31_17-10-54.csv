@@ -1,0 +1,5 @@
+Time,Level,Module,Message,Screenshot
+17:10:56,INFO,PopupLeaderboard,to home fixture initialized.,
+17:10:58,INFO,PopupLeaderboard,[to_home] Already at Home screen.,
+17:10:58,INFO,setup method,Setting up PopupLeaderboard test environment...,
+17:11:02,INFO,tests:test_PopupLeaderboard.py:TestPopupLeaderboard:test_main_element,Testing main elements presence in PopupLeaderboard...,

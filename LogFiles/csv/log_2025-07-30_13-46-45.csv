@@ -1,0 +1,13 @@
+Time,Level,Module,Message,Screenshot
+13:46:46,INFO,PopupMission,to home fixture initialized.,
+13:46:50,INFO,PopupMission,[to_home] Attempt 1/4 to go to home screen,
+13:46:51,INFO,PopupMission,[to_home] Clicking back button proxy object,
+13:46:57,INFO,PopupMission,[to_home] Attempt 2/4 to go to home screen,
+13:46:58,INFO,PopupMission,[to_home] Clicking back button proxy object,
+13:47:04,INFO,PopupMission,[to_home] Attempt 3/4 to go to home screen,
+13:47:05,INFO,PopupMission,[to_home] Clicking back button proxy object,
+13:47:11,INFO,PopupMission,[to_home] Attempt 4/4 to go to home screen,
+13:47:12,INFO,PopupMission,[to_home] Clicking back button proxy object,
+13:47:18,INFO,PopupMission,[to_home] Attempt 5/4 to go to home screen,
+13:47:19,INFO,PopupMission,[to_home] Clicking back button proxy object,
+13:47:22,ERROR,PopupMission,[to_home] ❌ Failed to return to Home screen after 4 attempts.,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-07-30_13h47.png"", ""View"")"

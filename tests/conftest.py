@@ -43,7 +43,7 @@ def shop_navigator(poco)-> ShopNavigator:
 def popup_military_info(poco)-> PopupMilitaryCareerInfo:
     return PopupMilitaryCareerInfo(poco)
 
-@pytest.fixture(scope="class", autouse=True)
+@pytest.fixture(scope="function", autouse=True)
 def to_home(request):
     """
     Auto-applies to tests using the @pytest.mark.use_to_home(...) marker.
@@ -94,9 +94,15 @@ def to_home(request):
             print(f"back_button: {back_button}")
             print(f"back_button_func: {back_button_func}")
             if back_button:
-                logger.info("[to_home] Clicking back button proxy object")
-                back_button.click()
-                time.sleep(1)
+                # logger.info("[to_home] Clicking back button proxy object")
+                # back_button.click()
+                # time.sleep(1)
+                try:
+                    keyevent("BACK")
+                    logger.info("[to_home] Sent BACK keyevent.")
+                    time.sleep(1)
+                except Exception:
+                    logger.warning("[to_home] BACK keyevent not supported.")
             else:
                 try:
                     keyevent("BACK")

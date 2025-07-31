@@ -1,0 +1,13 @@
+Time,Level,Module,Message,Screenshot
+17:47:11,INFO,PopupMission,to home fixture initialized.,
+17:47:15,INFO,PopupMission,[to_home] Attempt 1/4 to go to home screen,
+17:47:16,INFO,PopupMission,[to_home] Sent BACK keyevent.,
+17:47:20,INFO,PopupMission,[to_home] Attempt 2/4 to go to home screen,
+17:47:21,INFO,PopupMission,[to_home] Sent BACK keyevent.,
+17:47:25,INFO,PopupMission,[to_home] Attempt 3/4 to go to home screen,
+17:47:26,INFO,PopupMission,[to_home] Sent BACK keyevent.,
+17:47:31,INFO,PopupMission,[to_home] Attempt 4/4 to go to home screen,
+17:47:31,INFO,PopupMission,[to_home] Sent BACK keyevent.,
+17:47:34,INFO,PopupMission,[to_home] Already at Home screen.,
+17:47:34,INFO,setup method,Setting up PopupMissionAchivement test environment...,
+17:47:38,INFO,PopupMission,[to_home] Already at Home screen.,

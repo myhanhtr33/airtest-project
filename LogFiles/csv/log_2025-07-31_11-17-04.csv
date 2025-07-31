@@ -1,0 +1,11 @@
+Time,Level,Module,Message,Screenshot
+11:17:05,INFO,PopupMission,to home fixture initialized.,
+11:17:08,INFO,PopupMission,[to_home] Already at Home screen.,
+11:17:08,INFO,setup method,Setting up PopupMissionAchivement test environment...,
+11:17:11,INFO,setup method,PopupMissionAchivement setup completed successfully,
+11:17:11,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_daily_mission_swap_functionality,Testing daily mission swap functionality...,
+11:17:18,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_daily_mission_swap_functionality,⚠ Daily tab btn_swap is not available - swap limit (2 times) may have been reached,
+11:17:18,INFO,tests:test_PopupMissionAchivement.py:TestPopupMissionAchivement:test_daily_mission_swap_functionality,Skipping swap functionality test as no swaps are available,
+11:17:21,INFO,PopupMission,[to_home] Attempt 1/4 to go to home screen,
+11:17:21,INFO,PopupMission,[to_home] Sent BACK keyevent.,
+11:17:22,INFO,PopupMission,[to_home] Already at Home screen.,

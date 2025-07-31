@@ -36,7 +36,7 @@ class PopupMissionAchivement:
         return WeeklyTab(node)
     @property
     def achievement_tab(self):
-        node= self.root.child("Achievement")
+        node= self.root.child("Achivement")
         return AchievementTab(node)
     @property
     def battle_pass_panel(self):
@@ -79,11 +79,16 @@ class WeeklyTab:
         self.title = self.root.offspring("Title").get_text().strip() #Weekly mission
     @property
     def weekly_missions(self):
-        return [MissionItem(node) for node in self.root.offspring("ScrollView").children()]
+        return [MissionItem(node) for node in self.root.offspring("Grid").children()]
 
 class AchievementTab:
     def __init__(self,node):
         self.root = node
+        self.title = self.root.offspring("Title").get_text().strip() #Achievement
+        self.description = self.root.offspring("lSub").get_text().strip()
+    @property
+    def achievement_missions(self):
+        return [MissionItem(node) for node in self.root.offspring("Grid").children()]
 class BattlePassPanel:
     def __init__(self,node):
         self.root= node
@@ -111,27 +116,40 @@ class MissionItem:
         return node.get_text().strip()  if node.exists() else None
     @property
     def icon(self):
-        return self.root.offspring("sIcon")
+        return self.root.offspring("sFrame").child("sIcon")
     @property
     def progress_bar(self):
         return self.root.offspring("sfill")
     @property
     def progress_text(self): # x/y or Completed
         return self.root.offspring("lProgress").get_text().strip()
-    def rewards(self):
+    @property
+    def rewards(self): #not exists when progress_text is "Completed"
         nodes = [
             self.root.offspring("reward"),
             self.root.offspring("reward (1)"),
             self.root.offspring("reward (2)"),
         ]
-        rewards = [MissionReward(node) for node in nodes if node.exists()]
-        return rewards if rewards else None
+        rewards = [MissionReward(node) if node.exists() else None for node in nodes]
+        return rewards
+    @property
+    def achievement_reward(self):
+        node= self.root.offspring("reward (2)")
+        return MissionReward(node) if node.exists() else None
     @property
     def background(self):
         #incomplete: UI5_Target_BG_1
         #complete: UI5_Target_BG_2
         #claimed: UI5_Target_BG_3
-        return self.root.offspring("sBG").attr("texture")
+        return self.root.offspring("sBg").attr("texture")
+    @property
+    def swap_BG(self): #exist only when click btn_swap in DailyTab
+        return self.root.offspring("swap")
+    @property
+    def btn_swap(self): #exist only when click btn_swap in and mission is incomplete
+        node = self.root.offspring("btnChange")
+        return node if node.exists() else None
+
     @property
     def open_in_msg(self): #Open in 05:21:06:18, exists when name is None
         node = self.root.offspring("lMessage")
@@ -156,10 +174,12 @@ class TierUpPopup:
     def __init__(self,poco):
         self.poco = poco
         self.root = poco("Popup_HBP_TierUp(Clone)")
-        self.level= self.root.offspring("lNumberTierUp").get_text().strip()
         self.btn_go_to_BP = self.root.offspring("bGotoPass")
         self.btn_close = self.root.offspring("bClose")
-
+    @property
+    def level(self):
+        node=self.root.offspring("lNumberTierUp")
+        return node.get_text().strip() if node.exists() else None
 #poco("Popup_HBP_Home(Clone)")
 
 

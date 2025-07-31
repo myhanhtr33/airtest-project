@@ -40,6 +40,7 @@ class TestPopupLeaderboard:
         self.tab_player = TabPlayer(poco)
         print(f"PopupLeaderboard initialized in {time.time() - start_time:.2f} seconds")
 
+    @pytest.mark.order(1)
     def test_main_element(self):
         logger=get_logger()
         logger.info("Testing main elements presence in PopupLeaderboard...")
@@ -60,6 +61,7 @@ class TestPopupLeaderboard:
         assert UIButtonUtils.check_sprite_btn_active(self.popup.btn_clan), "Clan button not activated!"
         assert self.popup.tab_clan.exists(), "Clan tab not open!"
 
+    @pytest.mark.order(2)
     def test_elements_in_player_tab(self):
         logger=get_logger()
         logger.info("Verifying elements in Player tab...")
@@ -75,6 +77,7 @@ class TestPopupLeaderboard:
         assert self.tab_player.btn_local.exists(), "btn_local not found!"
         assert self.tab_player.btn_friends.exists(), "btn_friends not found!"
 
+    @pytest.mark.order(3)
     def test_elements_in_clan_tab(self):
         logger = get_logger()
         logger.info("Verifying elements in Clan tab...")
@@ -89,6 +92,7 @@ class TestPopupLeaderboard:
         assert tab_clan.btn_clan_war.exists(), "btn_clan_war not found in clan tab!"
         assert tab_clan.btn_zodiac.exists(), "btn_zodiac not found in clan tab!"
 
+    @pytest.mark.order(4)
     def test_clan_tab_all_subtabs(self):
         """Test all Clan main tabs (Upgrade, Glory, Clan War, Zodiac) with World and Local sub-tabs"""
         logger = get_logger()
@@ -107,6 +111,7 @@ class TestPopupLeaderboard:
             elapsed_time = time.time() - start_time
             logger.info(f"{tab_name} tab test completed in {elapsed_time:.2f} seconds")
 
+    @pytest.mark.order(5)
     def test_player_tab_all_subtabs(self):
         """Test Player tab with all sub-tabs"""
         logger = get_logger()
@@ -126,6 +131,7 @@ class TestPopupLeaderboard:
             elapsed_time = time.time() - start_time
             logger.info(f"Player tab - {tab_name} sub-tab test completed in {elapsed_time:.2f} seconds")
 
+    @pytest.mark.order(6)
     def test_check_click_first_two_players_campaign_world(self):
         """
         1. Go to Campaign > World tab
@@ -192,6 +198,7 @@ class TestPopupLeaderboard:
         print(f"✅ First two players have different IDs and names: {player_data[0]} vs {player_data[1]}")
         print(f"✅ Player IDs and names match between leaderboard and profiles")
 
+    @pytest.mark.order(7)
     def test_check_click_first_two_clans_upgrade_world(self):
         """
         1. Go to Clan tab > Upgrade > World subtab
@@ -262,6 +269,7 @@ class TestPopupLeaderboard:
         print(f"✅ First two clans have different IDs and names: {clan_data[0]} vs {clan_data[1]}")
         print(f"✅ Clan names match between leaderboard and profiles")
 
+    @pytest.mark.order(8)
     def test_leaderboard_scrollview(self):
         """
         Test scrolling functionality by comparing player items before and after swiping.

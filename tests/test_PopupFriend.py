@@ -39,6 +39,7 @@ class TestPopupFriend:
         assert self.popup.root.exists(), "PopupFriend not found after click!"
         logger.info(f"PopupFriend initialized in {time.time() - start_time:.2f} seconds")
 
+    @pytest.mark.order(1)
     def test_main_elements(self):
         """Test that all main elements defined in PopupFriend.__init__ exist"""
         logger = get_logger()
@@ -58,6 +59,7 @@ class TestPopupFriend:
 
         logger.info("✅ All main elements verified successfully")
 
+    @pytest.mark.order(2)
     def test_friend_tab_functionality(self):
         """Test Friend tab button activation and corresponding scrollview"""
         logger = get_logger()
@@ -84,6 +86,7 @@ class TestPopupFriend:
 
         logger.info("✅ Friend tab functionality verified successfully")
 
+    @pytest.mark.order(3)
     def test_add_friend_tab_functionality(self):
         """Test Add Friend tab button activation, corresponding scrollview, and search panel"""
         logger = get_logger()
@@ -111,6 +114,7 @@ class TestPopupFriend:
 
         logger.info("✅ Add Friend tab functionality verified successfully")
 
+    @pytest.mark.order(4)
     def test_following_tab_functionality(self):
         """Test Following tab button activation and corresponding scrollview"""
         logger = get_logger()
