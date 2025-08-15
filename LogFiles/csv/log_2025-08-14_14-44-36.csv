@@ -1,0 +1,9 @@
+Time,Level,Module,Message,Screenshot
+14:44:36,INFO,Level1_tut,to home fixture initialized.,
+14:44:40,INFO,Level1_tut,[to_home] Attempt 1/4 to go to home screen,
+14:44:40,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+14:44:45,INFO,Level1_tut,[to_home] Attempt 2/4 to go to home screen,
+14:44:46,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+14:44:48,INFO,Level1_tut,[to_home] Already at Home screen.,
+14:44:48,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,
+14:44:53,ERROR,TestLevel1_tut,[to_campaign_select_lv] ❌ PopupSelectLevelHome not found after clicking Campaign!,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-14_14h44.png"", ""View"")"

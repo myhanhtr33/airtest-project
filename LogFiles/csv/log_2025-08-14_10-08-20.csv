@@ -1,0 +1,10 @@
+Time,Level,Module,Message,Screenshot
+10:08:20,INFO,Level1_tut,to home fixture initialized.,
+10:08:23,INFO,Level1_tut,[to_home] Already at Home screen.,
+10:08:23,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,
+10:08:27,INFO,TestLevel1_tut,[to_campaign_select_lv] ✓ Campaign popup opened successfully,
+10:08:27,INFO,Level1_tut,Target level 1 should be in World 1,
+10:08:28,INFO,Level1_tut,Current world: 13,
+10:08:28,INFO,Level1_tut,Need to navigate from World 13 to World 1,
+10:08:31,INFO,Level1_tut,Attempt 1: Looking for world 1,
+10:08:31,INFO,Level1_tut,Building item cache...,

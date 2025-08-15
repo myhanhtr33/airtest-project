@@ -367,10 +367,31 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-15_10-46-03.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-15_10-50-08.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-15_10-53-42.csv">
           <value>
             <Attribute>
               <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-15_11-32-27.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
@@ -381,6 +402,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-15_13-30-44.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-15_13-43-49.csv">
           <value>
             <Attribute>
@@ -388,10 +416,38 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-15_13-54-12.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-15_13-55-37.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-15_13-58-14.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-15_14-03-32.csv">
           <value>
             <Attribute>
               <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-15_14-10-10.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
@@ -549,6 +605,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-16_14-21-16.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-16_16-38-04.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-16_17-10-35.csv">
           <value>
             <Attribute>
@@ -654,10 +724,73 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-16_19-07-32.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-16_19-12-09.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-16_19-13-51.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-16_19-20-57.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-16_19-29-43.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-17_14-56-41.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-17_15-17-27.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-17_15-24-22.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-17_15-31-36.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-17_16-16-20.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>
@@ -707,6 +840,13 @@
           <value>
             <Attribute>
               <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-21_12-03-19.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>
@@ -808,6 +948,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-23_16-50-23.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-23_16-52-12.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-23_17-00-06.csv">
           <value>
             <Attribute>
@@ -843,6 +997,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-23_18-38-51.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-24_11-58-22.csv">
           <value>
             <Attribute>
@@ -851,6 +1012,13 @@
           </value>
         </entry>
         <entry key="\LogFiles\csv\log_2025-07-24_13-48-08.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-24_15-22-39.csv">
           <value>
             <Attribute>
               <option name="separator" value=":" />
@@ -941,6 +1109,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-25_10-28-21.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-25_11-54-33.csv">
           <value>
             <Attribute>
@@ -1025,6 +1200,34 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-25_16-40-58.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-25_16-42-32.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-25_16-45-14.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-25_16-48-42.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-25_16-49-51.csv">
           <value>
             <Attribute>
@@ -1067,7 +1270,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-26_10-01-37.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-26_10-26-04.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-26_14-10-47.csv">
           <value>
             <Attribute>
               <option name="separator" value=":" />
@@ -1109,7 +1326,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-26_17-41-17.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-26_17-54-49.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-26_20-39-46.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -1221,6 +1452,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-29_17-42-09.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-30_11-49-23.csv">
           <value>
             <Attribute>
@@ -1229,6 +1467,13 @@
           </value>
         </entry>
         <entry key="\LogFiles\csv\log_2025-07-30_13-36-53.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-30_13-46-45.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -1270,6 +1515,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-30_17-38-19.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-30_17-41-22.csv">
           <value>
             <Attribute>
@@ -1277,7 +1529,28 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-30_17-47-47.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-30_17-51-00.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-30_17-57-15.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-07-30_18-01-12.csv">
           <value>
             <Attribute>
               <option name="separator" value=":" />
@@ -1361,6 +1634,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\LogFiles\csv\log_2025-07-31_14-23-13.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\LogFiles\csv\log_2025-07-31_15-10-45.csv">
           <value>
             <Attribute>
@@ -1425,6 +1705,104 @@
           </value>
         </entry>
         <entry key="\LogFiles\csv\log_2025-07-31_17-11-30.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-04_10-53-18.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-04_10-55-15.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-04_10-57-33.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-08_16-54-03.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-08_17-01-10.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-08_17-05-04.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-08_17-06-08.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-11_10-34-54.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-11_10-36-06.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-11_10-37-45.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-11_10-45-53.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-11_16-52-30.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-11_17-21-47.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\LogFiles\csv\log_2025-08-11_17-35-50.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

@@ -23,9 +23,14 @@ def pytest_runtest_makereport(item, call):
 
     if rep.when == "call":
         screenshot_filename = f"{datetime.datetime.now().strftime('%Y-%m-%d_%Hh%M')}_{item.name}.png"
-        screenshot_path = os.path.join("reports", "screenshots", screenshot_filename)
+        # Use absolute path to avoid Airtest LOG_DIR interference
+        screenshot_dir = os.path.join(os.getcwd(), "reports", "screenshots")
+        screenshot_path = os.path.join(screenshot_dir, screenshot_filename)
+
         if rep.failed:
             try:
+                # Ensure the directory exists before taking screenshot
+                os.makedirs(screenshot_dir, exist_ok=True)
                 snapshot(screenshot_path) #= full path for saving the screenshot
                 # attach to report
                 extra = getattr(rep, "extra", [])
@@ -33,7 +38,11 @@ def pytest_runtest_makereport(item, call):
                 extra.append(pytest_html.extras.image(os.path.join("screenshots", screenshot_filename)))
                 rep.extra = extra
             except PocoNoSuchNodeException:
-                # if Poco isn’t ready, just skip screenshot
+                # if Poco isn't ready, just skip screenshot
+                pass
+            except Exception as e:
+                # Log the error but don't fail the test
+                print(f"Failed to take screenshot: {e}")
                 pass
 
         # Capture printed output

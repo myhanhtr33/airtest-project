@@ -1,0 +1,8 @@
+Time,Level,Module,Message,Screenshot
+17:19:54,INFO,Level1_tut,to home fixture initialized.,
+17:19:56,INFO,Level1_tut,[to_home] Already at Home screen.,
+17:19:56,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,
+17:20:00,INFO,TestLevel1_tut,[to_campaign_select_lv] ✓ Campaign popup opened successfully,
+17:20:05,INFO,Level1_tut,[to_home] Attempt 1/4 to go to home screen,
+17:20:05,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+17:20:06,INFO,Level1_tut,[to_home] Already at Home screen.,

@@ -1,0 +1,11 @@
+Time,Level,Module,Message,Screenshot
+13:32:37,INFO,Level1_tut,to home fixture initialized.,
+13:32:40,INFO,Level1_tut,[to_home] Attempt 1/4 to go to home screen,
+13:32:41,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+13:32:42,INFO,Level1_tut,[to_home] Already at Home screen.,
+13:32:42,INFO,Level1_tut,"[to_home] Screenshot taken: {'screen': '1754893962737.jpg', 'resolution': (720, 1280)}",
+13:32:42,INFO,Level1_tut,[to_home] Screenshot path: D:\FSTest\LogFiles\screenshot\1754893962737.jpg,
+13:32:42,INFO,Level1_tut,[to_home] Marked screenshot saved: D:\FSTest\LogFiles\screenshot\marked_screenshots\campaign_button_marked_1.png,
+13:32:42,INFO,Level1_tut,"[to_home] Campaign button found at position: (538, 1003)",
+13:32:42,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,
+13:32:46,INFO,TestLevel1_tut,[to_campaign_select_lv] ✓ Campaign popup opened successfully,
