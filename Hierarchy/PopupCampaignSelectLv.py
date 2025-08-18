@@ -16,7 +16,7 @@ class PopupCampaignSelectLv:
         return text
     @property
     def mode_normal(self):
-        return self.root.offspring("bNomal")
+        return self.root.offspring("bNormal")
     @property
     def mode_hard(self):
         return self.root.offspring("bHard")
@@ -36,14 +36,14 @@ class PopupCampaignSelectLv:
                     node.append(LevelItem(n))
                 if level_type=="extra" and extra:
                     node.append(LevelItem(n))
-                print(f"_scan  lv:{n.attr('name')} index:{n.offspring("lLevel").get_text().strip() if n.offspring("lLevel").exists() else None}")
-        print(f"nodes found: {node}")
+                # print(f"_scan  lv:{n.attr('name')} index:{n.offspring("lLevel").get_text().strip() if n.offspring("lLevel").exists() else None}")
+        # print(f"nodes found: {node}")
         return node
     @property
     def list_level_normal(self):
         normal= self._scan("normal")
-        for n in normal:
-            print(f"normal level: {n.root.attr('name')}, index: {n.index}")
+        # for n in normal:
+        #     print(f"normal level: {n.root.attr('name')}, index: {n.index}")
         return normal
         # return self._scan("normal")
     @property

@@ -1,19 +1,20 @@
-from airtest.core.api import *
-# from popupSurprise import CommonCase
-from airtest.core.api import *
-from poco.drivers.unity3d import UnityPoco
-from utils.device_setup import connect_to_unity
-# dev1=connect_device("android://127.0.0.1:5037/emulator-5554")
-poco=connect_to_unity()
-gold= "UI Root/CurrencyBar/Anchor/root/Gold_Home/lGold"
-# poco("CurrencyBar").offspring("lGold")
-poco(gold).click()
-poco("HomeSquad_2").offspring("BtnRightDrone").child("btnBG").click()
-poco("CurrencyBar").offspring("GoldHome").child("IGold")
-poco("IconShop").click()
-poco("CurrencyBar").offspring("Icon").click()
-poco("TabShopNavigator(Clone)").offspring("TabGemShop ")
-poco("TabNavigator").offspring("BtnHome")
-poco("HomeSquad_1").offspring("BtnAircraft")
-poco("PopupSpecialVideoReward(Clone)")
-poco(texture="btn_back").click()
+from Hierarchy.PopupCampaignSelectLv import PopupCampaignSelectLv, PanelWorlds
+from Hierarchy.PopupLevelPrepare import PopupLevelPrepare
+from Hierarchy.UI_ingame import *
+import pytest
+from logger_config import get_logger
+from utils.helper_functions import wait_for_element
+from utils.test_level_helper import *
+from airtest.core.api import swipe, sleep
+class test_1234:
+    def test_1111(self, poco):
+        logger = get_logger("test_1234")
+        logger.info("Starting test_1111...")
+
+        # Initialize PopupCampaignSelectLv
+        popup_campaign_select_lv = PopupCampaignSelectLv(poco)
+        assert popup_campaign_select_lv.root.exists(), "PopupCampaignSelectLv root not found!"
+
+        # Click on a specific world (e.g., "World 1")
+        world = popup_campaign_select_lv.worlds[0]
+

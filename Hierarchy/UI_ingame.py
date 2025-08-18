@@ -22,7 +22,7 @@
 
 class UITop:
     def __init__(self, poco):
-        self.root = poco("UIIngameTopInfo")
+        self.root = poco("UI_INGAME_TOP")
     @property
     def hp_text(self):
         return self.root.offspring("l_Life")
@@ -50,7 +50,7 @@ class UITop:
     @property
     def collected_gold_text(self):
         node = self.root.offspring("l_Coin")
-        return node.get_text().strip() if node.exists() else None
+        return int(node.get_text().strip()) if node.exists() else None
     @property
     def collected_gem_text(self):
         node = self.root.offspring("l_Gem")

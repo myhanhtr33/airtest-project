@@ -6,6 +6,9 @@ from logger_config import get_logger
 from utils.helper_functions import wait_for_element
 from utils.test_level_helper import *
 from airtest.core.api import swipe, sleep
+current_dir=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+img_path= os.path.join(os.path.dirname(current_dir),"image","Plane1_bata.png")
+bata_img = Template(img_path)
 
 @pytest.mark.use_to_home(before=True, after=True, logger_name="Level1_tut")
 @pytest.mark.use_to_campaign_select_lv(before=True)
@@ -206,8 +209,7 @@ class TestLevel1_tut:
         popup_campaign = PopupCampaignSelectLv(poco)
         panel_worlds = PanelWorlds(poco)
         assert popup_campaign.root.exists(), "PopupCampaignSelectLv not found"
-        popup_campaign.mode_normal.click(sleep_interval=1)
-
+        # popup_campaign.mode_normal.click(sleep_interval=1)
 
 
         click_to_level=navigate_and_click_level(popup_campaign, 1,panel_worlds,  logger_name="Level1_tut")
@@ -218,24 +220,30 @@ class TestLevel1_tut:
         assert popup_prepare.root.exists(), "PopupLevelPrepare not found after clicking level 1"
         popup_prepare.btn_start.click(sleep_interval=3)
         ui_ingame = UI_Ingame(poco)
-        is_UI_ingame_appear=wait_for_element(ui_ingame.root, timeout=5)
-        print(f"..............{is_UI_ingame_appear}")
+        if wait_for_element(ui_ingame.root, timeout=5):
+            bata_pos = wait(bata_img, timeout=6)
+            btn_skill_pos = ui_ingame.btn_plane_skill.get_position() if ui_ingame.btn_plane_skill.exists() else None
 
-        x2=(563,1133)
-        x1=(188,1133)
-        print("before loop")
-        ingameUI = UI_Ingame(poco)
-        n= ingameUI.btn_plane_skill
-        btn=n if n.exists() else None
-        while btn is not None:
-            print("start")
-            keyevent("T")
-            keyevent("U")
-            swipe(x1,x2)
-            swipe(x2,x1)
-            sleep(5)
-            btn=n if n.exists() else None
-            print("end")
+            if bata_pos and btn_skill_pos:
+                start_pos = ((bata_pos[0] - btn_skill_pos[0]) / 2 + btn_skill_pos[0], bata_pos[1])
+                end_pos = (bata_pos[0] + (bata_pos[0] - start_pos[0]), bata_pos[1])
+
+                ingameUI = UI_Ingame(poco)
+                btn = ingameUI.btn_plane_skill if ingameUI.btn_plane_skill.exists() else None
+                first_move = False
+
+                while btn:
+                    if not first_move:
+                        for i in range(30):
+                            keyevent("P")
+                        swipe(bata_pos, start_pos)  # move to start position
+                        first_move = True
+                    # keyevent("U")
+                    swipe(start_pos, end_pos, duration=3)
+                    swipe(end_pos, start_pos, duration=3)
+                    sleep(2)
+                    btn = ingameUI.btn_plane_skill if ingameUI.btn_plane_skill.exists() else None
+
         max_attempts = 5
         for attempt in range(max_attempts):
             popup_lose = PopupGameLose(poco)

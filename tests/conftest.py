@@ -33,7 +33,7 @@ def pytest_configure(config):
 def poco() ->UnityPoco:
     # connect once per session
     # dev = connect_device("android://127.0.0.1:5037/emulator-5554")
-    dev = connect_device("android://127.0.0.1:5037/emulator-5562")
+    dev = connect_device("android://127.0.0.1:5037/emulator-5564")
     print(f"Connected to Unity device: {dev}")
     _poco=UnityPoco()
     return _poco
@@ -63,7 +63,7 @@ def fixture_orchestrator(request, poco):
     def get_markers():
         markers = {}
         if hasattr(request.node, 'cls') and request.node.cls:
-            class_markers = request.node.cls.pytestmark or []
+            class_markers = getattr(request.node.cls, 'pytestmark', [])
             for m in class_markers:
                 if m.name in ['use_to_home', 'use_to_campaign_select_lv']:
                     markers[m.name] = m
