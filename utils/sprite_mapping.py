@@ -6,7 +6,7 @@
 
 }
 CARD_SPRITE_MAPPING={
-    # "ITEM_CARD_PLANE_GENERAL" : "card_A0",
+    "ITEM_CARD_PLANE_GENERAL" : "card_A0",
     "ITEM_CARD_PLANE_1" : "card_A1",
     "ITEM_CARD_PLANE_2" : "card_A2",
     "ITEM_CARD_PLANE_3" : "card_A3",

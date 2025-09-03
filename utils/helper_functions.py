@@ -15,7 +15,9 @@ def wait_for_element(poco_obj, timeout=3, interval=0.5, condition="appear"):
     """
     elapsed = 0
     while elapsed < timeout:
-        exists = poco_obj.exists()
+        exists = False
+        if poco_obj:
+            exists = poco_obj.exists()
         if (condition == "appear" and exists) or (condition == "disappear" and not exists):
             return True
         time.sleep(interval)

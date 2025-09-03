@@ -1,5 +1,10 @@
 ﻿import re
 from enum import Enum
+from airtest.core.api import Template
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+mini_chest= os.path.join(os.path.dirname(current_dir), "image","Tut", "mini_chest.png")
 class PopupCampaignSelectLv:
     def __init__(self,poco):
         self.root= poco("PopupSelectLevelHome(Clone)")
@@ -64,7 +69,7 @@ class WorldItem:
     @property
     def index(self):
         tmp = self.root.offspring("lTitleWorld")
-        return tmp.get_text().strip() if tmp.exists() else None
+        return int(tmp.get_text().strip()) if tmp.exists() else None
     @property
     def btn_go(self):
         return self.root.offspring("ButtonGo")
@@ -75,7 +80,32 @@ class LevelItem:
     @property
     def index(self):
         tmp = self.root.offspring("lLevel")
-        return tmp.get_text().strip() if tmp.exists() else None
+        return int(tmp.get_text().strip()) if tmp.exists() else None
+    @property
+    def list_star(self): #only exists when level is opened
+        node = self.root.offspring("listStar")
+        return node if node.exists() else None
+    #empty/gain star: UI5_SelectLevel_Normal_Star_0/UI5_SelectLevel_Normal_Star_1
+    @property
+    def star1_sprite(self):
+        node= self.root.offspring("sStar1")
+        return node.attr("texture") if node.exists() else None
+    @property
+    def star2_sprite(self):
+        node= self.root.offspring("sStar2")
+        return node.attr("texture") if node.exists() else None
+    @property
+    def star3_sprite(self):
+        node= self.root.offspring("sStar3")
+        return node.attr("texture") if node.exists() else None
+    @property
+    def mini_chest(self):
+        node= self.root.offspring("btnMiniChest_SelectLevel(Clone)")
+        return node if node.exists() else None
+    @property
+    def mini_chest_image_template(self):
+        return Template(mini_chest)
+
 class LevelType(Enum):
     NORMAL = "normal"
     EXTRA = "extra"

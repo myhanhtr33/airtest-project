@@ -1,0 +1,3 @@
+Time,Level,Module,Message,Screenshot
+14:30:02,INFO,tut,"[to_home] Screenshot taken: {'screen': '1755761402269.jpg', 'resolution': (540, 960)}",
+14:30:02,INFO,tut,[to_home] Screenshot path: D:\FSTest\LogFiles\screenshot\1755761402269.jpg,

@@ -1,4 +1,10 @@
-﻿class UI_Ingame:
+﻿from utils.get_resource_amount import clean_number
+import os
+from airtest.core.api import Template
+current_dir = os.path.dirname(os.path.abspath(__file__))
+EndGameVideo_icon_path= os.path.join(os.path.dirname(current_dir), "image","UI_ingame", "EndGameVideo_icon.png")
+
+class UI_Ingame:
     def __init__(self, poco):
         self.root = poco("UI INGAME (1)")
     @property
@@ -48,17 +54,17 @@ class UITop:
         node= self.root.offspring("l_KilledEnemyPercentage")
         return node.get_text().strip() if node.exists() else None
     @property
-    def collected_gold_text(self):
+    def collected_gold(self):
         node = self.root.offspring("l_Coin")
-        return int(node.get_text().strip()) if node.exists() else None
+        return clean_number(node.get_text().strip()) if node.exists() else None
     @property
-    def collected_gem_text(self):
+    def collected_gem(self):
         node = self.root.offspring("l_Gem")
-        return node.get_text().strip() if node.exists() else None
+        return clean_number(node.get_text().strip()) if node.exists() else None
     @property
-    def collected_weekly_medal_text(self):
+    def collected_weekly_medal(self):
         node = self.root.offspring("l_WeeklyEvent")
-        return node.get_text().strip() if node.exists() else None
+        return clean_number(node.get_text().strip()) if node.exists() else None
 
     def get_current_hp(self) -> int:
         import re
@@ -110,7 +116,28 @@ class EndGameVideoPopup:
     @property
     def btn_watch_video(self):
         return self.root.offspring("B_WatchVideo")
+    @property
+    def icon_template(self):
+        return Template(EndGameVideo_icon_path)
 
+class CurrencyBarIngame:
+    def __init__(self, poco):
+        self.root = poco("CurrencyBarInGame")
+    @property
+    def btn_ads(self):
+        return self.root.offspring("BtnVideoAds")
+    @property
+    def gold_amount(self):
+        node = self.root.offspring("lGold")
+        return clean_number(node.get_text().strip()) if node.exists() else None
+    @property
+    def gem_amount(self):
+        node = self.root.offspring("lGem")
+        return clean_number(node.get_text().strip()) if node.exists() else None
+    @property
+    def energy_amount(self):
+        node = self.root.offspring("lEnergy")
+        return clean_number(node.get_text().strip()) if node.exists() else None
 
 class PopupGameResult:
     """Base class for game result popups with common properties."""
@@ -141,7 +168,12 @@ class PopupGameResult:
         return self.root.offspring("B_X2Gold (1)")
     @property
     def btn_next(self):
-        return self.root.offspring("B_Next")
+        tmp= self.root.offspring("B_NextLevel")
+        return tmp if tmp.exists() else None
+    @property
+    def btn_back(self):
+        tmp= self.root.offspring("B_Back")
+        return tmp if tmp.exists() else None
 
 class PopupGameLose(PopupGameResult):
     def __init__(self, poco):

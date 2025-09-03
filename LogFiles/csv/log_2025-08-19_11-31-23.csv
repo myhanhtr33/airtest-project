@@ -1,0 +1,35 @@
+Time,Level,Module,Message,Screenshot
+11:31:23,INFO,Level1_tut,to home fixture initialized.,
+11:31:26,INFO,Level1_tut,[to_home] Already at Home screen.,
+11:31:26,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,
+11:31:30,INFO,TestLevel1_tut,[to_campaign_select_lv] ✓ Campaign popup opened successfully,
+11:31:31,INFO,Level1_tut,Target level 2 should be in World 1,
+11:31:31,INFO,Level1_tut,Current world: 1,
+11:31:31,INFO,Level1_tut,Looking for level 2 in normal levels,
+11:31:54,INFO,Level1_tut,Refresh attempt 1: Found 21 levels,
+11:32:04,INFO,Level1_tut,✓ Found target level 2 on attempt 1,
+11:32:18,INFO,Level1_tut,Found 21 normal levels,
+11:32:18,INFO,Level1_tut,"Found level 2, clicking on it",
+11:32:20,INFO,Level1_tut,Successfully clicked on level 2,
+11:32:23,INFO,Level1_tut,"Initial resources: {'gold': 11746, 'energy': 3000, 'gem': 15}",
+11:33:33,INFO,Level1_tut,Game won!,
+11:33:34,INFO,Level1_tut,Game result: WIN,
+11:33:34,INFO,Level1_tut,"Collected during gameplay - Gold: 105, Gem: 0",
+11:33:34,ERROR,Level1_tut,"Gem verification failed! Expected: 15, Actual: 17, Difference: 2","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-19_11h33.png"", ""View"")"
+11:33:41,WARNING,Level1_tut,"Not at home screen yet, attempt 1","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-19_11h33.png"", ""View"")"
+11:33:47,WARNING,Level1_tut,"Not at home screen yet, attempt 2","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-19_11h33.png"", ""View"")"
+11:33:50,INFO,Level1_tut,Successfully at home screen for final verification,
+11:33:50,INFO,Level1_tut,=== PERFORMING FINAL HOME SCREEN VERIFICATION ===,
+11:33:51,INFO,Level1_tut,"Final home resources: {'gold': 12065, 'energy': 3200, 'gem': 17}",
+11:33:51,INFO,Level1_tut,=== FINAL HOME SCREEN VERIFICATION ===,
+11:33:51,INFO,Level1_tut,"Initial resources - Gold: 11746, Gem: 15",
+11:33:51,INFO,Level1_tut,"Collected during game - Gold: 105, Gem: 0",
+11:33:51,INFO,Level1_tut,"Expected final - Gold: 11851, Gem: 15",
+11:33:51,INFO,Level1_tut,"Actual final - Gold: 12065, Gem: 17",
+11:33:51,ERROR,Level1_tut,"✗ Final Gem verification FAILED! Expected: 15, Actual: 17, Difference: 2","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-19_11h33.png"", ""View"")"
+11:33:51,ERROR,Level1_tut,=== RESOURCE FLOW DEBUG ===,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-19_11h33.png"", ""View"")"
+11:33:51,ERROR,Level1_tut,Initial → Final: Gold 11746 → 12065 (Expected: 11851),"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-19_11h33.png"", ""View"")"
+11:33:52,ERROR,Level1_tut,Initial → Final: Gem 15 → 17 (Expected: 15),"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-19_11h33.png"", ""View"")"
+11:33:52,ERROR,Level1_tut,"Collected amounts: Gold 105, Gem 0","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-19_11h33.png"", ""View"")"
+11:33:52,INFO,Level1_tut,=== TEST COMPLETED ===,
+11:33:52,INFO,Level1_tut,[to_home] Already at Home screen.,
