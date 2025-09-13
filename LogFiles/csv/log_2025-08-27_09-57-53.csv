@@ -1,0 +1,7 @@
+Time,Level,Module,Message,Screenshot
+09:57:53,INFO,Level1_tut,to home fixture initialized.,
+09:57:55,INFO,Level1_tut,[to_home] Already at Home screen.,
+09:57:55,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,
+09:57:59,INFO,TestLevel1_tut,[to_campaign_select_lv] ✓ Campaign popup opened successfully,
+09:57:59,INFO,playing lv5,=== STARTING LEVEL 5 TEST ===,
+09:58:00,INFO,playing lv5,Phase 2: Navigating to Level 5,

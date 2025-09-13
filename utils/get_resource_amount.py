@@ -50,6 +50,25 @@ def get_single_card_amount(poco, card_type):
     amount= result.get("amount")
     name= result.get("card_id")
     return amount,name
+def get_single_card_amount_by_sprite(poco, sprite_name):
+    """
+    Get the amount of a specific card by its sprite name.
+
+    :param poco: The Poco instance for interacting with the UI.
+    :param sprite_name: The sprite name of the card.
+    :return: The amount of the specified card.
+    """
+    for key, value in CARD_SPRITE_MAPPING.items():
+        if value == sprite_name:
+            result= poco.invoke("get_card_amount", cardType=key)
+            if result.get("status") != "success":
+                raise ValueError(f"Failed to get card amount for {key}: {result.get('message', 'Unknown error')}")
+            amount = result.get("amount")
+            name = result.get("card_id")
+            return amount, name
+
+    raise ValueError(f"No card found with sprite name: {sprite_name}")
+
 
 def clean_number(text):
     """

@@ -1,0 +1,6 @@
+Time,Level,Module,Message,Screenshot
+09:52:14,INFO,Level1_tut,to home fixture initialized.,
+09:52:28,INFO,Level1_tut,[to_home] Already at Home screen.,
+09:53:06,INFO,Level1_tut,[to_home] Screenshot taken: None,
+09:53:06,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,
+09:53:12,INFO,TestLevel1_tut,[to_campaign_select_lv] ✓ Campaign popup opened successfully,

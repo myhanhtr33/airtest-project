@@ -1,0 +1,4 @@
+Time,Level,Module,Message,Screenshot
+09:54:21,INFO,Level1_tut,to home fixture initialized.,
+09:54:23,INFO,Level1_tut,[to_home] Already at Home screen.,
+09:54:23,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,

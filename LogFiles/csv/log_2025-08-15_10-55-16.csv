@@ -1,0 +1,10 @@
+Time,Level,Module,Message,Screenshot
+10:55:16,INFO,Level1_tut,to home fixture initialized.,
+10:55:20,INFO,Level1_tut,[to_home] Attempt 1/4 to go to home screen,
+10:55:20,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+10:55:25,INFO,Level1_tut,[to_home] Attempt 2/4 to go to home screen,
+10:55:25,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+10:55:30,INFO,Level1_tut,[to_home] Attempt 3/4 to go to home screen,
+10:55:30,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+10:55:35,INFO,Level1_tut,[to_home] Attempt 4/4 to go to home screen,
+10:55:35,INFO,Level1_tut,[to_home] Sent BACK keyevent.,

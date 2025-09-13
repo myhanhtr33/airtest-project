@@ -1,0 +1,38 @@
+Time,Level,Module,Message,Screenshot
+09:23:34,INFO,Level1_tut,to home fixture initialized.,
+09:23:37,INFO,Level1_tut,[to_home] Already at Home screen.,
+09:23:37,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,
+09:23:41,INFO,TestLevel1_tut,[to_campaign_select_lv] ✓ Campaign popup opened successfully,
+09:24:05,INFO,Level1_tut,Target level 4 should be in World 1,
+09:24:05,INFO,Level1_tut,Current world: 1,
+09:24:05,INFO,Level1_tut,Looking for level 4 in normal levels,
+09:24:27,INFO,Level1_tut,Refresh attempt 1: Found 21 levels,
+09:24:32,INFO,Level1_tut,✓ Found target level 4 on attempt 1,
+09:24:44,INFO,Level1_tut,Found 21 normal levels,
+09:24:44,INFO,Level1_tut,"Found level 4, clicking on it",
+09:24:46,INFO,Level1_tut,Successfully clicked on level 4,
+09:24:48,INFO,Level1_tut,"Level 4 is max level. Gold 1st reward: 600, Gem 1st reward: 3",
+09:24:50,INFO,Level1_tut,"Initial resources: {'gold': 14551, 'energy': 3900, 'gem': 25}",
+09:26:31,INFO,Level1_tut,Game won!,
+09:26:33,INFO,Level1_tut,Game result: WIN,
+09:26:33,INFO,Level1_tut,"Collected during gameplay - Gold: 931, Gem: 3",
+09:26:33,INFO,Level1_tut,Resource verification successful!,
+09:26:33,INFO,Level1_tut,"Gold verification: True (Expected: 15482, Actual: 15482)",
+09:26:33,INFO,Level1_tut,"Gem verification: True (Expected: 28, Actual: 28)",
+09:26:43,WARNING,Level1_tut,"Not at home screen yet, attempt 1","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-20_09h26.png"", ""View"")"
+09:26:50,WARNING,Level1_tut,"Not at home screen yet, attempt 2","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-20_09h26.png"", ""View"")"
+09:26:55,WARNING,Level1_tut,"Not at home screen yet, attempt 3","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-20_09h26.png"", ""View"")"
+09:27:01,WARNING,Level1_tut,"Not at home screen yet, attempt 4","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-20_09h27.png"", ""View"")"
+09:27:07,WARNING,Level1_tut,"Not at home screen yet, attempt 5","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-20_09h27.png"", ""View"")"
+09:27:09,ERROR,Level1_tut,Could not navigate to home screen for final verification,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-20_09h27.png"", ""View"")"
+09:27:13,INFO,Level1_tut,[to_home] Attempt 1/4 to go to home screen,
+09:27:13,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+09:27:18,INFO,Level1_tut,[to_home] Attempt 2/4 to go to home screen,
+09:27:18,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+09:27:23,INFO,Level1_tut,[to_home] Attempt 3/4 to go to home screen,
+09:27:23,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+09:27:28,INFO,Level1_tut,[to_home] Attempt 4/4 to go to home screen,
+09:27:28,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+09:27:33,INFO,Level1_tut,[to_home] Attempt 5/4 to go to home screen,
+09:27:33,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+09:27:34,ERROR,Level1_tut,[to_home] ❌ Failed to return to Home screen after 4 attempts.,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-20_09h27.png"", ""View"")"

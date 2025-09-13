@@ -1,0 +1,5 @@
+Time,Level,Module,Message,Screenshot
+16:58:41,INFO,TestTUT,"Level 4 normalized position: [0.7647916286617975, 0.5813281244687692]",
+16:58:43,INFO,TestTUT,"Template search results: [{'result': (444, 552), 'rectangle': ((427, 535), (427, 570), (461, 570), (461, 535)), 'confidence': 0.7633788585662842}, {'result': (436, 386), 'rectangle': ((419, 369), (419, 404), (453, 404), (453, 369)), 'confidence': 0.7625365853309631}]",
+16:58:43,INFO,TestTUT,"Chest 0: px=(444, 552), norm=(0.8222222222222222, 0.575), conf=0.7633788585662842, dx_norm=0.0574, |dy_norm|=0.0063, tol_norm=0.0521",
+16:58:43,INFO,TestTUT,Valid mini chest found,

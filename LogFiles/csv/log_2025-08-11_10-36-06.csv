@@ -1,0 +1,10 @@
+Time,Level,Module,Message,Screenshot
+10:36:06,INFO,Level1_tut,to home fixture initialized.,
+10:36:10,INFO,Level1_tut,[to_home] Attempt 1/4 to go to home screen,
+10:36:10,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+10:36:11,INFO,Level1_tut,[to_home] Already at Home screen.,
+10:36:12,INFO,Level1_tut,"[to_home] Screenshot taken: {'screen': '1754883372536.jpg', 'resolution': (720, 1280)}",
+10:36:12,WARNING,Level1_tut,[to_home] Failed to create marked screenshot: Can't convert object to 'str' for 'filename',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-11_10h36.png"", ""View"")"
+10:36:12,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,
+10:36:17,INFO,TestLevel1_tut,[to_campaign_select_lv] ✓ Campaign popup opened successfully,
+10:36:20,INFO,Level1_tut,[to_home] Already at Home screen.,

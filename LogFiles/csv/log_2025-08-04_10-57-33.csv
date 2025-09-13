@@ -1,0 +1,12 @@
+Time,Level,Module,Message,Screenshot
+10:57:34,INFO,PopupExploration,to home fixture initialized.,
+10:57:38,INFO,PopupExploration,[to_home] Attempt 1/4 to go to home screen,
+10:57:38,INFO,PopupExploration,[to_home] Sent BACK keyevent.,
+10:57:43,INFO,PopupExploration,[to_home] Attempt 2/4 to go to home screen,
+10:57:44,INFO,PopupExploration,[to_home] Sent BACK keyevent.,
+10:57:45,INFO,PopupExploration,[to_home] Already at Home screen.,
+10:57:45,INFO,setup method,Setting up PopupExploration test environment...,
+10:57:48,INFO,setup method,PopupExploration initialized successfully,
+10:57:52,INFO,PopupExploration,[to_home] Attempt 1/4 to go to home screen,
+10:57:53,INFO,PopupExploration,[to_home] Sent BACK keyevent.,
+10:57:54,INFO,PopupExploration,[to_home] Already at Home screen.,

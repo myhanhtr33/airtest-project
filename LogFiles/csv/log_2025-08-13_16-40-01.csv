@@ -1,0 +1,11 @@
+Time,Level,Module,Message,Screenshot
+16:40:01,INFO,Level1_tut,to home fixture initialized.,
+16:40:04,INFO,Level1_tut,[to_home] Already at Home screen.,
+16:40:04,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,
+16:40:08,INFO,TestLevel1_tut,[to_campaign_select_lv] ✓ Campaign popup opened successfully,
+16:40:11,INFO,Level1_tut,Target level 1 should be in World 1,
+16:40:12,INFO,Level1_tut,Current world: 13,
+16:40:12,INFO,Level1_tut,Need to navigate from World 13 to World 1,
+16:40:18,INFO,Level1_tut,[to_home] Attempt 1/4 to go to home screen,
+16:40:19,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+16:40:20,INFO,Level1_tut,[to_home] Already at Home screen.,

@@ -1,0 +1,6 @@
+Time,Level,Module,Message,Screenshot
+14:32:06,INFO,tut,"[to_home] Screenshot taken: {'screen': '1755761526822.jpg', 'resolution': (540, 960)}",
+14:32:06,INFO,tut,[to_home] Screenshot path: D:\FSTest\LogFiles\screenshot\1755761526822.jpg,
+14:32:06,INFO,tut,[to_home] Marked screenshot saved: D:\FSTest\LogFiles\screenshot\marked_screenshots\campaign_button_markedddd.png,
+14:32:06,INFO,tut,"[to_home] Campaign button found at position: (146, 637)",
+14:32:07,INFO,tut,Popup event found: True,

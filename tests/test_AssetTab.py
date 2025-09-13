@@ -1,5 +1,4 @@
 from airtest.core.api import *
-from utils.base_test import BaseTest
 from Hierarchy.PopupPlayerProfile import *
 from utils.get_resource_amount import clean_number
 from utils.sprite_mapping import CARD_SPRITE_MAPPING

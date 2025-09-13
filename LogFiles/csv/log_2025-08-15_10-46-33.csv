@@ -1,0 +1,13 @@
+Time,Level,Module,Message,Screenshot
+10:46:33,INFO,Level1_tut,to home fixture initialized.,
+10:46:35,INFO,Level1_tut,[to_home] Already at Home screen.,
+10:46:35,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,
+10:46:40,INFO,TestLevel1_tut,[to_campaign_select_lv] ✓ Campaign popup opened successfully,
+10:46:40,INFO,Level1_tut,Target level 1 should be in World 1,
+10:46:41,INFO,Level1_tut,Current world: 1,
+10:46:41,INFO,Level1_tut,Looking for level 1 in normal levels,
+10:47:49,INFO,Level1_tut,Refresh attempt 1: Found 21 levels,
+10:48:02,INFO,Level1_tut,✓ Found target level 1 on attempt 1,
+10:48:16,INFO,Level1_tut,Found 21 normal levels,
+10:48:16,INFO,Level1_tut,"Found level 1, clicking on it",
+10:48:17,INFO,Level1_tut,Successfully clicked on level 1,

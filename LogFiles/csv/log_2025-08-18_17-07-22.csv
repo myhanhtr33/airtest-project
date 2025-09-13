@@ -1,0 +1,5 @@
+Time,Level,Module,Message,Screenshot
+17:07:44,WARNING,unknown,"Hand tutorial image or ingame notification frame not found, continuing...","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-18_17h07.png"", ""View"")"
+17:07:59,WARNING,unknown,"Hand tutorial image or ingame notification frame not found, continuing...","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-18_17h07.png"", ""View"")"
+17:08:09,INFO,unknown,Game won!,
+17:08:26,WARNING,unknown,Hand tutorial image not found after win popup,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-08-18_17h08.png"", ""View"")"
