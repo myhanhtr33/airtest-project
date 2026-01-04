@@ -101,7 +101,7 @@ def swipe_to_target_world_in_list(panel_worlds, target_item_index, max_attempts=
             cached_items = []
             for item in list_items:
                 try:
-                    item_index = int(item.index) if item.index and item.index.isdigit() else None
+                    item_index = int(item.index) if item.index  else None
                     if item_index:
                         cached_items.append((item, item_index))
                 except (ValueError, AttributeError):

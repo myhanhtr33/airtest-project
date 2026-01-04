@@ -1,0 +1,23 @@
+Time,Level,Module,Message,Screenshot
+09:36:41,INFO,PopupMilitary,to home fixture initialized.,
+09:36:45,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1766630205090.jpg,
+09:36:45,WARNING,PopupMilitary,[to_home] Failed to capture/mark mismatch screenshot: exists() got an unexpected keyword argument 'threshold',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-12-25_09h36.png"", ""View"")"
+09:36:46,INFO,PopupMilitary,[to_home] Attempt 1/4 to go to home screen,
+09:36:46,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+09:36:51,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1766630211253.jpg,
+09:36:51,WARNING,PopupMilitary,[to_home] Failed to capture/mark mismatch screenshot: exists() got an unexpected keyword argument 'threshold',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-12-25_09h36.png"", ""View"")"
+09:36:52,INFO,PopupMilitary,[to_home] Attempt 2/4 to go to home screen,
+09:36:52,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+09:36:57,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1766630217929.jpg,
+09:36:57,WARNING,PopupMilitary,[to_home] Failed to capture/mark mismatch screenshot: exists() got an unexpected keyword argument 'threshold',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-12-25_09h36.png"", ""View"")"
+09:36:58,INFO,PopupMilitary,[to_home] Attempt 3/4 to go to home screen,
+09:36:59,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+09:37:03,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1766630223826.jpg,
+09:37:03,WARNING,PopupMilitary,[to_home] Failed to capture/mark mismatch screenshot: exists() got an unexpected keyword argument 'threshold',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-12-25_09h37.png"", ""View"")"
+09:37:04,INFO,PopupMilitary,[to_home] Attempt 4/4 to go to home screen,
+09:37:04,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+09:37:10,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1766630230461.jpg,
+09:37:10,WARNING,PopupMilitary,[to_home] Failed to capture/mark mismatch screenshot: exists() got an unexpected keyword argument 'threshold',"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-12-25_09h37.png"", ""View"")"
+09:37:11,INFO,PopupMilitary,[to_home] Attempt 5/4 to go to home screen,
+09:37:11,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+09:37:12,ERROR,PopupMilitary,[to_home] ❌ Failed to return to Home screen after 4 attempts.,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-12-25_09h37.png"", ""View"")"

@@ -1,0 +1,10 @@
+Time,Level,Module,Message,Screenshot
+18:09:21,INFO,PopupMilitary,to home fixture initialized.,
+18:09:25,INFO,PopupMilitary,[to_home] Attempt 1/4 to go to home screen,
+18:09:26,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+18:09:30,INFO,PopupMilitary,[to_home] Attempt 2/4 to go to home screen,
+18:09:30,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+18:09:36,INFO,PopupMilitary,[to_home] Attempt 3/4 to go to home screen,
+18:09:36,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+18:09:40,INFO,PopupMilitary,[to_home] Attempt 4/4 to go to home screen,
+18:09:41,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,

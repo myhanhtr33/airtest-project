@@ -1,0 +1,13 @@
+Time,Level,Module,Message,Screenshot
+18:13:32,INFO,PopupMilitary,to home fixture initialized.,
+18:13:37,INFO,PopupMilitary,[to_home] Attempt 1/4 to go to home screen,
+18:13:37,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+18:13:41,INFO,PopupMilitary,[to_home] Attempt 2/4 to go to home screen,
+18:13:42,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+18:13:47,INFO,PopupMilitary,[to_home] Attempt 3/4 to go to home screen,
+18:13:47,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+18:13:52,INFO,PopupMilitary,[to_home] Attempt 4/4 to go to home screen,
+18:13:52,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+18:13:57,INFO,PopupMilitary,[to_home] Attempt 5/4 to go to home screen,
+18:13:58,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+18:13:59,ERROR,PopupMilitary,[to_home] ❌ Failed to return to Home screen after 4 attempts.,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-12-24_18h13.png"", ""View"")"

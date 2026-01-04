@@ -27,8 +27,8 @@ img_path= os.path.join(os.path.dirname(current_dir),"image","Tut","tutLv_noti_fr
 ingame_noti_img = Template(img_path)
 
 
-@pytest.mark.use_to_home(before=True, after=True, logger_name="Level1_tut")
-@pytest.mark.use_to_campaign_select_lv(before=True)
+# @pytest.mark.use_to_home(before=True, after=True, logger_name="Level1_tut")
+# @pytest.mark.use_to_campaign_select_lv(before=True)
 class TestLevel1_tut:
     def setup(self):
         pass
@@ -45,7 +45,7 @@ class TestLevel1_tut:
         if not popup.exists():
             logger.error("[to_campaign_select_lv] ❌ PopupSelectLevelHome not found after clicking Campaign!")
             raise RuntimeError("PopupSelectLevelHome(Clone) not found after clicking Campaign button")
-    def swipe_to_world_item(self, popup_campaign, target_world_indexu, max_attempts=10):
+    def swipe_to_world_item(self, popup_campaign, target_world_index, max_attempts=10):
         """
         ORIGINAL VERSION - Swipe to find and display the target WorldItem in the scrollview.
         The scrollview shows 6 visible elements at a time.
@@ -1236,6 +1236,70 @@ class TestLevel1_tut:
             logger.info(f"Popup event found: {is_popup_event}")
         else:
             logger.error(f"Popup event not found: {is_popup_event}")
+
+    def testtest(self,poco):
+        logger = get_logger("test logger")
+        # popup_prepare = PopupLevelPrepare(poco)
+        # assert popup_prepare.root.exists(), f"PopupLevelPrepare not found after clicking level"
+        # popup_prepare.btn_start.click(sleep_interval=3)
+        ui_ingame = UI_Ingame(poco)
+        if wait_for_element(ui_ingame.root, timeout=5):
+            bata_pos = wait(bata_img, timeout=8)
+            print("ST.LOG_DIR: "+ST.LOG_DIR)
+            if bata_pos:
+                from PIL import ImageDraw, Image
+                from datetime import datetime
+
+                # Take screenshot from airtest
+                screenshot_data = snapshot()
+                print(f"screenshot_data: {screenshot_data}")
+
+                # extract image file path from return value
+                if screenshot_data and 'screen' in screenshot_data:
+                    img_path= os.path.join(ST.LOG_DIR, screenshot_data['screen'])
+                    print(f"img_path: {img_path}")
+                    img= Image.open(img_path)
+
+                    # Draw circle using PIL
+                    draw = ImageDraw.Draw(img)
+                    x, y = int(bata_pos[0]), int(bata_pos[1])
+                    print(f"bata position: x={x}, y={y}")
+                    radius = 10
+                    bbox = (x - radius, y - radius, x + radius, y + radius)
+                    draw.ellipse(bbox, outline=(0, 255, 0), width=3)
+
+                    # Save the marked screenshot
+                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                    screenshot_dir = os.path.join(current_dir, "screenshots")
+                    os.makedirs(os.path.dirname(screenshot_dir), exist_ok=True)
+                    screenshot_path = os.path.join(screenshot_dir, timestamp+".png")
+                    img.save(screenshot_path)
+                    logger.info(f"Screenshot with marked bata position saved to: {screenshot_path}")
+                # import cv2
+                # from PIL import ImageDraw, Image
+                # from datetime import datetime
+                # import numpy as np
+                # # screenshot from airtest
+                # screenshot = snapshot()
+                #
+                # # ensure we have a numpy BGR image for OpenCV
+                # if isinstance(screenshot, np.ndarray):
+                #     img = screenshot.copy()
+                # else:
+                #     # convert PIL (RGB) -> numpy -> BGR for OpenCV
+                #     img = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
+                #
+                # # safe integer coordinates
+                # x, y = int(bata_pos[0]), int(bata_pos[1])
+                #
+                # # draw marker and save
+                # marked_screenshot = cv2.circle(img, (x, y), 10, (0, 255, 0), 3)
+                # timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                # screenshot_path = os.path.join(current_dir, "screenshots", f"bata_position_{timestamp}.png")
+                # os.makedirs(os.path.dirname(screenshot_path), exist_ok=True)
+                # cv2.imwrite(screenshot_path, marked_screenshot)
+                # logger.info(f"Screenshot with marked bata position saved to: {screenshot_path}")
+
 
 
 

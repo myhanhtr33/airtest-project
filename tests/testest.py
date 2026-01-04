@@ -170,24 +170,23 @@ class TestIngameeee:
             # else:
             #     print(f"Level {lv.index} does not have a valid mini chest.")
             if lv.index==4:
-                # Compute chest normalized position inline (no helper)
-                level_pos_normalized = lv.root.get_position() if lv.root.exists() else None
-                mini_chest_position = None
-                if level_pos_normalized and lv.mini_chest_image_template:
-                    tol_norm = 50.0 / float(screen_height)
-                    chest_results = None
-                    for _ in range(5):
-                        chest_results = find_all(lv.mini_chest_image_template)
-                        if chest_results:
-                            break
-                        sleep(0.5)
-                    if chest_results:
-                        for chest_result in chest_results:
-                            chest_px = chest_result['result']
-                            chest_norm = (float(chest_px[0]) / float(screen_width), float(chest_px[1]) / float(screen_height))
-                            if chest_norm[0] > level_pos_normalized[0] and abs(chest_norm[1] - level_pos_normalized[1]) < tol_norm:
-                                mini_chest_position = chest_norm
-                                break
-                if mini_chest_position:
-                    print(f"Level {lv.index}({lv.root.get_position()}) has a valid mini chest {mini_chest_position}.")
-                    claim_mini_chest_and_validate_rewards(lv, mini_chest_position, poco, logger)
+                mini_chest_position= has_valid_mini_chest(lv, poco, logger=logger)
+
+    def test_hierarchy(self,poco):
+        from poco.sdk.AbstractDumper import AbstractDumper, IDumper
+        # Dump the current UI hierarchy
+        hierarchy_data = poco.agent.hierarchy.dump()
+
+        # Print the hierarchy structure
+        import json
+        print(json.dumps(hierarchy_data, indent=2))
+
+        # Or save to file for better analysis
+        with open('hierarchy_dump.json', 'w') as f:
+            json.dump(hierarchy_data, f, indent=2)
+
+        root=poco("PopupPvp_Main2v2_Invi(Clone)")
+        hierarchy_data.dumpHierarchyImpl(root)
+
+
+

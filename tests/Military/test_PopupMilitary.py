@@ -60,6 +60,101 @@ class TestPopupMilitary:
         assert cls.popup.root.exists(), "Military popup did not open"
         logger.info("PopupMilitary test environment setup complete.")
 
+    def test_concurrent_exists(self,poco):
+        import threading
+        import time
+        results = {}
+        with poco.freeze() as fp:
+            freeze_popup = PopupMilitary(fp)
+
+        def check_back_button():
+            nodes = {
+                "frozen_btn_back": freeze_popup.btn_back,
+                "frozen_top_panel": freeze_popup.top_panel,
+                "frozen_upgrade_btn": freeze_popup.upgrade_btn,
+                # "btn_back": self.popup.btn_back,
+                # "top_panel": self.popup.top_panel,
+            }
+            for k, n in nodes.items():
+                try:
+                    # presence/visibility from snapshot
+                    results[k] = n.exists()  # or n.exists()
+                    print(f"Node {k} visibility: {results[k]}")
+                except Exception as e:
+                    results[k] = str(e)
+                    print(f"Error accessing node {k}: {e}")
+        def check_top_panel():
+            nodes = {
+                "frozen_rank_badge": freeze_popup.rank_badge,
+                "frozen_upgrade_btn": freeze_popup.upgrade_btn,
+                # "rank_badge": self.popup.rank_badge,
+                # "upgrade_btn": self.popup.upgrade_btn,
+            }
+            for k, n in nodes.items():
+                try:
+                    # presence/visibility from snapshot
+                    results[k] = n.exists()  # or n.exists()
+                    print(f"Node {k} visibility: {results[k]}")
+                except:
+                    results[k] = "error"
+                    print(f"Error accessing node {k}")
+        t1 = threading.Thread(target=check_back_button)
+        t2 = threading.Thread(target=check_top_panel)
+
+        start_time = time.time()
+        t1.start()
+        t2.start()
+        t1.join()
+        t2.join()
+        total = time.time() - start_time
+
+        print(f"Total time: {total:.3f}s")
+        # print(f"btn_back took: {results['btn_back']}")
+        # print(f"top_panel took: {results['top_panel']}")
+        for key, value in results.items(): print(f"{key}: {value}")
+
+    def test_frozen_UI(self,poco):
+        logger=get_logger()
+        screen=poco.get_screen_size()
+        print("::::BACKScreen size:",screen)
+
+    def test_frozen_element_presence(self,poco):
+        logger=get_logger()
+        with poco.freeze() as fp:
+            freeze_popup = PopupMilitary(fp)
+        assert freeze_popup.btn_back.exists(), "Back button not found"
+        assert freeze_popup.top_panel.exists(), "Top panel not found"
+        assert freeze_popup.title.strip() == "Military Career", "Title text mismatch"
+        assert freeze_popup.rank_badge.exists(), "Rank badge not found"
+        assert freeze_popup.info_btn.exists(), "Info button not found"
+        assert freeze_popup.mid_panel.exists(), "Mid panel not found"
+        assert freeze_popup.mid_title.strip() == "All squads get", "Mid title text mismatch"
+        assert len(freeze_popup.passives) == 6, "Expected 6 passives, found {}".format(len(freeze_popup.passives))
+        for i, passive in enumerate(freeze_popup.passives):
+            assert passive.root.exists(), f"Passive {i} not found"
+            assert passive.sprite.exists(), f"Passive {i} sprite not found"
+            assert passive.passive_stat_text != "", f"Passive {i} stat text is empty"
+            assert passive.passive_stat_text.endswith("%"), f"Passive {i} stat text does not end with '%': {passive.passive_stat_text}"
+        assert freeze_popup.bot_panel.exists(), "Bottom panel not found"
+        assert freeze_popup.progress_fill.exists(), "Process fill not found"
+        assert freeze_popup.progress_info_btn.exists(), "Process info button not found"
+        assert freeze_popup.upgrade_btn.exists(), "Upgrade button not found"
+        assert len(freeze_popup.weapon_points) == 5, "Expected 5 weapon points, found {}".format(len(freeze_popup.weapon_points))
+        for i, weapon_point in enumerate(freeze_popup.weapon_points):
+            assert weapon_point.root.exists(), f"Weapon point {i} not found"
+            assert weapon_point.icon.exists(), f"Weapon point {i} icon not found"
+            assert weapon_point.name not in ["", None], f"Weapon point {i} name is empty or None"
+            assert int(weapon_point.accumulated_point) >=0, f"Weapon point {i} accumulated point is empty"
+            if weapon_point.notice:
+                self.weapon_point_notices.append(True)
+            else:
+                self.weapon_point_notices.append(False)
+        assert freeze_popup.level_number_text.strip() != "", "Level number text is empty"
+        assert freeze_popup.level_category_text.strip() != "", "Level category text is empty"
+        assert freeze_popup.progress_text.strip() != "", "Process text is empty"
+        assert freeze_popup.upgrade_price_text.strip() != "", "Upgrade price text is empty"
+        logger.info("All elements are present and verified successfully.")
+
     @pytest.mark.order(1)
     def test_element_presence(self):
         logger=get_logger()
@@ -84,7 +179,7 @@ class TestPopupMilitary:
         for i, weapon_point in enumerate(self.popup.weapon_points):
             assert weapon_point.root.exists(), f"Weapon point {i} not found"
             assert weapon_point.icon.exists(), f"Weapon point {i} icon not found"
-            assert weapon_point.name.strip() != "", f"Weapon point {i} name is empty"
+            assert weapon_point.name not in ["", None], f"Weapon point {i} name is empty or None"
             assert int(weapon_point.accumulated_point) >=0, f"Weapon point {i} accumulated point is empty"
             if weapon_point.notice:
                 self.weapon_point_notices.append(True)
@@ -159,7 +254,7 @@ class TestPopupMilitary:
         current_point,required_point= self.popup.get_progress_points()
         upgrade_price=self.popup.upgrade_price_text
         initial_values = (current_point, required_point, upgrade_price)
-        if current_point>required_point:
+        if current_point>=required_point:
             logger.info("active upgrade button")
             return
         assert not self.popup.upgrade_btn_notice, "Upgrade button notice should not be active"

@@ -10,10 +10,8 @@ from Hierarchy.PopupMilitary import *
 import os
 
 current_dir=os.path.dirname(os.path.abspath(__file__))
-img_path= os.path.join(os.path.dirname(current_dir),"image","btnCampaign.png")
-btnCampaign_img = Template(img_path, record_pos=(-0.003, 0.815), resolution=(720, 1280), rgb= True)
-
-# Set up airtest log directory for screenshots
+img_path= os.path.join(os.path.dirname(current_dir),"image","btnCampaign1.png")
+btnCampaign_img = Template(img_path, record_pos=(0.254, 0.511), resolution=(900, 1800), rgb= True, scale_max=800, scale_step=0.005)
 log_dir = os.path.join(os.path.dirname(current_dir), "LogFiles", "screenshot")
 os.makedirs(log_dir, exist_ok=True)
 ST.LOG_DIR = log_dir
@@ -33,9 +31,12 @@ def pytest_configure(config):
 def poco() ->UnityPoco:
     # connect once per session
     # dev = connect_device("android://127.0.0.1:5037/emulator-5554")
-    dev = connect_device("android://127.0.0.1:5037/emulator-5564")
+    # dev = connect_device("android://127.0.0.1:5037/emulator-5564")
+    dev=connect_device("Windows:///7604876")
     print(f"Connected to Unity device: {dev}")
     _poco=UnityPoco()
+    screen=_poco.get_screen_size()
+    print(f"SSSSSSSScreen size: {screen}")
     return _poco
 
 @pytest.fixture(scope="session")
@@ -94,70 +95,119 @@ def fixture_orchestrator(request, poco):
 
         # Try up to 4 times to get to the home screen
         for attempt in range(5):
-            if exists(btnCampaign_img):
-                logger.info("[to_home] Already at Home screen.")
-                # Take screenshot and mark the Campaign button
-                # try:
-                #     from airtest.core.api import snapshot
-                #     import cv2
-                #     import os
-                #
-                #     campaign_result = exists(btnCampaign_img)
-                #     print(f"::::::::::::::::::: {campaign_result}  ")
-                #     if campaign_result:
-                #         # Take screenshot
-                #         screenshot_result = snapshot(msg="Campaign button found")
-                #         logger.info(f"[to_home] Screenshot taken: {screenshot_result}")
-                #
-                #         # Extract the actual file path from the result
-                #         if isinstance(screenshot_result, dict) and 'screen' in screenshot_result:
-                #             screenshot_filename = screenshot_result['screen']
-                #             screenshot_path = os.path.join(ST.LOG_DIR, screenshot_filename)
-                #         else:
-                #             screenshot_path = screenshot_result
-                #
-                #         logger.info(f"[to_home] Screenshot path: {screenshot_path}")
-                #
-                #         # Load the screenshot and mark the campaign button
-                #         img = cv2.imread(screenshot_path)
-                #         if img is not None:
-                #             # campaign_result contains the position (x, y) of the found object
-                #             x, y = campaign_result
-                #
-                #             # Draw a rectangle around the button (approximate size)
-                #             # Adjust the rectangle size based on your button dimensions
-                #             rect_width, rect_height = 100, 50  # Adjust as needed
-                #             top_left = (int(x - rect_width//2), int(y - rect_height//2))
-                #             bottom_right = (int(x + rect_width//2), int(y + rect_height//2))
-                #
-                #             # Draw red rectangle around the button
-                #             cv2.rectangle(img, top_left, bottom_right, (0, 0, 255), 3)
-                #
-                #             # Add text label
-                #             cv2.putText(img, "Campaign Button", (top_left[0], top_left[1] - 10),
-                #                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
-                #
-                #             # Save the marked screenshot
-                #             marked_screenshot_dir = os.path.join(os.path.dirname(screenshot_path), "marked_screenshots")
-                #             os.makedirs(marked_screenshot_dir, exist_ok=True)
-                #             marked_screenshot_path = os.path.join(marked_screenshot_dir, f"campaign_button_marked_{attempt}.png")
-                #             cv2.imwrite(marked_screenshot_path, img)
-                #
-                #             logger.info(f"[to_home] Marked screenshot saved: {marked_screenshot_path}")
-                #             logger.info(f"[to_home] Campaign button found at position: {campaign_result}")
-                #         else:
-                #             logger.warning(f"[to_home] Could not load image from: {screenshot_path}")
-                # except Exception as e:
-                #     logger.warning(f"[to_home] Failed to create marked screenshot: {e}")
-                break
-            logger.info(f"[to_home] Attempt {attempt + 1}/4 to go to home screen")
+            campaign_result = exists(btnCampaign_img)
+            if campaign_result:
+                # existing handling (screenshot + marking when found)
+                try:
+                    from airtest.core.api import snapshot
+                    import cv2
+                    import os
 
-            try:
-                keyevent("BACK")
-                logger.info("[to_home] Sent BACK keyevent.")
-                time.sleep(1)
-            except Exception:
-                logger.warning("[to_home] BACK keyevent not supported.")
+                    screenshot_result = snapshot(msg="Campaign button found")
+                    if isinstance(screenshot_result, dict) and 'screen' in screenshot_result:
+                        screenshot_filename = screenshot_result['screen']
+                        screenshot_path = os.path.join(ST.LOG_DIR, screenshot_filename)
+                    else:
+                        screenshot_path = screenshot_result
+
+                    logger.info(f"[to_home] Screenshot path: {screenshot_path}")
+
+                    img = cv2.imread(screenshot_path)
+                    if img is not None:
+                        x, y = campaign_result
+                        rect_width, rect_height = 100, 50
+                        top_left = (int(x - rect_width // 2), int(y - rect_height // 2))
+                        bottom_right = (int(x + rect_width // 2), int(y + rect_height // 2))
+
+                        cv2.rectangle(img, top_left, bottom_right, (0, 0, 255), 3)
+                        cv2.putText(img, "Campaign Button", (top_left[0], top_left[1] - 10),
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+
+                        marked_screenshot_dir = os.path.join(os.path.dirname(screenshot_path), "marked_screenshots")
+                        os.makedirs(marked_screenshot_dir, exist_ok=True)
+                        marked_screenshot_path = os.path.join(marked_screenshot_dir,
+                                                              f"campaign_button_marked_{attempt}.png")
+                        cv2.imwrite(marked_screenshot_path, img)
+
+                        logger.info(f"[to_home] Marked screenshot saved: {marked_screenshot_path}")
+                        logger.info(f"[to_home] Campaign button found at position: {campaign_result}")
+                    else:
+                        logger.warning(f"[to_home] Could not load image from: {screenshot_path}")
+                except Exception as e:
+                    logger.warning(f"[to_home] Failed to create marked screenshot: {e}")
+                break
+            else:
+                # not found: capture screenshot and try a lower threshold to get an approximate position,
+                # then mark and save for debugging (useful when keypoint matches are below default threshold)
+                try:
+                    from airtest.core.api import snapshot
+                    import cv2
+                    import os
+
+                    screenshot_result = snapshot(msg="Campaign button NOT found - capture for analysis")
+                    if isinstance(screenshot_result, dict) and 'screen' in screenshot_result:
+                        screenshot_filename = screenshot_result['screen']
+                        screenshot_path = os.path.join(ST.LOG_DIR, screenshot_filename)
+                    else:
+                        screenshot_path = screenshot_result
+
+                    logger.info(f"[to_home] Saved failure screenshot: {screenshot_path}")
+
+                    # try a lower threshold to get approximate match (logs show confidences ~0.5)
+                    # approx = exists(btnCampaign_img, threshold=0.45)
+                    # try:
+                    #     approx = loop_find(btnCampaign_img, timeout=ST.FIND_TIMEOUT_TMP, interval=0.5, threshold=0.45)
+                    # except TargetNotFoundError:
+                    #     logger.info(
+                    #         "[to_home] No approximate match found even at low threshold; raw screenshot saved for analysis.")
+                    #     approx = None
+                    img = cv2.imread(screenshot_path)
+
+                    screen = cv2.imread(screenshot_path)
+                    if screen is not None:
+                        btnCampaign_img.threshold = 0.45  # Lower threshold
+                        approx = btnCampaign_img._cv_match(screen)
+                    else:
+                        approx = None
+                    if approx and img is not None:
+                        print(f"approx template match: {approx}")
+                        center_x, center_y = approx['result']
+                        rect_width, rect_height = 120, 60
+                        rectangle = approx['rectangle']
+
+                        # Draw the rectangle using the 4 corner points
+                        pts = [(int(x), int(y)) for x, y in rectangle]
+                        for i in range(4):
+                            cv2.line(img, pts[i], pts[(i + 1) % 4], (0, 0, 255), 3)
+
+                        # Draw center point
+                        cv2.circle(img, (int(center_x), int(center_y)), 5, (0, 255, 0), -1)
+
+                        # Add label
+                        cv2.putText(img, f"fail (conf={approx.get('confidence', 0):.2f})",
+                                    (pts[0][0], pts[0][1] - 10),
+                                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+
+                        marked_screenshot_dir = os.path.join(os.path.dirname(screenshot_path), "marked_screenshots")
+                        os.makedirs(marked_screenshot_dir, exist_ok=True)
+                        marked_screenshot_path = os.path.join(marked_screenshot_dir,
+                                                              f"campaign_button_mismatch_{attempt}.png")
+                        cv2.imwrite(marked_screenshot_path, img)
+
+                        logger.info(f"[to_home] Marked mismatch screenshot saved: {marked_screenshot_path}")
+                        logger.info(f"[to_home] Approximate match position (low threshold): {approx}")
+                    else:
+                        logger.info("[to_home] No approximate match found; raw screenshot saved for analysis.")
+                except Exception as e:
+                    logger.warning(f"[to_home] Failed to capture/mark mismatch screenshot: {e}")
+
+                logger.info(f"[to_home] Attempt {attempt + 1}/4 to go to home screen")
+                try:
+                    keyevent("BACK")
+                    logger.info("[to_home] Sent BACK keyevent.")
+                    time.sleep(1)
+                except Exception:
+                    logger.warning("[to_home] BACK keyevent not supported.")
         else:
             logger.error("[to_home] ❌ Failed to return to Home screen after 4 attempts.")
             raise RuntimeError("Could not return to Home screen after 4 attempts.")

@@ -1,0 +1,9 @@
+Time,Level,Module,Message,Screenshot
+09:46:09,INFO,PopupMilitary,to home fixture initialized.,
+09:46:14,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1766630774497.jpg,
+09:46:15,INFO,PopupMilitary,[to_home] Marked mismatch screenshot saved: D:\FSTest\LogFiles\screenshot\marked_screenshots\campaign_button_mismatch_0.png,
+09:46:15,INFO,PopupMilitary,"[to_home] Approximate match position (low threshold): (672, 1352)",
+09:46:15,INFO,PopupMilitary,[to_home] Attempt 1/4 to go to home screen,
+09:46:15,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+09:46:20,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1766630780258.jpg,
+09:46:23,INFO,setup method,Setting up PopupMilitary test environment...,
