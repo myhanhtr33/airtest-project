@@ -1,0 +1,10 @@
+Time,Level,Module,Message,Screenshot
+18:05:11,INFO,PopupMilitary,to home fixture initialized.,
+18:05:14,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1767611114917.jpg,
+18:05:15,INFO,PopupMilitary,[to_home] No approximate match found; raw screenshot saved for analysis.,
+18:05:15,INFO,PopupMilitary,[to_home] Attempt 1/4 to go to home screen,
+18:05:15,INFO,PopupMilitary,[to_home] Sent BACK/ESC keyevent.,
+18:05:19,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1767611119767.jpg,
+18:05:19,INFO,PopupMilitary,[to_home] No approximate match found; raw screenshot saved for analysis.,
+18:05:19,INFO,PopupMilitary,[to_home] Attempt 2/4 to go to home screen,
+18:05:20,INFO,PopupMilitary,[to_home] Sent BACK/ESC keyevent.,

@@ -1,0 +1,13 @@
+Time,Level,Module,Message,Screenshot
+15:07:55,INFO,PopupMilitary,to home fixture initialized.,
+15:07:58,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1767686878648.jpg,
+15:07:58,INFO,PopupMilitary,[to_home] No approximate match found; raw screenshot saved for analysis.,
+15:07:58,INFO,PopupMilitary,[to_home] Attempt 1/4 to go to home screen,
+15:07:58,INFO,PopupMilitary,[to_home] Sent BACK/ESC keyevent.,
+15:08:00,INFO,PopupMilitary,[to_home] Screenshot path: D:\FSTest\LogFiles\screenshot\1767686880116.jpg,
+15:08:00,INFO,PopupMilitary,[to_home] Marked screenshot saved: D:\FSTest\LogFiles\screenshot\marked_screenshots\campaign_button_marked_1.png,
+15:08:00,INFO,PopupMilitary,"[to_home] Campaign button found at position: [329, 153]",
+15:08:00,INFO,setup method,Setting up PopupMilitary test environment...,
+15:08:05,INFO,setup method,PopupMilitary test environment setup complete.,
+15:08:05,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_frozen_UI,Clicking on weapon point 1: Aircraft,
+15:08:07,INFO,Military:test_PopupMilitary.py:TestPopupMilitary:test_frozen_UI,Popup Military Get Point opened for Aircraft,

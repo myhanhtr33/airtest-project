@@ -4,6 +4,7 @@ import datetime, time
 
 import pandas as pd
 from typing import Literal
+from utils.UI_scrollview_helper import calculate_row_distance as calc_row_distance, scroll_to_item as scroll_helper
 current_dir=os.path.dirname(os.path.abspath(__file__))
 file_path= os.path.join(os.path.dirname(current_dir),"Data","Military.xlsx")
 type=["Aircraft", "Drone", "Wing", "Pilot", "Engine"]
@@ -26,6 +27,7 @@ expected_passive_sprites=["UI_Career_Pass",
                           "Reduce_Damage"]
 class PopupMilitary:
     def __init__(self, poco):
+        print("in PopupMilitary __init__")
         self.poco = poco
         self.root= self.poco("PopupMilitaryCareer(Clone)")
         self.btn_back = self.root.offspring("B_Back (1)")
@@ -189,6 +191,7 @@ class PopupMilitaryGetPoint:
         title_obj= self.middle_panel.offspring("title")
         self.title = title_obj.attr('text').strip() if title_obj.exists() else None
         self.generator=self.middle_panel.offspring("Generators").child(f"{type_name[0]}Generator")
+        self.scroll_view = self.root.offspring("Grid")
         # self.items=[]
         # start_time=time.time()
         # for item in list(self.middle_panel.offspring("Grid").children())[:5]: # Limit to first 5 items for performance
@@ -199,20 +202,17 @@ class PopupMilitaryGetPoint:
         # end_time = time.time()
         # print(f"Time taken to process Grid items: {end_time - start_time:.4f} seconds")
         self.weapon_points = []
-        start_time = time.time()
         for i in range(5):
             _type = type[i]
             _name = {1: "Air", 2: "Drone", 3: "Wing", 4: "Pilot", 5: "Engine"}[i + 1]
             node = self.root.offspring(f"{_type}Point")
             if node.exists():
                 self.weapon_points.append(WeaponPoint_PopupGetPoint(node, _name))
-        end_time = time.time()
-        print(f"Time taken to process weapon_points: {end_time - start_time:.4f} seconds")
     @property
     def items(self):
         result = []
         start_time = time.time()
-        for item in list(self.middle_panel.offspring("Grid").children())[:5]:  # Limit to first 5 items for performance
+        for item in list(self.middle_panel.offspring("Grid").children()): #[:5]:  # Limit to first 5 items for performance
             if self._type_name == "Pilot":
                 result.append(PilotItem(item))
             else:
@@ -220,9 +220,51 @@ class PopupMilitaryGetPoint:
         end_time = time.time()
         print(f"Time taken to process Grid items: {end_time - start_time:.4f} seconds")
         return result
+
+
+    def scroll_to_item(self, item,row_distance):
+        """
+        Scroll to make an item visible if it's below the weapon_points at the bottom.
+        Uses weapon_points y-axis as reference threshold.
+        """
+        # Get the y position of weapon_points (they all have the same y)
+        if not self.weapon_points or len(self.weapon_points) == 0:
+            print("[scroll_to_item] No weapon points found, skipping scroll check")
+            return
+
+        # Get weapon points y position as the threshold
+        weapon_point_y = self.weapon_points[0].root.get_position()[1]
+        print(f"[scroll_to_item] Weapon points y-axis: {weapon_point_y}")
+
+        # Get the item's y position
+        item_pos = item.root.get_position()
+        item_y = item_pos[1]
+        print(f"[scroll_to_item] Item {item.root} y-axis: {item_y}")
+
+
+        # Adjust item y position by adding row distance to account for full item visibility
+        adjusted_item_y = item_y + row_distance
+        print(f"[scroll_to_item] Adjusted item y (item_y + row_distance): {adjusted_item_y}")
+
+        # If adjusted item position is below weapon points threshold, scroll is needed
+        if adjusted_item_y >= weapon_point_y:
+            print(f"[scroll_to_item] Item is below weapon points threshold (adjusted), scrolling...")
+            # Scroll the middle panel/scrollview
+            # Use swipe or focus to bring item into view
+            try:
+                self.scroll_view.swipe([0, -0.3])  # Negative y to scroll down
+                time.sleep(2)
+                print(f"[scroll_to_item] Swiped scrollview")
+                return True
+            except Exception as e:
+                print(f"[scroll_to_item] Swipe failed: {e}")
+        else:
+            print(f"[scroll_to_item] Item is visible, no scroll needed")
+        return False
 class HangarItem:
     def __init__(self,node):
         self.root=node
+        # print(f"in HangarItem __init__ str:{str(self.root)} root{self.root}")
     @property
     def item_icon(self):
         obj=self.root.offspring("sIcon")
@@ -245,7 +287,7 @@ class HangarItem:
     @property
     def point_text(self):
         obj= self.root.offspring("lPoint")
-        return obj.get_text().strip() if obj.exists() else None
+        return obj.get_text().strip().replace("+","") if obj.exists() else None
     @property
     def claimed_icon(self):
         obj=self.root.offspring("goClaimed")

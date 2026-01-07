@@ -28,12 +28,17 @@ def pytest_configure(config):
     )
 
 @pytest.fixture(scope="session")
-def poco() ->UnityPoco:
-    # connect once per session
+def dev():
+    # connect once per session and provide device fixture
     # dev = connect_device("android://127.0.0.1:5037/emulator-5554")
     # dev = connect_device("android://127.0.0.1:5037/emulator-5564")
-    dev=connect_device("Windows:///7604876")
+    dev = connect_device("Windows:///265226")
     print(f"Connected to Unity device: {dev}")
+    return dev
+
+@pytest.fixture(scope="session")
+def poco(dev,setup_unity_gameview) ->UnityPoco:
+    # create UnityPoco while depending on the shared dev fixture
     _poco=UnityPoco()
     screen=_poco.get_screen_size()
     print(f"SSSSSSSScreen size: {screen}")
@@ -43,6 +48,25 @@ def poco() ->UnityPoco:
 def poco_android()-> AndroidUiautomationPoco:
     # connect once per session
     return AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=False)
+
+@pytest.fixture(scope="session")
+def setup_unity_gameview(dev):
+    device_uri = str(dev)
+    if "android" in device_uri.lower():
+        # For Android devices, no special setup needed
+        print("Android device detected; no special game view setup required.")
+        return dev
+    elif "windows" in device_uri.lower():
+        # For Windows devices, set focus_rect to exclude internal toolbar
+        print("Windows device detected; setting up game view.")
+        # Remove the internal toolbar (the row with Display / Aspect / Scale)
+        dev.focus_rect = (0, 40, 0, 0)  # start with 40, adjust 35~60 if needed
+        # Debug
+        w, h = dev.get_current_resolution()
+        print("Resolution:", w, h)
+        print("focus_rect:", dev.focus_rect)
+        return dev
+
 
 @pytest.fixture(scope="function")
 def shop_navigator(poco)-> ShopNavigator:
@@ -56,7 +80,7 @@ def popup_military_info(poco)-> PopupMilitaryCareerInfo:
     return PopupMilitaryCareerInfo(poco)
 
 @pytest.fixture(scope="function", autouse=True)
-def fixture_orchestrator(request, poco):
+def fixture_orchestrator(request, poco, dev):
     """
     Orchestrates the execution order of to_home and to_campaign_select_lv markers.
     """
@@ -153,14 +177,6 @@ def fixture_orchestrator(request, poco):
 
                     logger.info(f"[to_home] Saved failure screenshot: {screenshot_path}")
 
-                    # try a lower threshold to get approximate match (logs show confidences ~0.5)
-                    # approx = exists(btnCampaign_img, threshold=0.45)
-                    # try:
-                    #     approx = loop_find(btnCampaign_img, timeout=ST.FIND_TIMEOUT_TMP, interval=0.5, threshold=0.45)
-                    # except TargetNotFoundError:
-                    #     logger.info(
-                    #         "[to_home] No approximate match found even at low threshold; raw screenshot saved for analysis.")
-                    #     approx = None
                     img = cv2.imread(screenshot_path)
 
                     screen = cv2.imread(screenshot_path)
@@ -203,11 +219,11 @@ def fixture_orchestrator(request, poco):
 
                 logger.info(f"[to_home] Attempt {attempt + 1}/4 to go to home screen")
                 try:
-                    keyevent("BACK")
-                    logger.info("[to_home] Sent BACK keyevent.")
+                    send_back(dev)
+                    logger.info("[to_home] Sent BACK/ESC keyevent.")
                     time.sleep(1)
-                except Exception:
-                    logger.warning("[to_home] BACK keyevent not supported.")
+                except Exception as e:
+                    logger.warning(f"[to_home] BACK/ESC keyevent failed: {e}")
         else:
             logger.error("[to_home] ❌ Failed to return to Home screen after 4 attempts.")
             raise RuntimeError("Could not return to Home screen after 4 attempts.")
@@ -248,14 +264,47 @@ def fixture_orchestrator(request, poco):
                 logger.info(f"[to_home] Attempt {attempt + 1}/4 to go to home screen")
 
                 try:
-                    keyevent("BACK")
-                    logger.info("[to_home] Sent BACK keyevent.")
+                    send_back(dev)
+                    logger.info("[to_home] Sent BACK/ESC keyevent.")
                     time.sleep(1)
-                except Exception:
-                    logger.warning("[to_home] BACK keyevent not supported.")
+                except Exception as e:
+                    logger.warning(f"[to_home] BACK/ESC keyevent failed: {e}")
             else:
                 logger.error("[to_home] ❌ Failed to return to Home screen after 4 attempts.")
                 raise RuntimeError("Could not return to Home screen after 4 attempts.")
 
     if any(marker.kwargs.get("after", False) for marker in markers.values()):
         request.addfinalizer(cleanup)
+
+def send_back(dev):
+    """
+    Send a "back" action to the connected device.
+    - For Android devices: send BACK keyevent
+    - For Windows devices: send ESC key via Win32 API
+    Args:
+        dev: The device fixture from connect_device()
+    """
+    import ctypes
+    import time
+
+    # Check if it's an Android device by inspecting the device type
+    device_uri = str(dev)
+    if "android" in device_uri.lower():
+        # Android device - use BACK keyevent
+        keyevent("BACK")
+        print("[send_back] Sent BACK keyevent to Android device.")
+    elif "windows" in device_uri.lower():
+        # Windows device - send ESC key using Win32 API
+        # This directly simulates pressing ESC key on the active window
+        VK_ESCAPE = 0x1B
+        KEYEVENTF_KEYUP = 0x0002
+        # Press ESC
+        ctypes.windll.user32.keybd_event(VK_ESCAPE, 0, 0, 0)
+        time.sleep(0.05)  # Small delay between press and release
+        # Release ESC
+        ctypes.windll.user32.keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0)
+        print("[send_back] Sent ESC key to Windows device via Win32 API.")
+    else:
+        raise RuntimeError(f"Unknown device type: {device_uri}")
+
+
