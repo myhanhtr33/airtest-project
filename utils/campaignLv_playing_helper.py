@@ -158,18 +158,18 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
             end_pos = (initial_plane_pos[0] + (initial_plane_pos[0] - start_pos[0]), initial_plane_pos[1])
             btn_node = ui_ingame.btn_plane_skill
             btn = btn_node if btn_node.exists() else None
-            btn_gem_revival_popup_node = RevivalPopup(poco.freeze()).btn_gem
-            btn_gem_revival_popup = btn_gem_revival_popup_node if btn_gem_revival_popup_node.exists() else None
-            btn_continue_popup_pause_node= PausePopup(poco.freeze()).btn_resume
-            btn_continue_popup_pause = btn_continue_popup_pause_node if btn_continue_popup_pause_node.exists() else None
             first_move = False
 
             # Main gameplay loop - continues until skill button disappears (game ends)
             while btn:
+                btn_gem_revival_popup_node = RevivalPopup(poco.freeze()).btn_gem
+                btn_gem_revival_popup = btn_gem_revival_popup_node if btn_gem_revival_popup_node.exists() else None
+                btn_continue_popup_pause_node = PausePopup(poco.freeze()).btn_resume
+                btn_continue_popup_pause = btn_continue_popup_pause_node if btn_continue_popup_pause_node.exists() else None
                 if btn_gem_revival_popup:
                     if get_single_resource_amount(poco, "gem") < 50:
                         poco.invoke("add_gem", amount=50)
-                        # logger.info("Not enough gems for revival, invoking add_gem")
+                        logger.info("Not enough gems for revival, invoking add_gem")
                     sleep(1)
                     btn_gem_revival_popup.click(sleep_interval=2)
                     continue
@@ -196,7 +196,7 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
 
                 # Return movement
                 swipe(end_pos, start_pos, duration=1)
-                sleep(0.5)
+                # sleep(0.5)
 
                 # Collect resource amounts during gameplay (second collection)
                 tmp = UITop(poco).collected_gold

@@ -168,6 +168,7 @@ def swipe_to_target_world_in_list(poco,popup_Selectlv, target_item_index:int, ma
 
         logger.info(f"Swiping from {swipe_start} to {swipe_end} to find world {target_item_index}")
         swipe(swipe_start, swipe_end)
+        sleep(2) # Wait for UI to stabilize after swipe prepare for next attempt
 
     logger.error(f"Could not find item {target_item_index} after {max_attempts} attempts")
     return None

@@ -34,7 +34,7 @@ def dev():
     # connect once per session and provide device fixture
     # dev = connect_device("android://127.0.0.1:5037/emulator-5554")
     # dev = connect_device("android://127.0.0.1:5037/emulator-5564")
-    dev = connect_device("Windows:///10227356") #unity editor
+    dev = connect_device("Windows:///5311952") #unity editor
     print(f"Connected to Unity device: {dev}")
     return dev
 
@@ -62,7 +62,7 @@ def setup_unity_gameview(dev):
         # For Windows devices, set focus_rect to exclude internal toolbar
         print("Windows device detected; setting up game view.")
         # Remove the internal toolbar (the row with Display / Aspect / Scale)
-        dev.focus_rect = (0, 33, 0, 0)  # just applied for 18:9 portrait game view
+        dev.focus_rect = (0, 30, 0, 0)  # just applied for 18:9 portrait game view
         # Debug
         w, h = dev.get_current_resolution()
         print("Resolution:", w, h)

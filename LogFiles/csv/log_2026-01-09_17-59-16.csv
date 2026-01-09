@@ -1,0 +1,6 @@
+Time,Level,Module,Message,Screenshot
+17:59:19,INFO,leuleuleu,=== STARTING LEVEL 3 TEST ===,
+17:59:20,INFO,leuleuleu,Phase 2: Navigating to Level 3,
+17:59:20,INFO,leuleuleu,Target level 3 should be in World 1,
+17:59:20,INFO,leuleuleu,Current world: 48,
+17:59:20,INFO,leuleuleu,Need to navigate from World 48 to World 1,
