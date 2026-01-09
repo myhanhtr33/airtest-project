@@ -17,7 +17,6 @@ class PopupCampaignSelectLv:
     def current_world(self):
         tmp = self.btn_worlds.offspring("lTitleWorld")
         text = re.search(r"World\s+(\d+)", tmp.get_text().strip()).group(1) if tmp.exists() else None
-        print(f"current_worldcurrent_worldcurrent_worldcurrent_world:{text}")
         return text
     @property
     def mode_normal(self):
@@ -54,12 +53,20 @@ class PopupCampaignSelectLv:
     @property
     def list_level_extra(self):
         return self._scan("extra")
+    @property
+    def world_panel(self):
+        node=self.root.offspring("PanelWorldInfo")
+        return PanelWorlds(node)
+
 class PanelWorlds:
-    def __init__(self,poco):
-        self.root = poco("PanelWorldInfo")
+    def __init__(self,root):
+        self.root = root
     @property
     def title(self):
         return  self.root.offspring("lWorld")
+    @property
+    def scrollview(self):
+        return self.root.offspring("GridElement")
     @property
     def list_world(self):
         return [WorldItem(node) for node in self.root.offspring("GridElement").children()]

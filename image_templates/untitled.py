@@ -21,3 +21,7 @@ print("start...")
 # simple_report(__file__, logpath=True
 Template(r"tpl1766631100924.png", record_pos=(0.254, 0.511), resolution=(900, 1800))
 poco("item0")poco("PopupMilitaryGetPoint(Clone)").offspring("Scrollviewpoco("PopupMilitaryGetPoint(Clone)").offspring("Grid")")
+poco("PanelWorldInfo")
+poco("GridElement")
+poco("B_Worlds")poco("lTitleWorldpoco("TabLevel3").child("posLevel2").child("LevelItemObj")")
+poco("UbhObjectPool")

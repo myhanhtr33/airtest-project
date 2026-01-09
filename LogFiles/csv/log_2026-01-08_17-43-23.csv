@@ -1,0 +1,10 @@
+Time,Level,Module,Message,Screenshot
+17:43:24,INFO,PopupMilitary,to home fixture initialized.,
+17:43:24,INFO,PopupMilitary,[to_home] Screenshot path: D:\FSTest\LogFiles\screenshot\1767869004425.jpg,
+17:43:24,INFO,PopupMilitary,[to_home] Marked screenshot saved: D:\FSTest\LogFiles\screenshot\marked_screenshots\campaign_button_marked_0.png,
+17:43:24,INFO,PopupMilitary,"[to_home] Campaign button found at position: (333, 705)",
+17:43:24,INFO,setup method,Setting up PopupMilitary test environment...,
+17:43:28,INFO,setup method,PopupMilitary test environment setup complete.,
+17:43:38,INFO,PopupMilitary,[to_home] Attempt 1/4 to go to home screen,
+17:43:38,INFO,PopupMilitary,[to_home] Sent BACK/ESC keyevent.,
+17:43:39,INFO,PopupMilitary,[to_home] Already at Home screen.,

@@ -8,9 +8,11 @@ from Hierarchy.ShopNavigator import ShopNavigator
 from logger_config import get_logger
 from Hierarchy.PopupMilitary import *
 import os
+from utils.keyboard_helper import press_key
+
 
 current_dir=os.path.dirname(os.path.abspath(__file__))
-img_path= os.path.join(os.path.dirname(current_dir),"image","btnCampaign1.png")
+img_path= os.path.join(os.path.dirname(current_dir),"image","btnCampaign.png")
 btnCampaign_img = Template(img_path, record_pos=(0.254, 0.511), resolution=(900, 1800), rgb= True, scale_max=800, scale_step=0.005)
 log_dir = os.path.join(os.path.dirname(current_dir), "LogFiles", "screenshot")
 os.makedirs(log_dir, exist_ok=True)
@@ -32,7 +34,7 @@ def dev():
     # connect once per session and provide device fixture
     # dev = connect_device("android://127.0.0.1:5037/emulator-5554")
     # dev = connect_device("android://127.0.0.1:5037/emulator-5564")
-    dev = connect_device("Windows:///265226")
+    dev = connect_device("Windows:///10227356") #unity editor
     print(f"Connected to Unity device: {dev}")
     return dev
 
@@ -60,7 +62,7 @@ def setup_unity_gameview(dev):
         # For Windows devices, set focus_rect to exclude internal toolbar
         print("Windows device detected; setting up game view.")
         # Remove the internal toolbar (the row with Display / Aspect / Scale)
-        dev.focus_rect = (0, 40, 0, 0)  # start with 40, adjust 35~60 if needed
+        dev.focus_rect = (0, 33, 0, 0)  # just applied for 18:9 portrait game view
         # Debug
         w, h = dev.get_current_resolution()
         print("Resolution:", w, h)
@@ -219,7 +221,9 @@ def fixture_orchestrator(request, poco, dev):
 
                 logger.info(f"[to_home] Attempt {attempt + 1}/4 to go to home screen")
                 try:
-                    send_back(dev)
+                    # send_back(dev)
+                    sleep(1)
+                    press_key(poco, "BACK")
                     logger.info("[to_home] Sent BACK/ESC keyevent.")
                     time.sleep(1)
                 except Exception as e:
@@ -264,7 +268,9 @@ def fixture_orchestrator(request, poco, dev):
                 logger.info(f"[to_home] Attempt {attempt + 1}/4 to go to home screen")
 
                 try:
-                    send_back(dev)
+                    # send_back(dev)
+                    sleep(1)
+                    press_key(poco,"BACK")
                     logger.info("[to_home] Sent BACK/ESC keyevent.")
                     time.sleep(1)
                 except Exception as e:

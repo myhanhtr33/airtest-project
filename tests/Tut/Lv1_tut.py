@@ -1,4 +1,5 @@
 ﻿import cv2
+from pywinauto.keyboard import SendKeys
 from scripts.regsetup import description
 
 from Hierarchy.HOME_Element import HomeSquad
@@ -14,6 +15,7 @@ import os
 from logger_config import get_logger
 from utils.get_resource_amount import get_single_resource_amount
 from utils.helper_functions import wait_for_element
+from utils.keyboard_helper import press_key
 from utils.test_level_helper import *
 current_dir=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 img_path= os.path.join(os.path.dirname(current_dir),"image","Plane1_bata.png")
@@ -45,192 +47,6 @@ class TestLevel1_tut:
         if not popup.exists():
             logger.error("[to_campaign_select_lv] ❌ PopupSelectLevelHome not found after clicking Campaign!")
             raise RuntimeError("PopupSelectLevelHome(Clone) not found after clicking Campaign button")
-    def swipe_to_world_item(self, popup_campaign, target_world_index, max_attempts=10):
-        """
-        ORIGINAL VERSION - Swipe to find and display the target WorldItem in the scrollview.
-        The scrollview shows 6 visible elements at a time.
-        Optimized with intelligent swipe distance calculation to minimize attempts.
-
-        Args:
-            popup_campaign: PopupCampaignSelectLv instance
-            target_world_index: The index (1-based) of the world to find
-            max_attempts: Maximum number of swipe attempts
-
-        Returns:
-            WorldItem if found, None otherwise
-        """
-        logger = get_logger("Level1_tut")
-        panel_worlds = popup_campaign.panel_worlds
-
-        if not panel_worlds:
-            logger.error("Panel worlds not found")
-            return None
-
-        # Get reference positions
-        title_pos = panel_worlds.title.get_position()
-
-        # Cache world objects and indices on first attempt only
-        cached_worlds = None
-        avg_vertical_distance = None
-        worlds_per_swipe = None
-
-        for attempt in range(max_attempts):
-            logger.info(f"ORIGINAL: Attempt {attempt + 1}: Looking for World {target_world_index}")
-
-            # Only build cache on first attempt or if cache is empty
-            if cached_worlds is None:
-                logger.info("ORIGINAL: Building world cache...")
-                list_world = panel_worlds.list_world
-                if not list_world:
-                    logger.warning("No worlds found in current view")
-                    continue
-
-                # Build cache of valid worlds with their indices
-                cached_worlds = []
-                for world in list_world:
-                    try:
-                        world_index = int(world.index) if world.index and world.index.isdigit() else None
-                        if world_index:
-                            cached_worlds.append((world, world_index))
-                    except (ValueError, AttributeError):
-                        continue
-
-                if len(cached_worlds) < 2:
-                    logger.warning("Not enough valid worlds found")
-                    continue
-
-                logger.info(f"ORIGINAL: Cached {len(cached_worlds)} valid worlds")
-
-            # Get current positions for cached worlds (much faster than re-parsing)
-            valid_worlds_with_pos = []
-
-            for world, world_index in cached_worlds:
-                try:
-                    pos = world.root.get_position()
-                    valid_worlds_with_pos.append((world, world_index, pos))
-                except:
-                    # Skip if world is no longer accessible
-                    continue
-
-            if len(valid_worlds_with_pos) < 2:
-                logger.warning("Not enough worlds with valid positions")
-                continue
-
-            # Calculate average vertical distance only once
-            if avg_vertical_distance is None:
-                # Sort by Y position to calculate distance
-                valid_worlds_with_pos.sort(key=lambda x: x[2][1])
-
-                vertical_distances = []
-                for i in range(1, min(10, len(valid_worlds_with_pos))):
-                    vertical_distance = abs(valid_worlds_with_pos[i][2][1] - valid_worlds_with_pos[i-1][2][1])
-                    vertical_distances.append(vertical_distance)
-
-                avg_vertical_distance = sum(vertical_distances) / len(vertical_distances) if vertical_distances else 0
-                logger.info(f"ORIGINAL: Calculated average vertical distance: {avg_vertical_distance}")
-
-            # Find visible threshold
-            visible_threshold = title_pos[1] + avg_vertical_distance
-
-            # Filter visible worlds (y > visible_threshold)
-            visible_worlds = []
-            for world, world_index, world_pos in valid_worlds_with_pos:
-                if world_pos[1] > visible_threshold:
-                    visible_worlds.append((world, world_index, world_pos))
-
-            # Sort visible worlds by Y position and take first 8
-            visible_worlds.sort(key=lambda x: x[2][1])
-            visible_worlds = visible_worlds[:8]
-
-            if not visible_worlds:
-                logger.warning("No visible worlds found")
-                continue
-
-            # Sort by world index for easier processing
-            visible_worlds_by_index = sorted(visible_worlds, key=lambda x: x[1])
-            visible_indices = [w[1] for w in visible_worlds_by_index]
-            logger.info(f"ORIGINAL: Visible worlds: {visible_indices}")
-
-            # Check if target world is among the visible elements
-            for world, world_index, world_pos in visible_worlds:
-                if world_index == target_world_index:
-                    logger.info(f"ORIGINAL: Found target World {target_world_index} at position {world_pos}")
-                    return world
-
-            # Calculate worlds per swipe for intelligent swiping
-            if worlds_per_swipe is None and attempt > 0:
-                # Calculate based on previous swipe result
-                prev_first_visible = getattr(self, '_prev_first_visible', None)
-                if prev_first_visible is not None:
-                    current_first_visible = visible_worlds_by_index[0][1]
-                    worlds_per_swipe = abs(current_first_visible - prev_first_visible)
-                    logger.info(f"ORIGINAL: Calculated worlds per swipe: {worlds_per_swipe}")
-
-            # Store current first visible for next calculation
-            self._prev_first_visible = visible_worlds_by_index[0][1]
-
-            # Determine swipe direction and calculate intelligent swipe distance
-            if not visible_worlds_by_index:
-                continue
-
-            first_visible_index = visible_worlds_by_index[0][1]
-            last_visible_index = visible_worlds_by_index[-1][1]
-
-            # Calculate swipe parameters
-            screen_center_x = panel_worlds.root.get_position()[0]
-            first_visible_y = visible_worlds[0][2][1]
-            last_visible_y = visible_worlds[-1][2][1]
-            single_swipe_distance = abs(last_visible_y - first_visible_y)
-
-            # Calculate how many worlds we need to move
-            if target_world_index < first_visible_index:
-                worlds_to_move = first_visible_index - target_world_index
-                # Add buffer to ensure target is in visible range
-                worlds_to_move += 3
-                direction = "down"
-            elif target_world_index > last_visible_index:
-                worlds_to_move = target_world_index - last_visible_index
-                # Add buffer to ensure target is in visible range
-                worlds_to_move += 3
-                direction = "up"
-            else:
-                # Target should be visible but wasn't found - try a small adjustment
-                logger.warning(f"Target {target_world_index} should be visible but not found, trying small swipe")
-                worlds_to_move = 2
-                direction = "up"
-
-            # Calculate swipe multiplier based on worlds to move
-            if worlds_per_swipe and worlds_per_swipe > 0:
-                swipe_multiplier = max(1.0, worlds_to_move / worlds_per_swipe)
-            else:
-                # Use estimated multiplier based on typical scrollview behavior
-                estimated_worlds_per_swipe = 6  # Based on log showing ~6-7 worlds per swipe
-                swipe_multiplier = max(1.0, worlds_to_move / estimated_worlds_per_swipe)
-
-            # Cap the multiplier to prevent overshooting
-            swipe_multiplier = min(swipe_multiplier, 5.0)
-
-            logger.info(f"ORIGINAL: Target {target_world_index}, visible range [{first_visible_index}-{last_visible_index}]")
-            logger.info(f"ORIGINAL: Need to move {worlds_to_move} worlds {direction}, swipe multiplier: {swipe_multiplier:.2f}")
-
-            if direction == "down":
-                swipe_start = (screen_center_x, first_visible_y)
-                swipe_end = (screen_center_x, first_visible_y + single_swipe_distance * swipe_multiplier)
-            else:  # direction == "up"
-                swipe_start = (screen_center_x, last_visible_y)
-                swipe_end = (screen_center_x, last_visible_y - single_swipe_distance * swipe_multiplier)
-
-            # Perform swipe
-
-            # Normalize coordinates to range [-1, 1]
-            norm_start = (max(min(swipe_start[0], 1), -1), max(min(swipe_start[1], 1), -1))
-            norm_end = (max(min(swipe_end[0], 1), -1), max(min(swipe_end[1], 1), -1))
-            logger.info(f"ORIGINAL: Swiping from {norm_start} to {norm_end}")
-            swipe(norm_start, norm_end, duration=0.5)
-            sleep(1)  # Wait for animation to complete
-
-        logger.error(f"ORIGINAL: Could not find World {target_world_index} after {max_attempts} attempts")
-        return None
     def handle_endgame_popup(self, poco, logger):
         """
         Handle endgame popups (win/lose) and navigate back popup game result.
@@ -251,6 +67,7 @@ class TestLevel1_tut:
                 break
             attempt += 1
             sleep(1)
+
     def verify_home_screen_resources(self, poco, initial_resources, collected_gold, collected_gem, logger):
         """
         Navigate to home screen and verify final resource amounts match expected values.
@@ -281,7 +98,7 @@ class TestLevel1_tut:
             else:
                 logger.warning(f"Not at home screen yet, attempt {home_attempt + 1}")
                 # Try to get to home by using back navigation
-                keyevent("BACK")
+                press_key(poco,"BACK")
                 sleep(2)
                 if home_attempt == max_home_attempts - 1:
                     logger.error("Could not navigate to home screen for final verification")
@@ -365,31 +182,26 @@ class TestLevel1_tut:
         logger = get_logger(logger_name)
         logger.info(f"=== STARTING LEVEL {target_level} TEST ===")
 
-        # Initialize UI components for level selection
-        popup_campaign = PopupCampaignSelectLv(poco)
-        panel_worlds = PanelWorlds(poco)
-
-        # Verify we're in the campaign selection screen
+        popup_campaign = PopupCampaignSelectLv(poco.freeze())
         assert popup_campaign.root.exists(), "PopupCampaignSelectLv not found"
 
         # ===============================================
         # PHASE 2: LEVEL NAVIGATION AND PREPARATION
         # ===============================================
         logger.info(f"Phase 2: Navigating to Level {target_level}")
-
         # Check if this is the maximum unlocked level (affects rewards)
         is_max_level = is_max_unlocked_level(target_level, popup_campaign.list_level_normal)
         gold_1st_reward = 0
         gem_1st_reward = 0
 
         # Navigate to the target level
-        click_to_level = navigate_and_click_level(popup_campaign, target_level, panel_worlds, logger_name=logger_name)
+        click_to_level = navigate_and_click_level(poco,popup_campaign, target_level,logger_name=logger_name)
         if not click_to_level:
             logger.error(f"Failed to navigate to Level {target_level}")
             return
 
         # Verify level preparation screen is displayed
-        popup_prepare = PopupLevelPrepare(poco)
+        popup_prepare = PopupLevelPrepare(poco.freeze())
         assert popup_prepare.root.exists(), f"PopupLevelPrepare not found after clicking level {target_level}"
 
         # Capture first-time completion rewards if this is max unlocked level
@@ -457,17 +269,26 @@ class TestLevel1_tut:
         logger.info("Phase 4: Starting automated gameplay")
 
         if wait_for_element(ui_ingame.root, timeout=5):
-            # Locate game elements for automated play
-            bata_pos = wait(bata_img, timeout=6)  # Player character position
-            btn_skill_pos = ui_ingame.btn_plane_skill.get_position() if ui_ingame.btn_plane_skill.exists() else None
+            def check_bullet_pool(attempt=5):
+                for _ in range(attempt):
+                    bullet_pool = poco("UbhObjectPool")
+                    if bullet_pool.exists() and len(bullet_pool.children()) > 0:
+                        return True
+                    sleep(1)
+                logger.error("Bullet pool not found or still empty after maximum attempts")
+                return False
 
-            if bata_pos and btn_skill_pos:
+            if check_bullet_pool(5):
                 # Calculate movement positions for automated gameplay
-                start_pos = ((bata_pos[0] - btn_skill_pos[0]) / 2 + btn_skill_pos[0], bata_pos[1])
-                end_pos = (bata_pos[0] + (bata_pos[0] - start_pos[0]), bata_pos[1])
-
-                ingameUI = UI_Ingame(poco)
-                btn = ingameUI.btn_plane_skill if ingameUI.btn_plane_skill.exists() else None
+                initial_plane_pos = (227, 819)  # Player character position
+                btn_skill = ui_ingame.btn_plane_skill
+                btn_skill_pos = ui_ingame.btn_plane_skill.get_position() if ui_ingame.btn_plane_skill.exists() else None
+                print(f"Found bata at position: {initial_plane_pos}, skill button position: {btn_skill_pos}")
+                start_pos = ((initial_plane_pos[0] - btn_skill_pos[0]) / 2 + btn_skill_pos[0], initial_plane_pos[1])
+                end_pos = (initial_plane_pos[0] + (initial_plane_pos[0] - start_pos[0]), initial_plane_pos[1])
+                print(f"Calculated start_pos: {start_pos}, end_pos: {end_pos}")
+                btn_node= ui_ingame.btn_plane_skill
+                btn = btn_node if btn_node.exists() else None
                 btn_gem_revival_popup_node = RevivalPopup(poco).btn_gem
                 btn_gem_revival_popup = btn_gem_revival_popup_node if btn_gem_revival_popup_node.exists() else None
                 first_move = False
@@ -476,7 +297,7 @@ class TestLevel1_tut:
                 while btn:
                     if btn_gem_revival_popup:
                         if get_single_resource_amount(poco, "gem")<50:
-                            self.poco.invoke("add_gem", amount=50)
+                            poco.invoke("add_gem", amount=50)
                             # logger.info("Not enough gems for revival, invoking add_gem")
                         sleep(1)
                         btn_gem_revival_popup.click(sleep_interval=1)
@@ -485,13 +306,13 @@ class TestLevel1_tut:
                     if not first_move:
                         # Initial setup: pause game and position player
                         for i in range(30):
-                            keyevent("P")  # Pause to ensure stable state
-                        swipe(bata_pos, start_pos)  # Move to starting position
-                        keyevent("DPAD_UP")
+                            press_key(poco,"P")  # Pause to ensure stable state
+                        swipe(initial_plane_pos, start_pos)  # Move to starting position
+                        press_key(poco,"UP")
                         first_move = True
 
                     # Perform automated movement pattern
-                    keyevent("T")  # Activate skill
+                    press_key(poco,"T")
                     swipe(start_pos, end_pos, duration=1)
 
                     # Collect resource amounts during gameplay (first collection)
@@ -511,7 +332,7 @@ class TestLevel1_tut:
                     collected_gem = max(collected_gem, tmp_gem) if tmp_gem else collected_gem
 
                     # Check if game is still active
-                    btn = ingameUI.btn_plane_skill if ingameUI.btn_plane_skill.exists() else None
+                    btn = ui_ingame.btn_plane_skill if ui_ingame.btn_plane_skill.exists() else None
 
                 # Add first-time completion rewards to collected amounts
                 collected_gold += gold_1st_reward
@@ -543,7 +364,7 @@ class TestLevel1_tut:
                     popup_lose.btn_back.click(sleep_interval=2)
                     logger.info("Clicked back button from lose popup")
                 else:
-                    keyevent("BACK")
+                    press_key(poco,"BACK")
                     logger.warning("No next or back button found in lose popup, using BACK keyevent")
                 break
 
@@ -562,7 +383,7 @@ class TestLevel1_tut:
                     popup_win.btn_back.click(sleep_interval=2)
                     logger.info("Clicked back button from win popup")
                 else:
-                    keyevent("BACK")
+                    press_key(poco,"BACK")
                     sleep(2)
                     logger.warning("No next or back button found in win popup, using BACK keyevent")
                 break
@@ -593,9 +414,6 @@ class TestLevel1_tut:
 
         # Initialize UI components for level selection
         popup_campaign = PopupCampaignSelectLv(poco)
-        panel_worlds = PanelWorlds(poco)
-
-        # Verify we're in the campaign selection screen
         assert popup_campaign.root.exists(), "PopupCampaignSelectLv not found"
 
         # ===============================================
@@ -609,7 +427,7 @@ class TestLevel1_tut:
         gem_1st_reward = 0
 
         # Navigate to the target level
-        click_to_level = navigate_and_click_level(popup_campaign, target_level, panel_worlds,
+        click_to_level = navigate_and_click_level(poco,popup_campaign, target_level,
                                                   logger_name=logger_name)
         if not click_to_level:
             logger.error(f"Failed to navigate to Level {target_level}")
@@ -689,9 +507,21 @@ class TestLevel1_tut:
         if wait_for_element(ui_ingame.root, timeout=5):
             # Locate game elements for automated play
             bata_pos = wait(bata_img, timeout=6)  # Player character position
+            btn_skill= ui_ingame.btn_plane_skill
             btn_skill_pos = ui_ingame.btn_plane_skill.get_position() if ui_ingame.btn_plane_skill.exists() else None
+            print(f"Found bata at position: {bata_pos}, skill button position: {btn_skill_pos}")
 
-            if bata_pos and btn_skill_pos:
+            def check_bullet_pool(attempt=5):
+                for _ in range(attempt):
+                    bullet_pool = poco("UbhObjectPool")
+                    if bullet_pool.exists() and len(bullet_pool.children()) > 0:
+                        return True
+                    sleep(1)
+                logger.error("Bullet pool not found or still empty after maximum attempts")
+                return False
+
+            if check_bullet_pool(5):
+                sleep(2)  # Ensure bullet pool is ready before proceeding
                 # Calculate movement positions for automated gameplay
                 start_pos = ((bata_pos[0] - btn_skill_pos[0]) / 2 + btn_skill_pos[0], bata_pos[1])
                 end_pos = (bata_pos[0] + (bata_pos[0] - start_pos[0]), bata_pos[1])
@@ -716,13 +546,13 @@ class TestLevel1_tut:
                     if not first_move:
                         # Initial setup: pause game and position player
                         for i in range(30):
-                            keyevent("P")  # Pause to ensure stable state
+                            press_key(poco,"P")  # Pause to ensure stable state
                         swipe(bata_pos, start_pos)  # Move to starting position
-                        keyevent("DPAD_UP")
+                        press_key(poco,"UP")
                         first_move = True
 
                     # Perform automated movement pattern
-                    keyevent("T")  # Activate skill
+                    press_key(poco,"T")  # Activate skill
                     swipe(start_pos, end_pos, duration=1)
 
                     # Collect resource amounts during gameplay (first collection)
@@ -775,7 +605,7 @@ class TestLevel1_tut:
                     popup_lose.btn_back.click(sleep_interval=2)
                     logger.info("Clicked back button from lose popup")
                 else:
-                    keyevent("BACK")
+                    press_key(poco,"BACK")
                     logger.warning("No next or back button found in lose popup, using BACK keyevent")
                 break
 
@@ -1045,14 +875,12 @@ class TestLevel1_tut:
         else:
             logger.error("Tutorial Level 1 did not complete successfully. Check the logs for details.")
         logger.info(f"=== COMPLETED LEVEL {target_level} TEST ===")
-
     @pytest.mark.order(2)
     def test_playLv2_lv3(self,poco):
         logger= get_logger("playing lv2 and lv3")
         self.play_and_verify_level(poco, 2, logger_name="playing lv2 ")
         self.from_home_to_campaign_select(poco,logger)
         self.play_and_verify_level(poco, 3, logger_name="playing lv3 ")
-
     @pytest.mark.order(3)
     def test_playLv4_and_tutLv5(self, poco):
         """
@@ -1125,15 +953,12 @@ class TestLevel1_tut:
         if btn_equip_drone:
             print(f"btn_equip_drone exists: {btn_equip_drone}")
             btn_equip_drone.click(sleep_interval=1)
-
-
     @pytest.mark.order(4)
     def test_playLv5_lv6(self, poco):
         logger= get_logger("playing lv5 and lv6")
         self.play_and_verify_level(poco, 5, logger_name="playing lv5")
         self.from_home_to_campaign_select(poco, logger)
         self.play_and_verify_level(poco, 6, logger_name="playing lv6")
-
     @pytest.mark.order(5)
     def test_play_lv7_and_tutlv8(self, poco):
         logger= get_logger("playing lv7 and tut lv8")
@@ -1237,69 +1062,9 @@ class TestLevel1_tut:
         else:
             logger.error(f"Popup event not found: {is_popup_event}")
 
-    def testtest(self,poco):
-        logger = get_logger("test logger")
-        # popup_prepare = PopupLevelPrepare(poco)
-        # assert popup_prepare.root.exists(), f"PopupLevelPrepare not found after clicking level"
-        # popup_prepare.btn_start.click(sleep_interval=3)
-        ui_ingame = UI_Ingame(poco)
-        if wait_for_element(ui_ingame.root, timeout=5):
-            bata_pos = wait(bata_img, timeout=8)
-            print("ST.LOG_DIR: "+ST.LOG_DIR)
-            if bata_pos:
-                from PIL import ImageDraw, Image
-                from datetime import datetime
-
-                # Take screenshot from airtest
-                screenshot_data = snapshot()
-                print(f"screenshot_data: {screenshot_data}")
-
-                # extract image file path from return value
-                if screenshot_data and 'screen' in screenshot_data:
-                    img_path= os.path.join(ST.LOG_DIR, screenshot_data['screen'])
-                    print(f"img_path: {img_path}")
-                    img= Image.open(img_path)
-
-                    # Draw circle using PIL
-                    draw = ImageDraw.Draw(img)
-                    x, y = int(bata_pos[0]), int(bata_pos[1])
-                    print(f"bata position: x={x}, y={y}")
-                    radius = 10
-                    bbox = (x - radius, y - radius, x + radius, y + radius)
-                    draw.ellipse(bbox, outline=(0, 255, 0), width=3)
-
-                    # Save the marked screenshot
-                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                    screenshot_dir = os.path.join(current_dir, "screenshots")
-                    os.makedirs(os.path.dirname(screenshot_dir), exist_ok=True)
-                    screenshot_path = os.path.join(screenshot_dir, timestamp+".png")
-                    img.save(screenshot_path)
-                    logger.info(f"Screenshot with marked bata position saved to: {screenshot_path}")
-                # import cv2
-                # from PIL import ImageDraw, Image
-                # from datetime import datetime
-                # import numpy as np
-                # # screenshot from airtest
-                # screenshot = snapshot()
-                #
-                # # ensure we have a numpy BGR image for OpenCV
-                # if isinstance(screenshot, np.ndarray):
-                #     img = screenshot.copy()
-                # else:
-                #     # convert PIL (RGB) -> numpy -> BGR for OpenCV
-                #     img = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
-                #
-                # # safe integer coordinates
-                # x, y = int(bata_pos[0]), int(bata_pos[1])
-                #
-                # # draw marker and save
-                # marked_screenshot = cv2.circle(img, (x, y), 10, (0, 255, 0), 3)
-                # timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                # screenshot_path = os.path.join(current_dir, "screenshots", f"bata_position_{timestamp}.png")
-                # os.makedirs(os.path.dirname(screenshot_path), exist_ok=True)
-                # cv2.imwrite(screenshot_path, marked_screenshot)
-                # logger.info(f"Screenshot with marked bata position saved to: {screenshot_path}")
-
+    def testnew(self,poco):
+        target_lv=4
+        self.play_and_verify_level(poco, target_lv, logger_name="playing lv2")
 
 
 
