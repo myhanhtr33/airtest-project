@@ -346,6 +346,18 @@ def is_max_unlocked_level(level_index, all_levels):
 
     return getattr(next_level, 'list_star', None) is None
 
+def is_level_unlocked(level_index, all_levels, logger_name="LevelHelper"):
+    logger= get_logger(logger_name)
+    for level in all_levels:
+        idx =getattr(level, 'index', None)
+        if idx is None:
+            continue
+        if idx == level_index:
+            return  getattr(level, 'list_star', None) is not None
+    logger.error(f"Level {level_index} not found in World {all_levels}")
+    return False
+
+
 def get_expected_reward_keys_for_level(level_index):
     """
     Return the list of logical reward keys for a given level index using LEVEL_REWARD_KEYS.

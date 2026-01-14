@@ -1,0 +1,34 @@
+Time,Level,Module,Message,Screenshot
+09:58:23,INFO,leuleuleu,=== STARTING LEVEL 7 TEST ===,
+09:58:24,INFO,leuleuleu,Phase 2: Navigating to Level 7,
+09:58:24,INFO,leuleuleu,Target level 7 should be in World 1,
+09:58:24,INFO,leuleuleu,Current world: 1,
+09:58:24,INFO,leuleuleu,Looking for level 7 in normal levels,
+09:58:25,INFO,leuleuleu,Refresh attempt 1: Found 21 levels,
+09:58:25,INFO,leuleuleu,✓ Found target level 7 on attempt 1,
+09:58:25,INFO,leuleuleu,Found 21 normal levels,
+09:58:25,INFO,leuleuleu,"Found level 7, clicking on it",
+09:58:27,INFO,leuleuleu,Successfully clicked on level 7,
+09:58:27,INFO,leuleuleu,"Level 7 is max level. Gold 1st reward: 800, Gem 1st reward: 4",
+09:58:27,INFO,leuleuleu,Phase 3: Initializing game and resource tracking,
+09:58:28,INFO,leuleuleu,"Initial resources: {'gold': 9214, 'energy': 1200, 'gem': 43}",
+09:58:32,INFO,leuleuleu,Phase 4: Starting automated gameplay,
+09:59:35,INFO,leuleuleu,"Not enough gems for revival, invoking add_gem",
+09:59:39,INFO,leuleuleu,"Clicked gem revival button, remaining initial gems: 63",
+10:01:32,INFO,leuleuleu,"Total collected (including first-time rewards): Gold: 902, Gem: 4",
+10:01:32,INFO,leuleuleu,Phase 5: Waiting for game completion,
+10:01:36,INFO,leuleuleu,Game won - processing victory scenario,
+10:02:24,INFO,leuleuleu,Game result: WIN,
+10:02:24,INFO,leuleuleu,"Collected during gameplay - Gold: 902, Gem: 4",
+10:02:24,INFO,leuleuleu,✓ Resource verification successful!,
+10:02:24,INFO,leuleuleu,"Gold verification: True (Expected: 10116, Actual: 10169)",
+10:02:24,INFO,leuleuleu,"Gem verification: True (Expected: 67, Actual: 67)",
+10:02:43,INFO,leuleuleu,Clicked next button from win popup,
+10:02:43,INFO,leuleuleu,Phase 6: Performing final home screen verification,
+10:02:55,WARNING,leuleuleu,"Not at home screen yet, attempt 1","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-13_10h02.png"", ""View"")"
+10:03:00,WARNING,leuleuleu,"Not at home screen yet, attempt 2","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-13_10h03.png"", ""View"")"
+10:03:06,WARNING,leuleuleu,"Not at home screen yet, attempt 3","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-13_10h03.png"", ""View"")"
+10:03:12,WARNING,leuleuleu,"Not at home screen yet, attempt 4","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-13_10h03.png"", ""View"")"
+10:03:18,WARNING,leuleuleu,"Not at home screen yet, attempt 5","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-13_10h03.png"", ""View"")"
+10:03:20,ERROR,leuleuleu,Could not navigate to home screen for final verification,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-13_10h03.png"", ""View"")"
+10:03:20,INFO,leuleuleu,=== COMPLETED LEVEL 7 TEST ===,

@@ -1,0 +1,42 @@
+Time,Level,Module,Message,Screenshot
+10:05:29,INFO,leuleuleu,=== STARTING LEVEL 6 TEST ===,
+10:05:29,INFO,leuleuleu,Phase 2: Navigating to Level 6,
+10:05:29,INFO,leuleuleu,Target level 6 should be in World 1,
+10:05:29,INFO,leuleuleu,Current world: 1,
+10:05:29,INFO,leuleuleu,Looking for level 6 in normal levels,
+10:05:30,INFO,leuleuleu,Refresh attempt 1: Found 21 levels,
+10:05:30,INFO,leuleuleu,✓ Found target level 6 on attempt 1,
+10:05:30,INFO,leuleuleu,Found 21 normal levels,
+10:05:30,INFO,leuleuleu,"Found level 6, clicking on it",
+10:05:32,INFO,leuleuleu,Successfully clicked on level 6,
+10:05:33,INFO,leuleuleu,"Level 6 is max level. Gold 1st reward: 500, Gem 1st reward: 2",
+10:05:33,INFO,leuleuleu,Phase 3: Initializing game and resource tracking,
+10:05:34,INFO,leuleuleu,"Initial resources: {'gold': 4295, 'energy': 700, 'gem': 9}",
+10:05:38,INFO,leuleuleu,Phase 4: Starting automated gameplay,
+10:06:43,INFO,leuleuleu,"Total collected (including first-time rewards): Gold: 500, Gem: 3",
+10:06:43,INFO,leuleuleu,Phase 5: Waiting for game completion,
+10:06:43,INFO,leuleuleu,Game lost - processing loss scenario,
+10:06:47,INFO,leuleuleu,EndGameVideoPopup closed successfully,
+10:06:48,INFO,leuleuleu,Game result: LOSE,
+10:06:48,INFO,leuleuleu,"Collected during gameplay - Gold: 500, Gem: 3",
+10:06:48,ERROR,leuleuleu,"✗ Gem verification failed! Expected: 12, Actual: 9, Difference: 3","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_10h06.png"", ""View"")"
+10:06:58,WARNING,leuleuleu,"No next or back button found in lose popup, using BACK keyevent","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_10h06.png"", ""View"")"
+10:06:58,INFO,leuleuleu,Phase 6: Performing final home screen verification,
+10:07:09,WARNING,leuleuleu,"Not at home screen yet, attempt 1","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_10h07.png"", ""View"")"
+10:07:15,WARNING,leuleuleu,"Not at home screen yet, attempt 2","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_10h07.png"", ""View"")"
+10:07:21,WARNING,leuleuleu,"Not at home screen yet, attempt 3","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_10h07.png"", ""View"")"
+10:07:23,INFO,leuleuleu,Successfully at home screen for final verification,
+10:07:23,INFO,leuleuleu,=== PERFORMING FINAL HOME SCREEN VERIFICATION ===,
+10:07:24,INFO,leuleuleu,"Final home resources: {'gold': 4295, 'energy': 700, 'gem': 9}",
+10:07:24,INFO,leuleuleu,=== FINAL HOME SCREEN VERIFICATION ===,
+10:07:24,INFO,leuleuleu,"Initial resources - Gold: 4295, Gem: 9",
+10:07:24,INFO,leuleuleu,"Collected during game - Gold: 500, Gem: 3",
+10:07:24,INFO,leuleuleu,"Expected final - Gold: 4795, Gem: 12",
+10:07:24,INFO,leuleuleu,"Actual final - Gold: 4295, Gem: 9",
+10:07:24,ERROR,leuleuleu,"✗ Final Gem verification FAILED! Expected: 12, Actual: 9, Difference: 3","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_10h07.png"", ""View"")"
+10:07:24,ERROR,leuleuleu,=== RESOURCE FLOW DEBUG ===,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_10h07.png"", ""View"")"
+10:07:24,ERROR,leuleuleu,Initial → Final: Gold 4295 → 4295 (Expected: 4795),"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_10h07.png"", ""View"")"
+10:07:24,ERROR,leuleuleu,Initial → Final: Gem 9 → 9 (Expected: 12),"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_10h07.png"", ""View"")"
+10:07:24,ERROR,leuleuleu,"Collected amounts: Gold 500, Gem 3","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_10h07.png"", ""View"")"
+10:07:25,INFO,leuleuleu,=== TEST COMPLETED ===,
+10:07:25,INFO,leuleuleu,=== COMPLETED LEVEL 6 TEST ===,

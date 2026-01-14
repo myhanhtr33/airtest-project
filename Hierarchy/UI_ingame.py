@@ -96,7 +96,7 @@ class PausePopup:
 
 class RevivalPopup:
     def __init__(self, poco):
-        self.root = poco("Popup_Revival(Clone)")
+        self.root = poco("PopupRevival(Clone)")
     @property
     def btn_gem(self):
         return self.root.offspring("B_UseGem")
@@ -106,10 +106,15 @@ class RevivalPopup:
     @property
     def btn_next(self): #to popup select level
         return self.root.offspring("B_ReStart")
+    @property
+    def gem_amount(self):
+        return int(self.root.offspring("numGem").get_text().strip())
 
 class EndGameVideoPopup:
     def __init__(self, poco):
-        self.root = poco("PopupEndGameVideo(Clone)")
+        # root=poco("PopupEndGameVideo(Clone)")
+        # self.root = root if root.exists() else None
+        self.root= poco("PopupEndGameVideo(Clone)")
     @property
     def tap_close_text(self):
         return self.root.offspring("lTapClose")
@@ -160,6 +165,28 @@ class PopupGameResult:
         node = self.root.offspring("L_NumCoin")
         return node.get_text().strip() if node.exists() else None
     @property
+    def collected_gold_amount(self) -> int:
+        """Extract the base collected gold amount (before bonus)."""
+        import re
+        text = self.gold_text
+        if not text:
+            return 0
+        match = re.match(r'([\d,]+)', text)
+        if match:
+            return clean_number(match.group(1).replace(',', ''))
+        return 0
+    @property
+    def bonus_gold_amount(self) -> int:
+        """Extract the bonus gold amount from parentheses."""
+        import re
+        text = self.gold_text
+        if not text:
+            return 0
+        match = re.search(r'\(\+?([\d,]+)\)', text)
+        if match:
+            return clean_number(match.group(1))
+        return 0
+    @property
     def gold_limit_text(self):
         node = self.root.offspring("L_NumCoinLimit")
         return node.get_text().strip() if node.exists() else None
@@ -182,3 +209,4 @@ class PopupGameLose(PopupGameResult):
 class PopupGameWin(PopupGameResult):
     def __init__(self, poco):
         super().__init__(poco, "PopupGameComplete(Clone)")
+

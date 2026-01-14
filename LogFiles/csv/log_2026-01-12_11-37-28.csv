@@ -1,0 +1,28 @@
+Time,Level,Module,Message,Screenshot
+11:37:36,INFO,leuleuleu,=== STARTING LEVEL 6 TEST ===,
+11:37:36,INFO,leuleuleu,Phase 2: Navigating to Level 6,
+11:37:36,INFO,leuleuleu,Target level 6 should be in World 1,
+11:37:36,INFO,leuleuleu,Current world: 1,
+11:37:36,INFO,leuleuleu,Looking for level 6 in normal levels,
+11:37:38,INFO,leuleuleu,Refresh attempt 1: Found 21 levels,
+11:37:38,INFO,leuleuleu,✓ Found target level 6 on attempt 1,
+11:37:38,INFO,leuleuleu,Found 21 normal levels,
+11:37:38,INFO,leuleuleu,"Found level 6, clicking on it",
+11:37:40,INFO,leuleuleu,Successfully clicked on level 6,
+11:37:40,INFO,leuleuleu,Phase 3: Initializing game and resource tracking,
+11:37:41,INFO,leuleuleu,"Initial resources: {'gold': 5691, 'energy': 800, 'gem': 32}",
+11:37:45,INFO,leuleuleu,Phase 4: Starting automated gameplay,
+11:38:25,INFO,leuleuleu,"Not enough gems for revival, invoking add_gem",
+11:38:29,INFO,leuleuleu,"Clicked gem revival button, remaining initial gems: 52",
+11:39:23,INFO,leuleuleu,"Total collected (including first-time rewards): Gold: 212, Gem: 1",
+11:39:23,INFO,leuleuleu,Phase 5: Waiting for game completion,
+11:39:24,INFO,leuleuleu,Game won - processing victory scenario,
+11:39:35,INFO,leuleuleu,Game result: WIN,
+11:39:35,INFO,leuleuleu,"Collected during gameplay - Gold: 212, Gem: 1",
+11:39:35,ERROR,leuleuleu,"✗ Gem verification failed! Expected: 33, Actual: 53, Difference: 20","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_11h39.png"", ""View"")"
+11:39:43,INFO,leuleuleu,Clicked next button from win popup,
+11:39:43,INFO,leuleuleu,Phase 6: Performing final home screen verification,
+11:39:55,WARNING,leuleuleu,"Not at home screen yet, attempt 1","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_11h39.png"", ""View"")"
+11:40:00,WARNING,leuleuleu,"Not at home screen yet, attempt 2","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-12_11h40.png"", ""View"")"
+11:40:05,INFO,leuleuleu,Successfully at home screen for final verification,
+11:40:05,INFO,leuleuleu,=== PERFORMING FINAL HOME SCREEN VERIFICATION ===,

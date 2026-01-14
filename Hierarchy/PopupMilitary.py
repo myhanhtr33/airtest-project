@@ -250,7 +250,6 @@ class PopupMilitaryGetPoint:
         if adjusted_item_y >= weapon_point_y:
             print(f"[scroll_to_item] Item is below weapon points threshold (adjusted), scrolling...")
             # Scroll the middle panel/scrollview
-            # Use swipe or focus to bring item into view
             try:
                 self.scroll_view.swipe([0, -0.3])  # Negative y to scroll down
                 time.sleep(2)

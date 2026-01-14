@@ -4,6 +4,7 @@ from Hierarchy.PopupCampaignSelectLv import PopupCampaignSelectLv
 from Hierarchy.PopupLevelPrepare import PopupLevelPrepare
 from Hierarchy.UI_ingame import UI_Ingame, CurrencyBarIngame, RevivalPopup, UITop, PopupGameLose, PopupGameWin, \
     EndGameVideoPopup, PausePopup
+from Hierarchy.IAP_pack import *
 from logger_config import get_logger
 from utils import get_resource_amount
 from utils.helper_functions import wait_for_element
@@ -12,6 +13,22 @@ import os
 from utils.get_resource_amount import clean_number, get_single_resource_amount
 from utils.test_level_helper import *
 from utils.keyboard_helper import press_key
+
+
+def from_home_to_campaign_select(poco, logger_name):
+    logger= get_logger(logger_name)
+    sleep(3)  # Wait for home screen to stabilize
+    campaign_btn = poco("BtnCampaign")
+    if not campaign_btn.exists():
+        logger.error("[to_campaign_select_lv] ❌ Campaign button not found!")
+        raise RuntimeError("Campaign button not found")
+    campaign_btn.click()
+    time.sleep(1)  # Wait for the popup to appear
+    # Check if PopupSelectLevelHome exists
+    popup = poco("PopupSelectLevelHome(Clone)")
+    if not popup.exists():
+        logger.error("[to_campaign_select_lv] ❌ PopupSelectLevelHome not found after clicking Campaign!")
+        raise RuntimeError("PopupSelectLevelHome(Clone) not found after clicking Campaign button")
 
 def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
     """
@@ -54,16 +71,21 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
 
     # PHASE 2: LEVEL NAVIGATION AND PREPARATION
     logger.info(f"Phase 2: Navigating to Level {target_level}")
-    # Check if this is the maximum unlocked level (affects rewards)
-    is_max_level = is_max_unlocked_level(target_level, popup_campaign.list_level_normal)
-    gold_1st_reward = 0
-    gem_1st_reward = 0
+    is_target_level_unlocked = is_level_unlocked(target_level, popup_campaign.list_level_normal)
+    if not is_target_level_unlocked:
+        logger.error(f"Level {target_level} is not unlocked!")
+        return
 
     # Navigate to the target level
     click_to_level = navigate_and_click_level(poco, popup_campaign, target_level, logger_name=logger_name)
     if not click_to_level:
         logger.error(f"Failed to navigate to Level {target_level}")
         return
+
+    # Check if this is the maximum unlocked level (affects rewards)
+    is_max_level = is_max_unlocked_level(target_level, popup_campaign.list_level_normal)
+    gold_1st_reward = 0
+    gem_1st_reward = 0
 
     # Verify level preparation screen is displayed
     popup_prepare = PopupLevelPrepare(poco.freeze())
@@ -92,6 +114,7 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
     # Initialize resource collection counters
     collected_gold = 0
     collected_gem = 0
+    bonus_gold=0
 
     def verify_game_resources(game_result):
         """
@@ -108,7 +131,7 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
         final_gem = currency_bar_ingame.gem_amount
 
         # Calculate expected amounts based on initial + collected during gameplay
-        expected_gold = initial_resources["gold"] + collected_gold
+        expected_gold = initial_resources["gold"] + collected_gold + bonus_gold
         expected_gem = initial_resources["gem"] + collected_gem
 
         # Verify the amounts match expectations
@@ -162,19 +185,27 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
 
             # Main gameplay loop - continues until skill button disappears (game ends)
             while btn:
-                btn_gem_revival_popup_node = RevivalPopup(poco.freeze()).btn_gem
-                btn_gem_revival_popup = btn_gem_revival_popup_node if btn_gem_revival_popup_node.exists() else None
+                revival_popup= RevivalPopup(poco.freeze())
+                btn_gem_revival_node = revival_popup.btn_gem
+                btn_gem_revival = btn_gem_revival_node if btn_gem_revival_node.exists() else None
+                print(f"btn_gem_revival_popup: {btn_gem_revival_node}")
                 btn_continue_popup_pause_node = PausePopup(poco.freeze()).btn_resume
                 btn_continue_popup_pause = btn_continue_popup_pause_node if btn_continue_popup_pause_node.exists() else None
-                if btn_gem_revival_popup:
-                    if get_single_resource_amount(poco, "gem") < 50:
+                print(f"btn_continue_popup_pause: {btn_continue_popup_pause}")
+                if btn_gem_revival_node:
+                    if initial_resources["gem"] < 50:
                         poco.invoke("add_gem", amount=50)
                         logger.info("Not enough gems for revival, invoking add_gem")
+                        initial_resources["gem"]+=50
                     sleep(1)
-                    btn_gem_revival_popup.click(sleep_interval=2)
+                    btn_gem_revival_node.click(sleep_interval=2)
+                    initial_resources["gem"]-=revival_popup.gem_amount
+                    logger.info(f"Clicked gem revival button, remaining initial gems: {initial_resources["gem"]}")
+                    press_key(poco, "UP")
                     continue
                 if btn_continue_popup_pause:
                     btn_continue_popup_pause.click(sleep_interval=2)
+                    press_key(poco, "UP")
                     continue
                 if not first_move:
                     # Initial setup: pause game and position player
@@ -189,19 +220,20 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
                 swipe(start_pos, end_pos, duration=1)
 
                 # Collect resource amounts during gameplay (first collection)
-                tmp = UITop(poco).collected_gold
+                UI_tmp= UITop(poco.freeze())
+                tmp = UI_tmp.collected_gold
                 collected_gold = max(collected_gold, tmp) if tmp else collected_gold
-                tmp_gem = UITop(poco).collected_gem
+                tmp_gem = UI_tmp.collected_gem
                 collected_gem = max(collected_gem, tmp_gem) if tmp_gem else collected_gem
 
                 # Return movement
                 swipe(end_pos, start_pos, duration=1)
-                # sleep(0.5)
 
                 # Collect resource amounts during gameplay (second collection)
-                tmp = UITop(poco).collected_gold
+                UI_tmp = UITop(poco.freeze())
+                tmp = UI_tmp.collected_gold
                 collected_gold = max(collected_gold, tmp) if tmp else collected_gold
-                tmp_gem = UITop(poco).collected_gem
+                tmp_gem = UI_tmp.collected_gem
                 collected_gem = max(collected_gem, tmp_gem) if tmp_gem else collected_gem
 
                 # Check if game is still active
@@ -216,7 +248,6 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
     # PHASE 5: GAME COMPLETION HANDLING
     # ===============================================
     logger.info("Phase 5: Waiting for game completion")
-
     max_attempts = 5
     for attempt in range(max_attempts):
         popup_lose = PopupGameLose(poco)
@@ -226,6 +257,8 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
             logger.info("Game lost - processing loss scenario")
             sleep(3)
             handle_endgame_popup(poco, logger)  # Handle any endgame popups
+            bonus_gold= popup_lose.bonus_gold_amount
+            print(f"bonus_gold from lose popup: {bonus_gold}")
             verify_game_resources("LOSE")
             wait_for_element(popup_lose.btn_next, timeout=8)
 
@@ -240,11 +273,12 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
                 press_key(poco,"BACK")
                 logger.warning("No next or back button found in lose popup, using BACK keyevent")
             break
-
         elif popup_win.root.exists():
             logger.info("Game won - processing victory scenario")
             sleep(3)
             handle_endgame_popup(poco, logger)
+            bonus_gold= popup_win.bonus_gold_amount
+            print(f"bonus_gold from win popup: {bonus_gold}")
             verify_game_resources("WIN")
             wait_for_element(popup_win.btn_next, timeout=8)
 
@@ -260,7 +294,6 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
                 sleep(2)
                 logger.warning("No next or back button found in win popup, using BACK keyevent")
             break
-
         attempt += 1
         sleep(2)
 
@@ -274,7 +307,7 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
     logger.info("Phase 6: Performing final home screen verification")
 
     # Verify final resource amounts match expectations on home screen
-    verify_home_screen_resources(poco, initial_resources, collected_gold, collected_gem, logger)
+    verify_home_screen_resources(poco, initial_resources, collected_gold,bonus_gold, collected_gem, logger)
 
     logger.info(f"=== COMPLETED LEVEL {target_level} TEST ===")
 
@@ -287,19 +320,37 @@ def handle_endgame_popup( poco, logger):
             logger: Logger instance for logging
         """
         max_attempts = 3
-        popup_video_endgame = EndGameVideoPopup(poco)
-        popup_rate=None # provide later
         for attempt in range(max_attempts):
-            if popup_video_endgame.root.exists():
+            popup_video_endgame = EndGameVideoPopup(poco)
+            popup_royalty_pack = RoyalPack(poco)
+            popup_starter_pack = Popup_StarterPack(poco)
+            popup_vip_pack = Popup_VipPack(poco)
+            popup_premium_pack = Popup_PremiumPack(poco)
+            popup_rate = None  # provide later
+            if popup_video_endgame.root:
                 logger.info("EndGameVideoPopup found, handling...")
                 popup_video_endgame.tap_close_text.click(sleep_interval=1)
-            if not popup_video_endgame.root.exists():
-                logger.info("EndGameVideoPopup closed successfully")
+                break
+            if popup_royalty_pack.root:
+                logger.info("RoyalPack popup found, closing...")
+                popup_royalty_pack.btnBack.click(sleep_interval=1)
+                break
+            if popup_starter_pack.root:
+                logger.info("StarterPack popup found, closing...")
+                popup_starter_pack.btn_back.click(sleep_interval=1)
+                break
+            if popup_vip_pack.root:
+                logger.info("VipPack popup found, closing...")
+                popup_vip_pack.btn_back.click(sleep_interval=1)
+                break
+            if popup_premium_pack.root:
+                logger.info("PremiumPack popup found, closing...")
+                popup_premium_pack.btn_back.click(sleep_interval=1)
                 break
             attempt += 1
             sleep(1)
 
-def verify_home_screen_resources(poco, initial_resources, collected_gold, collected_gem, logger):
+def verify_home_screen_resources(poco, initial_resources, collected_gold,bonus_gold, collected_gem, logger):
         """
         Navigate to home screen and verify final resource amounts match expected values.
 
@@ -343,7 +394,7 @@ def verify_home_screen_resources(poco, initial_resources, collected_gold, collec
         logger.info(f"Final home resources: {final_home_resources}")
 
         # Calculate expected amounts based on initial + collected
-        expected_final_gold = initial_resources["gold"] + collected_gold
+        expected_final_gold = initial_resources["gold"] + collected_gold+ bonus_gold
         expected_final_gem = initial_resources["gem"] + collected_gem
 
         # Verify final home screen resources match expected amounts

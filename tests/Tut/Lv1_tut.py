@@ -67,7 +67,6 @@ class TestLevel1_tut:
                 break
             attempt += 1
             sleep(1)
-
     def verify_home_screen_resources(self, poco, initial_resources, collected_gold, collected_gem, logger):
         """
         Navigate to home screen and verify final resource amounts match expected values.
@@ -143,7 +142,6 @@ class TestLevel1_tut:
 
         logger.info("=== TEST COMPLETED ===")
         return verification_passed
-
     def play_and_verify_level(self, poco, target_level, logger_name="Level1_tut"):
         """
         Comprehensive level testing function that navigates to a specific level,
@@ -404,7 +402,6 @@ class TestLevel1_tut:
         self.verify_home_screen_resources(poco, initial_resources, collected_gold, collected_gem, logger)
 
         logger.info(f"=== COMPLETED LEVEL {target_level} TEST ===")
-
     def tutorial_play_level(self, poco, target_level, logger_name="Level1_tut"):
         # ===============================================
         # PHASE 1: INITIALIZATION AND SETUP
