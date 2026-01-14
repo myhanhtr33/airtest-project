@@ -173,7 +173,7 @@ def swipe_to_target_world_in_list(poco,popup_Selectlv, target_item_index:int, ma
     logger.error(f"Could not find item {target_item_index} after {max_attempts} attempts")
     return None
 
-def navigate_and_click_level(poco,popup_campaign, target_level, logger_name="LevelHelper"):
+def navigate_and_click_level(poco,popup_campaign, target_level, logger):
     """
     Find and click a target level by automatically navigating to the correct world.
     Returns:
@@ -182,7 +182,6 @@ def navigate_and_click_level(poco,popup_campaign, target_level, logger_name="Lev
         RuntimeError: If target level is not found in the expected world
         :param poco:
     """
-    logger = get_logger(logger_name)
 
     # Calculate which world the target level belongs to (7 levels per world)
     expected_world = int((target_level - 1) // 7 + 1)
@@ -346,8 +345,7 @@ def is_max_unlocked_level(level_index, all_levels):
 
     return getattr(next_level, 'list_star', None) is None
 
-def is_level_unlocked(level_index, all_levels, logger_name="LevelHelper"):
-    logger= get_logger(logger_name)
+def is_level_unlocked(level_index, all_levels, logger):
     for level in all_levels:
         idx =getattr(level, 'index', None)
         if idx is None:

@@ -1,5 +1,4 @@
 ﻿from airtest.core.api import swipe, sleep
-
 from Hierarchy.PopupCampaignSelectLv import PopupCampaignSelectLv
 from Hierarchy.PopupLevelPrepare import PopupLevelPrepare
 from Hierarchy.UI_ingame import UI_Ingame, CurrencyBarIngame, RevivalPopup, UITop, PopupGameLose, PopupGameWin, \
@@ -30,7 +29,7 @@ def from_home_to_campaign_select(poco, logger_name):
         logger.error("[to_campaign_select_lv] ❌ PopupSelectLevelHome not found after clicking Campaign!")
         raise RuntimeError("PopupSelectLevelHome(Clone) not found after clicking Campaign button")
 
-def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
+def play_and_verify_level(poco, target_level, logger_name):
     """
     Comprehensive level testing function that navigates to a specific level,
     plays the game, and verifies resource collection accuracy.
@@ -71,13 +70,13 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
 
     # PHASE 2: LEVEL NAVIGATION AND PREPARATION
     logger.info(f"Phase 2: Navigating to Level {target_level}")
-    is_target_level_unlocked = is_level_unlocked(target_level, popup_campaign.list_level_normal)
+    is_target_level_unlocked = is_level_unlocked(target_level, popup_campaign.list_level_normal, logger)
     if not is_target_level_unlocked:
         logger.error(f"Level {target_level} is not unlocked!")
         return
 
     # Navigate to the target level
-    click_to_level = navigate_and_click_level(poco, popup_campaign, target_level, logger_name=logger_name)
+    click_to_level = navigate_and_click_level(poco, popup_campaign, target_level, logger)
     if not click_to_level:
         logger.error(f"Failed to navigate to Level {target_level}")
         return
@@ -210,7 +209,7 @@ def play_and_verify_level(poco, target_level, logger_name="Level1_tut"):
                 if not first_move:
                     # Initial setup: pause game and position player
                     for i in range(30):
-                        press_key(poco,"P")  # Pause to ensure stable state
+                        press_key(poco,"P")
                     swipe(initial_plane_pos, start_pos)  # Move to starting position
                     press_key(poco,"UP")
                     first_move = True

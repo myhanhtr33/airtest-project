@@ -193,7 +193,7 @@ class TestLevel1_tut:
         gem_1st_reward = 0
 
         # Navigate to the target level
-        click_to_level = navigate_and_click_level(poco,popup_campaign, target_level,logger_name=logger_name)
+        click_to_level = navigate_and_click_level(poco,popup_campaign, target_level,logger)
         if not click_to_level:
             logger.error(f"Failed to navigate to Level {target_level}")
             return
@@ -425,7 +425,7 @@ class TestLevel1_tut:
 
         # Navigate to the target level
         click_to_level = navigate_and_click_level(poco,popup_campaign, target_level,
-                                                  logger_name=logger_name)
+                                                  logger)
         if not click_to_level:
             logger.error(f"Failed to navigate to Level {target_level}")
             return
@@ -663,7 +663,7 @@ class TestLevel1_tut:
         gem_1st_reward = 0
 
         # Navigate to the target level
-        click_to_level = navigate_and_click_level(popup_campaign, target_level, panel_worlds, logger_name="playing tut lv1")
+        click_to_level = navigate_and_click_level(popup_campaign, target_level, panel_worlds, logger)
         if not click_to_level:
             logger.error(f"Failed to navigate to Level {target_level}")
             return

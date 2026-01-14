@@ -54,16 +54,8 @@ class TestIngameeee:
         target_level= 9
         from_home_to_campaign_select(self.poco, "leuleuleu")
         play_and_verify_level(self.poco, target_level, "leuleuleu")
-        # starter= Popup_StarterPack(self.poco)
-        # obj=self.poco.wait_for_any()
-        # time_start= time.time()
-        # for i in range(11):
-        #     if starter.root.wait_for_appearance(2):
-        #         print(f"{i}th ")
-        #     else :
-        #         print(f"{i}th not found")
-        # print(f"total time : {time.time() - time_start} seconds")
-        #
+
+
 
 
 

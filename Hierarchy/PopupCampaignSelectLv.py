@@ -27,6 +27,9 @@ class PopupCampaignSelectLv:
     @property
     def mode_hell(self):
         return self.root.offspring("bHell")
+    @property
+    def mode_pattern(self):
+        return self.root.offspring("sLine").attr('texture')
     def _scan(self, level_type= "normal"): #mode normal
         node=[]
         for tab_level in ["TabLevel1", "TabLevel2", "TabLevel3"]:
