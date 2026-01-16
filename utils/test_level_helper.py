@@ -206,7 +206,7 @@ def navigate_and_click_level(poco,popup_campaign, target_level, logger):
         popup_campaign= PopupCampaignSelectLv(poco.freeze()) # refresh after click
 
         # Use swipe_to_target_world to find the target world
-        target_world_item = swipe_to_target_world_in_list(poco, popup_campaign, expected_world, logger_name=logger_name
+        target_world_item = swipe_to_target_world_in_list(poco, popup_campaign, expected_world
         )
 
         if not target_world_item:
@@ -216,7 +216,13 @@ def navigate_and_click_level(poco,popup_campaign, target_level, logger):
         # Click on the target world
         target_world_item.btn_go.click()
         logger.info(f"Clicked on World {expected_world}")
-        sleep(2)  # Wait for world to load
+        sleep(1)  # Wait for world to load
+        popup_campaign = PopupCampaignSelectLv(poco.freeze())  # refresh after click
+
+        if not is_level_unlocked(target_level, popup_campaign.list_level_normal, logger):
+            logger.error(f"Level {target_level} is not unlocked in World {expected_world}")
+            return False
+
 
         # Verify we're now in the correct world
         popup_campaign= PopupCampaignSelectLv(poco.freeze()) # refresh after world change

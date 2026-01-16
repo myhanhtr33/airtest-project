@@ -20,13 +20,21 @@ class PopupCampaignSelectLv:
         return text
     @property
     def mode_normal(self):
-        return self.root.offspring("bNormal")
+        return self.root.offspring("bNomal") #typo in unity
     @property
     def mode_hard(self):
         return self.root.offspring("bHard")
     @property
+    def hard_lock(self):
+        node= self.root.offspring("sHardLock")
+        return node if node.exists() else None
+    @property
     def mode_hell(self):
         return self.root.offspring("bHell")
+    @property
+    def hell_lock(self):
+        node= self.root.offspring("sHellLock")
+        return node if node.exists() else None
     @property
     def mode_pattern(self):
         return self.root.offspring("sLine").attr('texture')

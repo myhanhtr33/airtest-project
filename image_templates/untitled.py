@@ -19,10 +19,27 @@ print("start...")
 # generate html report
 # from airtest.report.report import simple_report
 # simple_report(__file__, logpath=True
-Template(r"tpl1766631100924.png", record_pos=(0.254, 0.511), resolution=(900, 1800))
-poco("item0")poco("PopupMilitaryGetPoint(Clone)").offspring("Scrollviewpoco("PopupMilitaryGetPoint(Clone)").offspring("Grid")")
-poco("PanelWorldInfo")
-poco("GridElement")
-poco("B_Worlds")poco("lTitleWorldpoco("TabLevel3").child("posLevel2").child("LevelItemObj")")
-poco("UbhObjectPool")
-poco("TabLevel1").offspring("sLinepoco("PopupLevelPrepareInfo(Clone)").offspring("L_NumLevelpoco("PopupSelectLevelCampaign")")")
+# class SurvivePanel:
+#     def __init__(self,root):
+#         self.root= root if root.exists() else None
+#     @property
+#     def title(self):
+#         node=self.root.offspring("lLabelTitle")
+#         return node.get_text().strip() if node.exists() else None
+#     @property
+#     def description(self):
+#         node=self.root.offspring("lLabelDescription")
+#         return node.get_text().strip() if node.exists() else None
+
+# panels= []
+# for i in range(1,4):
+#     panel_node=poco("UI INGAME (1)").offspring("panelItemBonus").offspring(f"Item{i}")
+#     panels.append(SurvivePanel(panel_node))
+
+# for p in panels:
+#     print(str(p.root))
+
+
+
+    
+

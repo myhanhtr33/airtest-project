@@ -1,4 +1,6 @@
-﻿from utils.get_resource_amount import clean_number
+﻿import time
+
+from utils.get_resource_amount import clean_number
 import os
 from airtest.core.api import Template
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -25,6 +27,29 @@ class UI_Ingame:
     @property
     def btn_switch_squad(self):
         return self.root.offspring("btn_Switch")
+    @property
+    def survive_stat(self):
+        node= self.root.offspring("NumWaveSurvive")
+        return node.get_text().strip() if node.exists() else None
+    @property
+    def survive_panels(self):
+        panels= []
+        for i in range(1,4):
+            panel_node=self.root.offspring("panelItemBonus").offspring(f"Item{i}")
+            panels.append(SurvivePanel(panel_node))
+        return panels
+
+class SurvivePanel:
+    def __init__(self,root):
+        self.root= root if root.exists() else None
+    @property
+    def title(self):
+        node=self.root.offspring("lLabelTitle")
+        return node.get_text().strip() if node.exists() else None
+    @property
+    def description(self):
+        node=self.root.offspring("lLabelDescription")
+        return node.get_text().strip() if node.exists() else None
 
 class UITop:
     def __init__(self, poco):
@@ -51,8 +76,12 @@ class UITop:
         return [node if node.exists() else None for node in nodes]
     @property
     def killed_enemies_percentage(self): #campaign, 63%
-        node= self.root.offspring("l_KilledEnemyPercentage")
-        return node.get_text().strip() if node.exists() else None
+        node= self.root.offspring("lNumberPercent")
+        if node.exists():
+            percent = node.get_text().strip().replace("%","")
+            return int(percent)
+        else:
+            return None
     @property
     def collected_gold(self):
         node = self.root.offspring("l_Coin")
@@ -64,6 +93,7 @@ class UITop:
     @property
     def collected_weekly_medal(self):
         node = self.root.offspring("l_WeeklyEvent")
+        print("collected_weekly_medal text:", node.get_text().strip())
         return clean_number(node.get_text().strip()) if node.exists() else None
 
     def get_current_hp(self) -> int:
@@ -112,9 +142,9 @@ class RevivalPopup:
 
 class EndGameVideoPopup:
     def __init__(self, poco):
-        # root=poco("PopupEndGameVideo(Clone)")
-        # self.root = root if root.exists() else None
-        self.root= poco("PopupEndGameVideo(Clone)")
+        root=poco("PopupEndGameVideo(Clone)")
+        self.root = root if root.exists() else None
+        # self.root= poco("PopupEndGameVideo(Clone)")
     @property
     def tap_close_text(self):
         return self.root.offspring("lTapClose")
@@ -124,6 +154,20 @@ class EndGameVideoPopup:
     @property
     def icon_template(self):
         return Template(EndGameVideo_icon_path)
+
+class PopupRate:
+    def __init__(self,poco):
+        root=poco("PopupRate(Clone)")
+        self.root= root if root.exists() else None
+    @property
+    def btn_back(self):
+        return self.root.offspring("BtnBack")
+    @property
+    def btn_rate_1to4(self):
+        return self.root.offspring("Btn1_4Stars")
+    @property
+    def btn_rate_5(self):
+        return self.root.offspring("Btn5Stars")
 
 class CurrencyBarIngame:
     def __init__(self, poco):
@@ -209,4 +253,38 @@ class PopupGameLose(PopupGameResult):
 class PopupGameWin(PopupGameResult):
     def __init__(self, poco):
         super().__init__(poco, "PopupGameComplete(Clone)")
+
+class LevelManager:
+    def __init__(self, poco):
+        self.root = poco("LevelManager")
+    @property
+    def waves(self):
+        return self.root.children()
+    def wave_count(self):
+        return len(self.waves)
+    def is_rescue_levelmanager(self):
+        rescue_waves= []
+        for wave in self.waves:
+            if "rescue" in wave.attr("name").lower():
+                rescue_waves.append(wave)
+        if len(rescue_waves) !=3:
+            print(f"rescue wave count not 3, found: {len(rescue_waves)}")
+            return False
+        rescue_objs=0
+        for w in rescue_waves:
+            objs=w.children()
+            for obj in objs:
+                if "PilotRescue" in obj.attr("name"):
+                    rescue_objs+=1
+                    print(f"found pilot rescue obj: {obj.attr('name')}")
+        if rescue_objs==3:
+            return True
+        print(f"rescue obj count not 3, found: {rescue_objs}")
+        return False
+    def is_survival_levelmanager(self):
+        if self.wave_count() ==10:
+            return True
+        return False
+
+
 
