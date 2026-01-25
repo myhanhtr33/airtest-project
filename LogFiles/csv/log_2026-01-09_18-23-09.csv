@@ -1,0 +1,19 @@
+Time,Level,Module,Message,Screenshot
+18:23:12,INFO,leuleuleu,=== STARTING LEVEL 3 TEST ===,
+18:23:12,INFO,leuleuleu,Phase 2: Navigating to Level 3,
+18:23:12,INFO,leuleuleu,Target level 3 should be in World 1,
+18:23:12,INFO,leuleuleu,Current world: 2,
+18:23:12,INFO,leuleuleu,Need to navigate from World 2 to World 1,
+18:23:15,INFO,leuleuleu,Attempt 1: Looking for world 1,
+18:23:15,INFO,leuleuleu,Found 48 items ,
+18:23:15,INFO,leuleuleu,Calculated average vertical distance: 0.03461858350778814,
+18:23:15,INFO,leuleuleu,"Visible items: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]",
+18:23:15,INFO,leuleuleu,need to move DOWN to find 1 from first item:2,
+18:23:15,INFO,leuleuleu,"Swiping from (0.3795926, 0.399681538) to (0.3795926, 0.6766301828055656) to find world 1",
+18:23:17,INFO,leuleuleu,Attempt 2: Looking for world 1,
+18:23:18,INFO,leuleuleu,Found 48 items ,
+18:23:18,INFO,leuleuleu,"Visible items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+18:23:18,INFO,leuleuleu,"Found target world 1 at position [0.3795926, 0.42737641155393824]",
+18:23:19,INFO,leuleuleu,Clicked on World 1,
+18:23:22,ERROR,leuleuleu,Failed to navigate to World 1,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-09_18h23.png"", ""View"")"
+18:23:22,ERROR,leuleuleu,Failed to navigate to Level 3,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-09_18h23.png"", ""View"")"

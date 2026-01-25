@@ -1,0 +1,4 @@
+Time,Level,Module,Message,Screenshot
+11:16:41,INFO,leuleuleu,=== STARTING LEVEL 14 TEST ===,
+11:16:41,INFO,leuleuleu,Phase 2: Navigating to Level 14,
+11:16:41,ERROR,leuleuleu,Level 14 is not unlocked!,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-13_11h16.png"", ""View"")"

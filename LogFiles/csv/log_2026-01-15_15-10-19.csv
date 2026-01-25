@@ -1,0 +1,19 @@
+Time,Level,Module,Message,Screenshot
+15:10:27,INFO,hehehehhe LV3,[ensure_mode_selected] Mode normal is already selected.,
+15:10:27,INFO,hehehehhe LV3,Target level 3 should be in World 1,
+15:10:27,INFO,hehehehhe LV3,Current world: 3,
+15:10:27,INFO,hehehehhe LV3,Need to navigate from World 3 to World 1,
+15:10:29,INFO,ScrollviewHelper,Attempt 1: Looking for world 1,
+15:10:30,INFO,ScrollviewHelper,Found 48 items ,
+15:10:30,INFO,ScrollviewHelper,Calculated average vertical distance: 0.03466667160494891,
+15:10:30,INFO,ScrollviewHelper,"Visible items: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]",
+15:10:30,INFO,ScrollviewHelper,need to move DOWN to find 1 from first item:3,
+15:10:30,INFO,ScrollviewHelper,"Swiping from (0.379562192641602, 0.399542183) to (0.379562192641602, 0.6768755283950512) to find world 1",
+15:10:34,INFO,ScrollviewHelper,Attempt 2: Looking for world 1,
+15:10:35,INFO,ScrollviewHelper,Found 48 items ,
+15:10:35,INFO,ScrollviewHelper,"Visible items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+15:10:35,INFO,ScrollviewHelper,"Found target world 1 at position [0.379562192641602, 0.399542183]",
+15:10:36,INFO,hehehehhe LV3,Clicked on World 1,
+15:10:37,ERROR,hehehehhe LV3,"Level 3 not found in World [<Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CB350>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CB170>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CB1A0>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2C8920>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CB8F0>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CBAD0>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CB110>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CB050>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2C9A60>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2C8830>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CBB30>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CB920>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CBC50>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CBC80>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CBEC0>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CBB00>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CBD40>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CB8C0>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CB1D0>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CB620>, <Hierarchy.PopupCampaignSelectLv.LevelItem object at 0x000001A1CF2CB650>]","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-15_15h10.png"", ""View"")"
+15:10:37,ERROR,hehehehhe LV3,Level 3 is not unlocked in World 1,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-15_15h10.png"", ""View"")"
+15:10:38,ERROR,hehehehhe LV3,[normal_lv_play] ❌ Cannot click level 3!,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-15_15h10.png"", ""View"")"

@@ -1,0 +1,16 @@
+Time,Level,Module,Message,Screenshot
+10:52:34,INFO,PopupMilitary,to home fixture initialized.,
+10:52:38,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1766634758599.jpg,
+10:52:39,WARNING,PopupMilitary,"[to_home] Failed to capture/mark mismatch screenshot: tuple indices must be integers or slices, not str","=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-12-25_10h52.png"", ""View"")"
+10:52:40,INFO,PopupMilitary,[to_home] Attempt 1/4 to go to home screen,
+10:52:40,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+10:52:45,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1766634765627.jpg,
+10:52:49,INFO,PopupMilitary,[to_home] No approximate match found even at low threshold; raw screenshot saved for analysis.,
+10:52:49,INFO,PopupMilitary,[to_home] No approximate match found; raw screenshot saved for analysis.,
+10:52:49,INFO,PopupMilitary,[to_home] Attempt 2/4 to go to home screen,
+10:52:49,INFO,PopupMilitary,[to_home] Sent BACK keyevent.,
+10:52:51,INFO,PopupMilitary,[to_home] Screenshot path: D:\FSTest\LogFiles\screenshot\1766634771274.jpg,
+10:52:51,INFO,PopupMilitary,[to_home] Marked screenshot saved: D:\FSTest\LogFiles\screenshot\marked_screenshots\campaign_button_marked_2.png,
+10:52:51,INFO,PopupMilitary,"[to_home] Campaign button found at position: (672, 1352)",
+10:52:51,INFO,setup method,Setting up PopupMilitary test environment...,
+10:52:59,INFO,setup method,PopupMilitary test environment setup complete.,

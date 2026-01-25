@@ -1,0 +1,13 @@
+Time,Level,Module,Message,Screenshot
+17:21:24,INFO,hehehehhe LV3,[ensure_mode_selected] Mode hard is already selected.,
+17:21:24,INFO,hehehehhe LV3,Target level 19 should be in World 3,
+17:21:24,INFO,hehehehhe LV3,Current world: 1,
+17:21:24,INFO,hehehehhe LV3,Need to navigate from World 1 to World 3,
+17:21:26,INFO,ScrollviewHelper,Attempt 1: Looking for world 3,
+17:21:26,INFO,ScrollviewHelper,Found 48 items ,
+17:21:26,INFO,ScrollviewHelper,Calculated average vertical distance: 0.03466666896668119,
+17:21:26,INFO,ScrollviewHelper,"Visible items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+17:21:26,INFO,ScrollviewHelper,"Found target world 3 at position [0.379562192641602, 0.4688755438667248]",
+17:21:27,INFO,hehehehhe LV3,Clicked on World 3,
+17:21:29,ERROR,hehehehhe LV3,Level 19 is not unlocked in World 3,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-15_17h21.png"", ""View"")"
+17:21:29,ERROR,hehehehhe LV3,[normal_lv_play] ❌ Cannot click level 19!,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-15_17h21.png"", ""View"")"

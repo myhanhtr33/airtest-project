@@ -17,17 +17,27 @@ class PopupCampaignSelectLv:
     def current_world(self):
         tmp = self.btn_worlds.offspring("lTitleWorld")
         text = re.search(r"World\s+(\d+)", tmp.get_text().strip()).group(1) if tmp.exists() else None
-        print(f"current_worldcurrent_worldcurrent_worldcurrent_world:{text}")
         return text
     @property
     def mode_normal(self):
-        return self.root.offspring("bNormal")
+        return self.root.offspring("bNomal") #typo in unity
     @property
     def mode_hard(self):
         return self.root.offspring("bHard")
     @property
+    def hard_lock(self):
+        node= self.root.offspring("sHardLock")
+        return node if node.exists() else None
+    @property
     def mode_hell(self):
         return self.root.offspring("bHell")
+    @property
+    def hell_lock(self):
+        node= self.root.offspring("sHellLock")
+        return node if node.exists() else None
+    @property
+    def mode_pattern(self):
+        return self.root.offspring("sLine").attr('texture')
     def _scan(self, level_type= "normal"): #mode normal
         node=[]
         for tab_level in ["TabLevel1", "TabLevel2", "TabLevel3"]:
@@ -54,12 +64,20 @@ class PopupCampaignSelectLv:
     @property
     def list_level_extra(self):
         return self._scan("extra")
+    @property
+    def world_panel(self):
+        node=self.root.offspring("PanelWorldInfo")
+        return PanelWorlds(node)
+
 class PanelWorlds:
-    def __init__(self,poco):
-        self.root = poco("PanelWorldInfo")
+    def __init__(self,root):
+        self.root = root
     @property
     def title(self):
         return  self.root.offspring("lWorld")
+    @property
+    def scrollview(self):
+        return self.root.offspring("GridElement")
     @property
     def list_world(self):
         return [WorldItem(node) for node in self.root.offspring("GridElement").children()]

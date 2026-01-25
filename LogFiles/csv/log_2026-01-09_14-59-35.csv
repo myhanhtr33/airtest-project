@@ -1,0 +1,5 @@
+Time,Level,Module,Message,Screenshot
+14:59:38,INFO,PopupMilitary,to home fixture initialized.,
+14:59:42,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1767945582388.jpg,
+14:59:42,INFO,PopupMilitary,[to_home] No approximate match found; raw screenshot saved for analysis.,
+14:59:42,INFO,PopupMilitary,[to_home] Attempt 1/4 to go to home screen,

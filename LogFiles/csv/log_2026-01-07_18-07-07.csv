@@ -1,0 +1,7 @@
+Time,Level,Module,Message,Screenshot
+18:07:13,INFO,ScrollviewHelper,Attempt 1: Looking for world 33,
+18:07:15,INFO,ScrollviewHelper,Found 48 items ,
+18:07:15,INFO,ScrollviewHelper,Calculated average vertical distance: 0.03461858096333191,
+18:07:15,INFO,ScrollviewHelper,"Visible items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+18:07:15,INFO,ScrollviewHelper,need to move UP to find 33 from last item:10,
+18:07:43,INFO,ScrollviewHelper,Attempt 2: Looking for world 33,

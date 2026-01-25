@@ -1,0 +1,19 @@
+Time,Level,Module,Message,Screenshot
+17:11:17,INFO,playing lv2,=== STARTING LEVEL 8 TEST ===,
+17:11:18,INFO,playing lv2,Phase 2: Navigating to Level 8,
+17:11:18,INFO,playing lv2,Target level 8 should be in World 2,
+17:11:18,INFO,playing lv2,Current world: 3,
+17:11:18,INFO,playing lv2,Need to navigate from World 3 to World 2,
+17:11:20,INFO,playing lv2,Attempt 1: Looking for world 2,
+17:11:21,INFO,playing lv2,Found 48 items ,
+17:11:21,INFO,playing lv2,Calculated average vertical distance: 0.034666671339774593,
+17:11:21,INFO,playing lv2,"Visible items: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]",
+17:11:21,INFO,playing lv2,need to move DOWN to find 2 from first item:3,
+17:11:21,INFO,playing lv2,"Swiping from (0.379562192641602, 0.39954221775888) to (0.379562192641602, 0.6768754634191053) to find world 2",
+17:11:23,INFO,playing lv2,Attempt 2: Looking for world 2,
+17:11:24,INFO,playing lv2,Found 48 items ,
+17:11:24,INFO,playing lv2,"Visible items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",
+17:11:24,INFO,playing lv2,"Found target world 2 at position [0.379562192641602, 0.45778221686670445]",
+17:11:25,INFO,playing lv2,Clicked on World 2,
+17:11:27,ERROR,playing lv2,Failed to navigate to World 2,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-08_17h11.png"", ""View"")"
+17:11:28,ERROR,playing lv2,Failed to navigate to Level 8,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-08_17h11.png"", ""View"")"

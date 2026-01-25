@@ -1,0 +1,18 @@
+Time,Level,Module,Message,Screenshot
+15:12:38,INFO,PopupMilitary,to home fixture initialized.,
+15:12:41,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1767600761436.jpg,
+15:12:41,INFO,PopupMilitary,[to_home] No approximate match found; raw screenshot saved for analysis.,
+15:12:41,INFO,PopupMilitary,[to_home] Attempt 1/4 to go to home screen,
+15:12:41,WARNING,PopupMilitary,[to_home] BACK/ESC keyevent failed: Unknown device type: <airtest.core.win.win.Windows object at 0x00000178481106E0>,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-05_15h12.png"", ""View"")"
+15:12:45,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1767600765103.jpg,
+15:12:45,INFO,PopupMilitary,[to_home] No approximate match found; raw screenshot saved for analysis.,
+15:12:45,INFO,PopupMilitary,[to_home] Attempt 2/4 to go to home screen,
+15:12:45,WARNING,PopupMilitary,[to_home] BACK/ESC keyevent failed: Unknown device type: <airtest.core.win.win.Windows object at 0x00000178481106E0>,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-05_15h12.png"", ""View"")"
+15:12:48,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1767600768752.jpg,
+15:12:49,INFO,PopupMilitary,[to_home] No approximate match found; raw screenshot saved for analysis.,
+15:12:49,INFO,PopupMilitary,[to_home] Attempt 3/4 to go to home screen,
+15:12:49,WARNING,PopupMilitary,[to_home] BACK/ESC keyevent failed: Unknown device type: <airtest.core.win.win.Windows object at 0x00000178481106E0>,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-05_15h12.png"", ""View"")"
+15:12:52,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1767600772435.jpg,
+15:12:52,INFO,PopupMilitary,[to_home] No approximate match found; raw screenshot saved for analysis.,
+15:12:52,INFO,PopupMilitary,[to_home] Attempt 4/4 to go to home screen,
+15:12:52,WARNING,PopupMilitary,[to_home] BACK/ESC keyevent failed: Unknown device type: <airtest.core.win.win.Windows object at 0x00000178481106E0>,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2026-01-05_15h12.png"", ""View"")"

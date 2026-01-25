@@ -1,0 +1,41 @@
+Time,Level,Module,Message,Screenshot
+11:10:14,INFO,Level1_tut,to home fixture initialized.,
+11:10:17,INFO,Level1_tut,[to_home] Already at Home screen.,
+11:10:17,INFO,TestLevel1_tut,[to_campaign_select_lv] Clicking Campaign button...,
+11:10:22,INFO,TestLevel1_tut,[to_campaign_select_lv] ✓ Campaign popup opened successfully,
+11:10:22,INFO,playing lv2 ,=== STARTING LEVEL 2 TEST ===,
+11:10:22,INFO,playing lv2 ,Phase 2: Navigating to Level 2,
+11:11:06,INFO,playing lv2 ,Target level 2 should be in World 1,
+11:11:07,INFO,playing lv2 ,Current world: 3,
+11:11:07,INFO,playing lv2 ,Need to navigate from World 3 to World 1,
+11:11:11,INFO,playing lv2 ,Attempt 1: Looking for world 1,
+11:11:11,INFO,playing lv2 ,Building item cache...,
+11:12:01,INFO,playing lv2 ,"done  Building item cache: [<Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CE758800>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CE758830>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA29EE0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA29EB0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA29F70>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA29FA0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA29F10>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A0C0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA29F40>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A0F0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA29FD0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A1E0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A1B0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A000>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A060>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A030>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A210>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A390>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A240>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A180>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A420>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A270>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A150>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A2D0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A300>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A360>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A450>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A3C0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A3F0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A480>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A4B0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A4E0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A510>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A540>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A570>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A5A0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A5D0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A600>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A630>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A660>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A690>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A6C0>, <Hierarchy.PopupCampaignSelectLv.WorldItem object at 0x000002C2CEA2A330>]",
+11:13:42,INFO,playing lv2 ,Found 0 items in cache,
+11:13:42,WARNING,playing lv2 ,Not enough valid worlds found,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:42,INFO,playing lv2 ,Attempt 2: Looking for world 1,
+11:13:42,WARNING,playing lv2 ,Not enough worlds with valid positions,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:43,INFO,playing lv2 ,Attempt 3: Looking for world 1,
+11:13:43,WARNING,playing lv2 ,Not enough worlds with valid positions,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:43,INFO,playing lv2 ,Attempt 4: Looking for world 1,
+11:13:43,WARNING,playing lv2 ,Not enough worlds with valid positions,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:44,INFO,playing lv2 ,Attempt 5: Looking for world 1,
+11:13:44,WARNING,playing lv2 ,Not enough worlds with valid positions,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:44,INFO,playing lv2 ,Attempt 6: Looking for world 1,
+11:13:44,WARNING,playing lv2 ,Not enough worlds with valid positions,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:44,INFO,playing lv2 ,Attempt 7: Looking for world 1,
+11:13:44,WARNING,playing lv2 ,Not enough worlds with valid positions,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:45,INFO,playing lv2 ,Attempt 8: Looking for world 1,
+11:13:45,WARNING,playing lv2 ,Not enough worlds with valid positions,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:45,INFO,playing lv2 ,Attempt 9: Looking for world 1,
+11:13:45,WARNING,playing lv2 ,Not enough worlds with valid positions,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:45,INFO,playing lv2 ,Attempt 10: Looking for world 1,
+11:13:45,WARNING,playing lv2 ,Not enough worlds with valid positions,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:46,ERROR,playing lv2 ,Could not find item 1 after 10 attempts,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:46,ERROR,playing lv2 ,Could not find World 1,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:47,ERROR,playing lv2 ,Failed to navigate to Level 2,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-25_11h13.png"", ""View"")"
+11:13:55,INFO,playing lv3 ,=== STARTING LEVEL 3 TEST ===,
+11:13:56,INFO,playing lv3 ,Phase 2: Navigating to Level 3,
+11:14:14,INFO,Level1_tut,[to_home] Attempt 1/4 to go to home screen,
+11:14:14,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+11:14:15,INFO,Level1_tut,[to_home] Already at Home screen.,

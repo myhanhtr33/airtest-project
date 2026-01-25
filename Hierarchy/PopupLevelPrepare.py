@@ -29,3 +29,7 @@ class PopupLevelPrepare:
     def card_sprite(self):
         node = self.root.offspring("panel_FirstRewards").offspring("sItemGift3")
         return node.attr("texture") if node.exists() else None
+    @property
+    def level_number(self):
+        node= self.root.offspring("L_NumLevel")
+        return int(node.get_text().strip()) if node.exists() else None

@@ -1,0 +1,13 @@
+Time,Level,Module,Message,Screenshot
+16:24:46,INFO,Level1_tut,to home fixture initialized.,
+16:24:50,INFO,Level1_tut,[to_home] Attempt 1/4 to go to home screen,
+16:24:50,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+16:24:54,INFO,Level1_tut,[to_home] Attempt 2/4 to go to home screen,
+16:24:54,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+16:24:59,INFO,Level1_tut,[to_home] Attempt 3/4 to go to home screen,
+16:24:59,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+16:25:03,INFO,Level1_tut,[to_home] Attempt 4/4 to go to home screen,
+16:25:03,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+16:25:08,INFO,Level1_tut,[to_home] Attempt 5/4 to go to home screen,
+16:25:08,INFO,Level1_tut,[to_home] Sent BACK keyevent.,
+16:25:09,ERROR,Level1_tut,[to_home] ❌ Failed to return to Home screen after 4 attempts.,"=HYPERLINK(""file:///D:/FSTest/LogFiles/screenshot/2025-11-28_16h25.png"", ""View"")"

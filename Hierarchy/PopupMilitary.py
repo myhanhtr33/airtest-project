@@ -4,6 +4,7 @@ import datetime, time
 
 import pandas as pd
 from typing import Literal
+from utils.UI_scrollview_helper import calculate_row_distance as calc_row_distance, scroll_to_item as scroll_helper
 current_dir=os.path.dirname(os.path.abspath(__file__))
 file_path= os.path.join(os.path.dirname(current_dir),"Data","Military.xlsx")
 type=["Aircraft", "Drone", "Wing", "Pilot", "Engine"]
@@ -26,15 +27,19 @@ expected_passive_sprites=["UI_Career_Pass",
                           "Reduce_Damage"]
 class PopupMilitary:
     def __init__(self, poco):
+        print("in PopupMilitary __init__")
         self.poco = poco
         self.root= self.poco("PopupMilitaryCareer(Clone)")
         self.btn_back = self.root.offspring("B_Back (1)")
         self.top_panel = self.root.offspring("TopDecord")
-        self.title = self.top_panel.offspring("lTitle").get_text() if self.top_panel.offspring("lTitle").exists() else None
+        # self.title = self.top_panel.offspring("lTitle").get_text() if self.top_panel.offspring("lTitle").exists() else None
+        title_obj=self.top_panel.offspring("lTitle")
+        self.title= title_obj.get_text().strip() if title_obj.attr('visible') else None
         self.rank_badge= self.top_panel.offspring("Spine GameObject (Career Rank)")
         self.info_btn= self.top_panel.offspring("bInfo")
         self.mid_panel = self.root.offspring("TopMiddle")
-        self.mid_title = self.mid_panel.offspring("lTitle (1)").get_text() if self.mid_panel.offspring("lTitle (1)").exists() else None
+        mid_title_obj=self.mid_panel.offspring("lTitle (1)")
+        self.mid_title = mid_title_obj.attr('text') if mid_title_obj.attr('visible') else None
         # self.passives=[]
         # for i in range(1,7):
         #     node=self.mid_panel.offspring(f"Passive{i}")
@@ -74,26 +79,33 @@ class PopupMilitary:
         return result
     @property
     def level_number_text(self):
-        return self.rank_badge.offspring("lLevel").get_text().strip() if self.rank_badge.offspring("lLevel").exists() else None
+        obj= self.rank_badge.offspring("lLevel")
+        return obj.get_text().strip() if obj.exists() else None
     @property
     def level_category_text(self):
-        return self.top_panel.offspring("lRank").get_text().strip() if self.top_panel.offspring("lRank").exists() else None
+        obj= self.top_panel.offspring("lRank")
+        return obj.get_text().strip() if obj.exists() else None
     @property
     def progress_text(self):
-        return self.bot_panel.offspring("lProcess").get_text().strip() if self.bot_panel.offspring("lProcess").exists() else None
+        obj= self.bot_panel.offspring("lProcess")
+        return obj.get_text().strip() if obj.exists() else None
     @property
     def upgrade_price_text(self):
-        return self.upgrade_btn.offspring("lUpgrade").get_text().strip() if self.upgrade_btn.offspring("lUpgrade").exists() else None
+        obj=self.upgrade_btn.offspring("lUpgrade")
+        return obj.get_text().strip() if obj.exists() else None
     @property
     def upgrade_btn_notice(self):
-        return self.upgrade_btn.offspring("sNotice") if self.upgrade_btn.offspring("sNotice").exists() else None
+        obj=self.upgrade_btn.offspring("sNotice")
+        return obj if obj.exists() else None
     @property
     def upgrade_btn_sprite(self):
-        return self.upgrade_btn.offspring("sBtnUpdate").attr("texture") if self.upgrade_btn.offspring("sBtnUpdate").exists() else None
+        obj=self.upgrade_btn.offspring("sBtnUpdate")
+        return obj.attr("texture").strip() if obj.exists() else None
     def get_actual_level(self):
         for i, category in enumerate(rank_category):
             if self.level_category_text == category:
                 return i*10 + int(self.level_number_text)
+        return None
 
     def get_expected_stats_by_lv(self,level:int)->list:
         df = pd.read_excel(file_path)
@@ -132,7 +144,8 @@ class Passive:
         self.stat = _stat
     @property
     def passive_stat_text(self):
-        return self.root.offspring(self.stat).get_text().strip() if self.root.offspring(self.stat).exists() else None
+        obj= self.root.offspring(self.stat)
+        return obj.get_text().strip() if obj.exists() else None
 class WeaponPoint:
     def __init__(self,node,name):
         self.root= node
@@ -142,26 +155,32 @@ class WeaponPoint:
         return self.root.offspring("sIcon")
     @property
     def name(self):
-        return self.root.offspring(f"l{self._name}").get_text().strip() if self.root.offspring(
-            f"l{self._name}").exists() else None
+        obj= self.root.offspring(f"l{self._name}")
+        return obj.get_text().strip() if obj.exists() else None
     @property
     def accumulated_point(self):
-        return self.root.offspring(f"lPoint{self._name}").get_text().strip() if self.root.offspring(f"lPoint{self._name}").exists() else None
+        obj=self.root.offspring(f"lPoint{self._name}")
+        return obj.get_text().strip() if obj.exists() else None
     @property
     def notice(self):
-        return self.root.offspring("sNotice") if self.root.offspring("sNotice").exists() else None
+        obj=self.root.offspring("sNotice")
+        return obj if obj.exists() else None
 class WeaponPoint_PopupGetPoint(WeaponPoint):
     def __init__(self,node,name):
         super().__init__(node,name)
     @property
     def active_BG(self):
-        return self.root.offspring("sBGActive") if self.root.offspring("sBGActive").exists() else None
+        obj= self.root.offspring("sBGActive")
+        return obj if obj.exists() else None
     @property
     def deactive_BG(self):
-        return self.root.offspring("sBGDeActive") if self.root.offspring("sBGDeActive").exists() else None
+        obj= self.root.offspring("sBGDeactive")
+        return obj if obj.exists() else None
     @property
     def notice_icon(self):
-        return self.deactive_BG.child("sNotice") if self.deactive_BG.child("sNotice").exists() else None
+        obj=self.deactive_BG.child("sNotice")
+        return obj if obj.exists() else None
+
 class PopupMilitaryGetPoint:
     def __init__(self,poco,type_name:Literal["Air", "Drone", "Wing", "Pilot", "Engine"]="Air"):
         self.poco = poco
@@ -169,8 +188,10 @@ class PopupMilitaryGetPoint:
         self.root = self.poco("PopupMilitaryGetPoint(Clone)")
         self.btn_back = self.root.offspring("B_Back (1)")
         self.middle_panel = self.root.offspring("TopMiddle")
-        self.title = self.middle_panel.offspring("title").get_text().strip() if self.middle_panel.offspring("sTitle").exists() else None
+        title_obj= self.middle_panel.offspring("title")
+        self.title = title_obj.attr('text').strip() if title_obj.exists() else None
         self.generator=self.middle_panel.offspring("Generators").child(f"{type_name[0]}Generator")
+        self.scroll_view = self.root.offspring("Grid")
         # self.items=[]
         # start_time=time.time()
         # for item in list(self.middle_panel.offspring("Grid").children())[:5]: # Limit to first 5 items for performance
@@ -181,20 +202,17 @@ class PopupMilitaryGetPoint:
         # end_time = time.time()
         # print(f"Time taken to process Grid items: {end_time - start_time:.4f} seconds")
         self.weapon_points = []
-        start_time = time.time()
         for i in range(5):
             _type = type[i]
             _name = {1: "Air", 2: "Drone", 3: "Wing", 4: "Pilot", 5: "Engine"}[i + 1]
             node = self.root.offspring(f"{_type}Point")
             if node.exists():
                 self.weapon_points.append(WeaponPoint_PopupGetPoint(node, _name))
-        end_time = time.time()
-        print(f"Time taken to process weapon_points: {end_time - start_time:.4f} seconds")
     @property
     def items(self):
         result = []
         start_time = time.time()
-        for item in list(self.middle_panel.offspring("Grid").children())[:5]:  # Limit to first 5 items for performance
+        for item in list(self.middle_panel.offspring("Grid").children()): #[:5]:  # Limit to first 5 items for performance
             if self._type_name == "Pilot":
                 result.append(PilotItem(item))
             else:
@@ -202,30 +220,77 @@ class PopupMilitaryGetPoint:
         end_time = time.time()
         print(f"Time taken to process Grid items: {end_time - start_time:.4f} seconds")
         return result
+
+
+    def scroll_to_item(self, item,row_distance):
+        """
+        Scroll to make an item visible if it's below the weapon_points at the bottom.
+        Uses weapon_points y-axis as reference threshold.
+        """
+        # Get the y position of weapon_points (they all have the same y)
+        if not self.weapon_points or len(self.weapon_points) == 0:
+            print("[scroll_to_item] No weapon points found, skipping scroll check")
+            return
+
+        # Get weapon points y position as the threshold
+        weapon_point_y = self.weapon_points[0].root.get_position()[1]
+        print(f"[scroll_to_item] Weapon points y-axis: {weapon_point_y}")
+
+        # Get the item's y position
+        item_pos = item.root.get_position()
+        item_y = item_pos[1]
+        print(f"[scroll_to_item] Item {item.root} y-axis: {item_y}")
+
+
+        # Adjust item y position by adding row distance to account for full item visibility
+        adjusted_item_y = item_y + row_distance
+        print(f"[scroll_to_item] Adjusted item y (item_y + row_distance): {adjusted_item_y}")
+
+        # If adjusted item position is below weapon points threshold, scroll is needed
+        if adjusted_item_y >= weapon_point_y:
+            print(f"[scroll_to_item] Item is below weapon points threshold (adjusted), scrolling...")
+            # Scroll the middle panel/scrollview
+            try:
+                self.scroll_view.swipe([0, -0.3])  # Negative y to scroll down
+                time.sleep(2)
+                print(f"[scroll_to_item] Swiped scrollview")
+                return True
+            except Exception as e:
+                print(f"[scroll_to_item] Swipe failed: {e}")
+        else:
+            print(f"[scroll_to_item] Item is visible, no scroll needed")
+        return False
 class HangarItem:
     def __init__(self,node):
         self.root=node
+        # print(f"in HangarItem __init__ str:{str(self.root)} root{self.root}")
     @property
     def item_icon(self):
-        return self.root.offspring("sIcon").attr("texture") if self.root.offspring("sIcon").exists() else None
+        obj=self.root.offspring("sIcon")
+        return obj.attr("texture").strip() if obj.exists() else None
     @property
     def star_text(self):
-        return self.root.offspring("lStar").get_text().strip() if self.root.offspring("lStar").exists() else None
+        obj=self.root.offspring("lStar")
+        return obj.get_text().strip() if obj.exists() else None
     @property
     def star_icon(self):
         return self.root.offspring("sStar")
     @property
     def cover_BG(self):
-        return self.root.offspring("goCover") if self.root.offspring("goCover").exists() else None
+        obj=self.root.offspring("goCover")
+        return obj if obj.exists() else None
     @property
     def lock_icon(self):
-        return self.root.offspring("goLock") if self.root.offspring("goLock").exists() else None
+        obj=self.root.offspring("goLock")
+        return obj if obj.exists() else None
     @property
     def point_text(self):
-        return self.root.offspring("lPoint").get_text().strip() if self.root.offspring("lPoint").exists() else None
+        obj= self.root.offspring("lPoint")
+        return obj.get_text().strip().replace("+","") if obj.exists() else None
     @property
     def claimed_icon(self):
-        return self.root.offspring("goClaimed") if self.root.offspring("goClaimed").exists() else None
+        obj=self.root.offspring("goClaimed")
+        return obj if obj.exists() else None
 class PilotItem(HangarItem):
     def __init__(self, node):
         super().__init__(node)

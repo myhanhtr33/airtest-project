@@ -1,0 +1,5 @@
+Time,Level,Module,Message,Screenshot
+15:08:52,INFO,hehehehhe LV3,[ensure_mode_selected] Mode normal is already selected.,
+15:08:52,INFO,hehehehhe LV3,Target level 3 should be in World 1,
+15:08:52,INFO,hehehehhe LV3,Current world: 3,
+15:08:52,INFO,hehehehhe LV3,Need to navigate from World 3 to World 1,

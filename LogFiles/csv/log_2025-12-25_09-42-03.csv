@@ -1,0 +1,5 @@
+Time,Level,Module,Message,Screenshot
+09:42:05,INFO,PopupMilitary,to home fixture initialized.,
+09:42:09,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1766630529782.jpg,
+09:42:10,INFO,setup method,Setting up PopupMilitary test environment...,
+09:42:18,INFO,setup method,PopupMilitary test environment setup complete.,

@@ -1,0 +1,7 @@
+Time,Level,Module,Message,Screenshot
+10:21:54,INFO,PopupMilitary,to home fixture initialized.,
+10:21:57,INFO,PopupMilitary,[to_home] Saved failure screenshot: D:\FSTest\LogFiles\screenshot\1767756117465.jpg,
+10:21:57,INFO,PopupMilitary,[to_home] Marked mismatch screenshot saved: D:\FSTest\LogFiles\screenshot\marked_screenshots\campaign_button_mismatch_0.png,
+10:21:57,INFO,PopupMilitary,"[to_home] Approximate match position (low threshold): {'result': (295, 136), 'rectangle': [(21, 114), (21, 158), (409, 158), (409, 114)], 'confidence': 0.5408592782914639, 'time': 0.1370704174041748}",
+10:21:57,INFO,PopupMilitary,[to_home] Attempt 1/4 to go to home screen,
+10:21:57,INFO,PopupMilitary,[to_home] Sent BACK/ESC keyevent.,
