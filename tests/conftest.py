@@ -34,7 +34,8 @@ def dev():
     # connect once per session and provide device fixture
     # dev = connect_device("android://127.0.0.1:5037/emulator-5554")
     # dev = connect_device("android://127.0.0.1:5037/emulator-5564")
-    dev = connect_device("Windows:///1836140") #unity editor
+    # dev = connect_device("Windows:///6818358") #unity editor
+    dev= connect_device("Windows:///198708") #snake
     print(f"Connected to Unity device: {dev}")
     return dev
 
@@ -94,13 +95,11 @@ def fixture_orchestrator(request, poco, dev):
             for m in class_markers:
                 if m.name in ['use_to_home', 'use_to_campaign_select_lv']:
                     markers[m.name] = m
-
         # Also check function-level markers
         for marker_name in ['use_to_home', 'use_to_campaign_select_lv']:
             func_marker = request.node.get_closest_marker(marker_name)
             if func_marker:
                 markers[marker_name] = func_marker
-
         return markers
 
     markers = get_markers()
@@ -116,9 +115,7 @@ def fixture_orchestrator(request, poco, dev):
         logger = get_logger(logger_name)
         back_button_func = to_home_marker.kwargs.get("back_button", None)
         back_button = request.getfixturevalue(back_button_func) if back_button_func else None
-
         logger.info("to home fixture initialized.")
-
         # Try up to 4 times to get to the home screen
         for attempt in range(5):
             campaign_result = exists(btnCampaign_img)

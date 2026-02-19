@@ -1,5 +1,6 @@
 ﻿import pytest
 from logger_config import get_logger
+from tests.snake.snake_test import *
 from utils.helper_functions import wait_for_element
 from utils.test_level_helper import *
 from utils.get_resource_amount import *
@@ -27,40 +28,56 @@ class TestCozyPlay:
             raise Exception(f"Unsupported device for test: {device_uri}")
 
     def test_invoke(self):
-        result= self.poco.invoke("get_level_data")
-        level_data_phases= result['level_data']['phases']
-        level_data= level_data_phases[0]['groups']
-        print(level_data)
-        print(f"count items in group={len(level_data)}")
-        spawn_exceptions= result['spawn_exceptions']
-        spawnable_item=[]
-        for i in level_data:
-            if i['items'] not in spawn_exceptions:
-                spawnable_item.append(i['items'])
-        print(f"spawnable_item={spawnable_item}")
-        print(f"count spawnable_item={len(spawnable_item)}")
+        def data_requery():
+            nonlocal ingame_grid_data, layer_data, block_by, block_by2, snake_map, match_boxes
+            ingame_grid_data = get_ingame_grid_data(self.poco)
+            layer_data = ingame_grid_data['layerData']
+            block_by = ingame_grid_data['block_by']
+            block_by2 = ingame_grid_data['block_by2']
+            snake_map = get_snake_map(self.poco)
+            match_boxes = get_match_boxes(self.poco)
+            print(f'macth_boxes: {match_boxes}')
+        def is_wait_for_anim(snake_id, match_boxes):
+            for box in match_boxes:
+                if not is_open_box(box):
+                    continue
+                box_color_val = box_color(box)
+                remain_slots= box['runtimeData']['remainSlots']
+                snake_color = snake_map[snake_id]['color']
+                if box_color_val == snake_color and remain_slots <=1:
+                    return True
+            return False
+
+        ingame_grid_data = get_ingame_grid_data(self.poco)
+        layer_data = ingame_grid_data['layerData']
+        block_by = ingame_grid_data['block_by']
+        block_by2 = ingame_grid_data['block_by2']
+        snake_map = get_snake_map(self.poco)
+        match_boxes = get_match_boxes(self.poco)
+        while len(layer_data)>0:
+            print(f"current snakes: {list(layer_data.keys())}")
+            optimal_snake=find_optimal_move(block_by, snake_map, match_boxes,block_by2)
+            print(f"optimal snake to move: {optimal_snake['snake_id']}")
+            print(f"have to move snakes: {len(optimal_snake['plan'])}")
+            for i, snake in enumerate(optimal_snake['plan']):
+                snake_pos = pos_of(snake_map, snake)
+                print(f"moving snake {snake} at pos {snake_pos}")
+                click(snake_pos)
+                sleep(0.5)
+                if is_wait_for_anim(snake, match_boxes):
+                    print("waiting for box open animation...")
+                    sleep(1.5)
+            sleep(2)
+            data_requery()
+
+
+
     def test_drag(self):
-        name="goi"
-        sleep(0.5)
-        result= self.poco.invoke("check_small_and_get_normalized_position", objName=name)
-        print(result)
-        print(result['status'])
-        if(result['status']==False):
-            print(f"{name} is not small")
-        # target_pos=result["normalized_pos"]
-        # target_pos = result.get("normalized_pos")
-        # print(f"before normalized_pos={target_pos} (type={type(target_pos).__name__})")
-        # if isinstance(target_pos, (list, tuple)):
-        #     target_pos = tuple(float(x) for x in target_pos)
-        # else:
-        #     try:
-        #         target_pos = tuple(map(float, target_pos))
-        #     except Exception:
-        #         raise ValueError(f"Invalid normalized_pos: {result!r}")
-        # print(f"normalized_pos={target_pos} (type={type(target_pos).__name__})")
-        # lamp= self.poco(name)
-        # sleep(1)
-        # lamp.focus([0.5, 0.8]).click()
+        match_boxes = get_match_boxes(self.poco)
+        print(f'macth_boxes: {match_boxes}')
+        ingame_grid_data = get_ingame_grid_data(self.poco)
+        print(f'ingame_grid_data: {ingame_grid_data}')
+
 
     def test_apk(self):
         name="pillow2"
@@ -90,3 +107,44 @@ class TestCozyPlay:
         thung_rac=self.poco("0_thungrac")
         for itemFloat in floating_items:
             self.poco(itemFloat).drag_to(thung_rac.focus([0.5, 1]), duration=0.2)
+
+    def test_lv1(self):
+        ## gameplay
+        # popup_win= self.poco("PopupWin")
+        # btn_next=popup_win.offspring("Next")
+        # if not wait_for_element(popup_win,timeout=10):
+        #     raise TargetNotFoundError("Cannot find PopupWin")
+        # if not wait_for_element(btn_next,timeout=10):
+        #     raise TargetNotFoundError("Cannot find Next button in PopupWin")
+        # btn_next.click()
+        sleep(2)
+        level_display= self.poco("T_LevelCurrent")
+        if not wait_for_element(level_display,timeout=10):
+            raise TargetNotFoundError("Cannot find T_LevelCurrent")
+        level_text= level_display.get_text().replace("Lv.","")
+        assert level_text=="2", f"Expected level 2, but got level {level_text}"
+        print(f"successfully enter next level {level_text}")
+    def test_lv2(self,level=2):
+        level_display = self.poco("T_LevelCurrent")
+        if not wait_for_element(level_display, timeout=10):
+            raise TargetNotFoundError("Cannot find T_LevelCurrent")
+        level_text = level_display.get_text().replace("Lv.", "")
+        assert level_text == f"{level}", f"Expected level {level}, but got level {level_text}"
+        # gameplay
+        # popup_win= self.poco("PopupWin")
+        # btn_next=popup_win.offspring("Next")
+        # btn_ads= popup_win.offspring("B_Ads")
+        # if not wait_for_element(popup_win,timeout=10):
+        #     raise TargetNotFoundError("Cannot find PopupWin")
+        # if not wait_for_element(btn_next,timeout=10):
+        #     raise TargetNotFoundError("Cannot find Next button in PopupWin")
+        # if not wait_for_element(btn_ads,timeout=10):
+        #     raise TargetNotFoundError("Cannot find Ads button in PopupWin")
+        # btn_next.click()
+        # sleep(2)
+        # level_display = self.poco("T_LevelCurrent")
+        # if not wait_for_element(level_display, timeout=10):
+        #     raise TargetNotFoundError("Cannot find T_LevelCurrent")
+        # level_text = level_display.get_text().replace("Lv.", "")
+        # assert level_text == f"{level+1}", f"Expected level {level+1}, but got level {level_text}"
+        # print(f"successfully enter next level {level_text}")

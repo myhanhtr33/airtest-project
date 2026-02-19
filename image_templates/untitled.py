@@ -38,13 +38,7 @@ print("start...")
 
 # for p in panels:
 #     print(str(p.root))
-btn_play=poco("Menu_Cozy").offspring("tx[Scroll_Rect]").child("Viewport").offspring("UIHome").offspring("ButtonPlay")
-btn_play_lv_text=poco("Menu_Cozy").offspring("[Scroll_Rect]").child("Viewport").offspring("UIHome").offspring("T_Level (1)")
-popup_win=poco("Menu").offspring("PopupWin")
-btn_next_popup_win=poco("Menu").offspring("B_Continue")
-poco("toachinh")
-poco("36_toachinh(Clone)(Clone)")
-
+poco("snake0").child("snake_head - shadow").click()
 
 
     
