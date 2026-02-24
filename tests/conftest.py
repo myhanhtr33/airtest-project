@@ -32,10 +32,9 @@ def pytest_configure(config):
 @pytest.fixture(scope="session")
 def dev():
     # connect once per session and provide device fixture
-    # dev = connect_device("android://127.0.0.1:5037/emulator-5554")
+    dev = connect_device("android://127.0.0.1:5037/emulator-5554")
     # dev = connect_device("android://127.0.0.1:5037/emulator-5564")
-    # dev = connect_device("Windows:///6818358") #unity editor
-    dev= connect_device("Windows:///198708") #snake
+    # dev= connect_device("Windows:///198564") #snake
     print(f"Connected to Unity device: {dev}")
     return dev
 

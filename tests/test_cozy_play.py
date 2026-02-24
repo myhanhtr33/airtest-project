@@ -36,7 +36,9 @@ class TestCozyPlay:
             block_by2 = ingame_grid_data['block_by2']
             snake_map = get_snake_map(self.poco)
             match_boxes = get_match_boxes(self.poco)
-            print(f'macth_boxes: {match_boxes}')
+        def match_boxes_requery():
+            nonlocal match_boxes
+            match_boxes = get_match_boxes(self.poco)
         def is_wait_for_anim(snake_id, match_boxes):
             for box in match_boxes:
                 if not is_open_box(box):
@@ -57,26 +59,74 @@ class TestCozyPlay:
         while len(layer_data)>0:
             print(f"current snakes: {list(layer_data.keys())}")
             optimal_snake=find_optimal_move(block_by, snake_map, match_boxes,block_by2)
-            print(f"optimal snake to move: {optimal_snake['snake_id']}")
-            print(f"have to move snakes: {len(optimal_snake['plan'])}")
+            print(f"optimal snake: {optimal_snake['snake_id']} color: {snake_map[optimal_snake['snake_id']]['color']}"
+                  f"({get_color_name(snake_map[optimal_snake['snake_id']]['color'])}). "
+                  f"{len(optimal_snake['plan'])} snakes to move")
+            available_waiting_bar= get_available_waiting_bar_count(self.poco)
+            if len(optimal_snake['plan'])>= available_waiting_bar:
+                print(f"not enough waiting bars to move optimal snake, available waiting bars: {available_waiting_bar}, "
+                      f"optimal snake plan length: {len(optimal_snake['plan'])}.")
+                ##solution 1: open more matche box
+                locked_box_count= get_locked_match_box_count(match_boxes)
+                if locked_box_count>0:
+                    print(f"there are {locked_box_count} locked match boxes, try to open one to get more waiting bars...")
+                    for box in match_boxes:
+                        if not is_open_box(box):
+                            box_pos= pos_of(box, self.poco)
+                            click(box_pos)
+                            sleep(2)
+                            match_boxes_requery()
+                            break
+
             for i, snake in enumerate(optimal_snake['plan']):
                 snake_pos = pos_of(snake_map, snake)
-                print(f"moving snake {snake} at pos {snake_pos}")
+                print(f"moving snake {snake} color:{snake_map[snake]['color']}({get_color_name(snake_map[snake]['color'])})")
                 click(snake_pos)
-                sleep(0.5)
                 if is_wait_for_anim(snake, match_boxes):
                     print("waiting for box open animation...")
-                    sleep(1.5)
+                    sleep(2)
+                    match_boxes_requery()
+                else:
+                    sleep(0.5)
             sleep(2)
             data_requery()
 
 
 
     def test_drag(self):
-        match_boxes = get_match_boxes(self.poco)
-        print(f'macth_boxes: {match_boxes}')
-        ingame_grid_data = get_ingame_grid_data(self.poco)
-        print(f'ingame_grid_data: {ingame_grid_data}')
+        # match_boxes = get_match_boxes(self.poco)
+        # match_boxes = list(reversed(get_match_boxes(self.poco)))
+        # print(f'macth_boxes: {match_boxes}')
+        # box2_position= self.poco("btnBooster_4").get_position()
+        # box3_position= self.poco("btnBooster_5").get_position()
+        # match_boxes[2]['position_normalized']= box2_position
+        # match_boxes[3]['position_normalized']= box3_position
+        # print(f"after adjustment, match_boxes: {match_boxes}")
+        # for box in match_boxes:
+        #     if not box['position_normalized'] is None:
+        #         click(box['position_normalized'])
+        #         sleep(1)
+        result= self.poco.invoke("get_waiting_bars")
+        result=list(reversed(result['waitingBars']))
+        print(f"waiting bars: {result}")
+        result1= self.poco.invoke("get_user_data")
+        print(f"get_user_data: {result1}")
+        self.poco.invoke("add_resource", resourceId="gold",amount=100)
+        self.poco.invoke("add_resource", resourceId="magnet",amount=5)
+        result1 = self.poco.invoke("get_user_data")
+        print(f"AFTER get_user_data: {result1}")
+        available_bars=0
+        available_bar_indices = []
+        for idx,pole in enumerate(result):
+            if pole['snakeId'] is None:
+                available_bars+=1
+                available_bar_indices.append(idx)
+        print(f"available bars: {available_bars}, indices: {available_bar_indices}")
+
+
+
+
+
 
 
     def test_apk(self):
